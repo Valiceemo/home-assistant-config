@@ -24,11 +24,11 @@ panel_iframe:
   router:
     title: 'PiHole Dashboard'
     icon: mdi:raspberrypi
-    url: http://192.168.0.1/sky_index.html
+    url: http://!secret sky_router_ip/sky_index.html
   piholesysinfo:
     title: 'Pi Hole System Info'
     icon: mdi:raspberrypi
-    url: http://192.168.0.45/pisysinfo
+    url: http://!secret pi-hole_ip/pisysinfo
 
 mqtt:
   broker: !secret mqtt_broker
