@@ -1,0 +1,14 @@
+- platform: limitlessled
+  bridges:
+    - host: 192.168.0.216
+      groups:
+      - number: 1
+        name: Lounge Lamp
+        type: rgbw
+      - number: 1
+        name: Bridge
+        type: bridge-led
+      - number: 2
+        name: Bedroom Light
+        type: rgbw
+        

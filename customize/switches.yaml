@@ -1,0 +1,30 @@
+switch.tv_backlight_power:
+  friendly_name: Power
+  icon: mdi:power
+switch.tv_backlight_brightness_up:
+  friendly_name: Brightness +
+  icon: mdi:palette
+switch.tv_backlight_brightness_down:
+  friendly_name: Brighness -
+  icon: mdi:palette
+switch.tv_backlight_blue:
+  friendly_name: Blue
+  icon: mdi:palette
+switch.tv_backlight_red:
+  friendly_name: Red
+  icon: mdi:palette
+switch.tv_backlight_white:
+  friendly_name: White
+  icon: mdi:palette
+switch.tv_backlight_green:
+  friendly_name: Green
+  icon: mdi:palette
+switch.tv_backlight_yellow:
+  friendly_name: Yellow
+  icon: mdi:palette
+switch.tv_backlight_cyan:
+  friendly_name: Cyan
+  icon: mdi:palette
+switch.tv_backlight_pink:
+  friendly_name: Pink
+  icon: mdi:palette

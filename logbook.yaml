@@ -1,0 +1,19 @@
+  exclude:
+    domains:
+      - sun
+      - light
+      - weblink
+    entities:
+      - sensor.cpu_temp
+      - sensor.sn1_temperature
+      - sensor.sn1_humidity
+      - sensor.sn1_ldr
+      - sensor.sn1_pir
+      - sensor.cpu_use
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
+      - binary_sensor.lounge_cam_motion
+      - sensor.bedroom_humidity
+      - sensor.bedroom_sensor_node_pir
+      - sensor.bedroom_temperature

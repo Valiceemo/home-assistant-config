@@ -1,0 +1,34 @@
+view_network:
+  name: Network
+  view: yes
+  entities:
+    - group.network_info
+    - group.network_speeds
+    - group.pihole
+
+
+network_speeds:
+  name: Network Speeds
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+    
+network_info:
+  name: Network
+  entities:
+    - sensor.ipv4_address_eth0
+    - sensor.external_ip
+
+pihole:
+  name: Pi-hole
+  entities:
+    - sensor.pihole_dns_queries_today
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_domains_blocked
+    - sensor.pihole_cpu_temp
+    - sensor.pihole_cpu_usage
+    - sensor.pihole_last_booted
+    - sensor.pihole_disk_usage
+    - weblink.pihole

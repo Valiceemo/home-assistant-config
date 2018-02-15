@@ -1,0 +1,41 @@
+sensor.pihole_dns_queries_today:
+  icon: mdi:dns
+  friendly_name: Queries Today
+sensor.pihole_ads_blocked_today:
+  friendly_name: Blocked Today
+sensor.pihole_ads_percentage_blocked_today:
+  friendly_name: Blocked Percent
+sensor.pihole_domains_blocked:
+  friendly_name: Blocked Domains
+
+sun.sun:
+  hidden: true
+  
+sensor.since_last_boot:
+  hidden: true
+  
+sensor.hass_uptime:
+  icon: mdi:clock
+sensor.ha_installed_version:
+  icon: mdi:home-assistant
+sensor.since_last_boot_templated:
+  friendly_name: Pi3 Uptime
+sensor.disk_free_mediasharehdd1:
+  friendly_name: Hard drive Available
+sensor.disk_free_home:
+  friendly_name: Available Home Dir
+sensor.disk_used_homepikodi:
+  friendly_name: Used by Kodi
+  
+sensor.dht_sensor_temperature:
+  friendly_name: AV Temperature
+sensor.dht_sensor_humidity:
+  friendly_name: AV Humidity
+  icon: mdi:water-percent
+  
+sensor.lounge_humidity:
+  icon: mdi:water-percent
+sensor.lounge_light_level:
+  icon: mdi:brightness-7
+sensor.lounge_sensor_node_pir:
+  icon: mdi:run-fast

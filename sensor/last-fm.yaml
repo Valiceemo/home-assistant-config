@@ -1,0 +1,5 @@
+- platform: lastfm
+  api_key: 060fc787ee980c29b57b6b8a179dc448 
+  users:
+    - Valiceemo
+

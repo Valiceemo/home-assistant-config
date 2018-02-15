@@ -1,0 +1,7 @@
+entities:
+  - name: router
+    url: http://192.168.0.1
+  - name: HAS
+    url: https://home-assistant.io
+  - name: Pihole
+    url: http://pi.hole/admin

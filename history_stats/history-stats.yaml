@@ -1,0 +1,6 @@
+  lounge_temp:
+    name: Lounge Temp
+    entities:
+      - sensor.lounge_temperature
+    hours_to_show: 24
+    refresh: 300

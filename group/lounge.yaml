@@ -1,0 +1,54 @@
+view_lounge:
+  name: Lounge
+  view: yes
+  entities:
+    - group.lounge_lights
+    - group.tv
+    - media_player.kodi_pi
+    - media_player.living_room_chromecast
+    - media_player.living_room_home
+    - media_player.plex_web_chrome
+    - group.lounge_conditions
+    - group.lounge_scenes
+    - camera.lounge_camera
+    - group.tv_backlight
+    - sensor.plex
+
+tv:
+  name: Television
+  entities:
+    - media_player.bravia_tv
+    - sensor.plex
+    - sensor.lastfm_valiceemo
+
+lounge_conditions:
+  name: Lounge Conditions
+  entities:
+    - sensor.lounge_temperature
+    - sensor.lounge_humidity
+    - sensor.lounge_light_level
+    - sensor.lounge_sensor_node_pir
+    - sensor.dht_sensor_temperature
+    - sensor.dht_sensor_humidity
+
+lounge_lights:
+  name: Lounge Lights
+  entities:
+    - light.lounge_lamp
+    - light.bridge
+    - light.sensor_node_lounge_led
+    
+tv_backlight:
+  name: TV Backlight
+  entities:
+    - switch.tv_backlight_power
+    - switch.tv_backlight_brightness_up
+    - switch.tv_backlight_brightness_down
+    - switch.tv_backlight_blue
+    - switch.tv_backlight_red
+    - switch.tv_backlight_white
+    - switch.tv_backlight_green
+    - switch.tv_backlight_yellow
+    - switch.tv_backlight_cyan
+    - switch.tv_backlight_pink
+

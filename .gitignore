@@ -1,0 +1,32 @@
+#######################
+## FILES
+#######################
+
+!*.yaml
+*.conf
+*.mp3
+.spotify-token-cache
+.uuid
+*.crt
+*.pem
+secrets.yaml
+known_devices.yaml
+certificate.pem
+privkey.pem
+plex.conf
+
+
+#######################
+## DIRECTORIES
+#######################
+
+deps
+tts
+
+
+#######################
+## LOGS + DB
+#######################
+
+*.log
+*.db

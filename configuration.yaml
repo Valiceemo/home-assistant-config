@@ -1,0 +1,92 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: metric
+  time_zone: Europe/London
+  customize: !include_dir_merge_named customize
+  customize_glob: !include customize-glob.yaml
+  
+
+customizer:
+  custom_ui: local
+    
+    
+http:
+  api_password: !secret http_password
+  #ssl_certificate: !secret ssl_certificate
+  #ssl_key: !secret ssl_key
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
+  
+panel_iframe:
+  router:
+    title: 'PiHole Dashboard'
+    icon: mdi:raspberrypi
+    url: http://192.168.0.1/sky_index.html
+  piholesysinfo:
+    title: 'Pi Hole System Info'
+    icon: mdi:raspberrypi
+    url: http://192.168.0.45/pisysinfo
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  client_id: home_assistant1
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery: true
+  discovery_prefix: homeassistant
+
+weather:
+  - platform: yweather
+    woeid: !secret yahoo_woeid
+    name: Home Weather  
+
+
+config:
+sun:
+updater:
+conversation:
+history:
+discovery:
+
+logger:
+  default: error
+  logs:
+    homeassistant.components.mqtt: warn
+
+tts:
+  - platform: google
+
+emulated_hue:
+  listen_port: 80
+  host_ip: !secret emulated_hue_ip
+  expose_by_default: false
+
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api
+    
+####################################################
+#                                                  #
+#                     Includes #
+#                                                  #
+####################################################
+device_tracker: !include_dir_merge_list device_tracker
+weblink: !include weblink.yaml
+media_player: !include_dir_merge_list media_player
+light: !include_dir_merge_list light
+sensor: !include_dir_merge_list sensor
+group: !include_dir_merge_named group
+automation: !include_dir_merge_list automation
+frontend: !include frontend.yaml
+logbook: !include logbook.yaml
+recorder: !include recorder.yaml
+switch: !include_dir_merge_list switch
+input_select: !include_dir_merge_named input_select
+input_boolean: !include_dir_merge_named input_boolean
+# history_graph: !include_dir_merge_named history_stats
+

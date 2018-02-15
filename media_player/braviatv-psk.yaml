@@ -1,0 +1,9 @@
+- platform: braviatv_psk
+  name: Bravia TV
+  host: !secret bravia_tv_ip
+  psk: sony
+  mac: !secret bravia_tv_mac
+  amp: True
+  android: False
+  sourcefilter:
+    - HDMI

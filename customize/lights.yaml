@@ -1,0 +1,51 @@
+# light.kitchen_under_cupboard_leds:
+#   emulated_hue: false
+
+light.bedroom_light:
+  emulated_hue_name: "Bedroom Light"
+  emulated_hue_hidden: false
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+  show_last_changed: true
+  hide_control: false
+  slider_theme:
+    min: 10
+    max: 20
+    pin: true
+    off_when_min: false
+    report_when_not_changed: false
+
+light.lounge_lamp:
+  emulated_hue_name: "Lounge Lamp"
+  emulated_hue_hidden: false
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+  show_last_changed: true
+  hide_control: false
+  slider_theme:
+    min: 0
+    max: 255
+    pin: true
+    off_when_min: false
+    report_when_not_changed: false
+
+light.bridge:
+  emulated_hue_name: "Mi-Light Bridge"
+  emulated_hue_hidden: false
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+  show_last_changed: true
+  hide_control: false
+  slider_theme:
+    min: 0
+    max: 255
+    pin: true
+    off_when_min: false
+    report_when_not_changed: false
+  
+light.sensor_node_lounge_led:
+  emulated_hue_name: "Lounge Sensor Node Light"
+  emulated_hue_hidden: false

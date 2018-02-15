@@ -1,0 +1,19 @@
+xxx_guest_mode:
+  name: Guest Mode
+  icon: mdi:account-alert
+  initial: off
+
+yyy_school_mode:
+  name: School Mode
+  icon: mdi:school
+  initial: on
+
+zzz_alert_mode:
+  name: Alert Mode
+  icon: mdi:alert-octagram
+  initial: off
+
+aaa_speech_notifications:
+  name: Speech Notifications
+  icon: mdi:speaker-wireless
+  initial: on

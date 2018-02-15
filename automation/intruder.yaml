@@ -1,0 +1,24 @@
+######################################################################
+##  Motion Detected !!!
+######################################################################
+
+- alias: Intruder
+  initial_state: 'off'
+  trigger:
+    - platform: state
+      entity_id: sensor.lounge_sensor_node_pir, sensor.bedroom_sensor_node_pir
+      to: 'motion detected'
+      from: 'standby'
+
+  condition:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: 'Away'
+
+  action:
+    - service: notify.pushbullet
+      data_template:
+        message: >-
+          'Movement detected by {{ trigger.from_state.attributes.friendly_name }}'
+        title: Intruder at Home!!
+  

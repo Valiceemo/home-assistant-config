@@ -1,0 +1,42 @@
+system:
+  name: System
+  view: yes
+  entities:
+    - group.system_status
+    - group.network
+    - group.processes
+    - group.memory
+
+processes:
+  name: Processes
+  control: hidden
+  entities:
+    - sensor.process_mosquitto
+    - sensor.process_smbd
+    - sensor.process_fail2ban
+    - sensor.process_kodi
+
+system_status:
+  name: System
+  control: hidden
+  entities:
+    - sensor.processor_use
+    - sensor.cpu_temp
+    - sensor.cpu_fan
+    - sensor.memory_use_percent
+    - sensor.since_last_boot_templated
+    - sensor.release
+    - sensor.time_online
+    - sensor.ha_uptime
+    - weblink.has
+    - sensor.ha_installed_version
+    - history_graph.cpu_temperature
+    - history_graph.ram_usage
+    
+memory:
+  name: Memory
+  control: hidden
+  entities:
+    - sensor.disk_free_home
+    - sensor.disk_free_mediasharehdd1
+    - sensor.disk_use_homepikodi

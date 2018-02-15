@@ -1,0 +1,6 @@
+media_player.plex_galaxy_s8:
+  platform: plex
+  unique_id: 3248a32596cc6016-com-plexapp-android
+media_player.plex_plex_web_chrome:
+  platform: plex
+  unique_id: hidat42ii66jwpyjhcqqhjqo

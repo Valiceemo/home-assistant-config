@@ -1,0 +1,29 @@
+view_Devices:
+  name: Devices
+  view: yes
+  entities:
+    - group.devices
+    - group.people
+
+devices:
+  name: Devices
+  entities:
+    - sensor.raspberrypi
+    - sensor.pi_hole
+    - sensor.sony_tv
+    - sensor.chromecast_lounge
+    - sensor.chromecast_bedroom
+    - sensor.googlehome
+    - sensor.googlehomemini
+    - sensor.richlaptop
+    - sensor.xbox
+    - sensor.lenovo_tab
+    - sensor.galaxy_ace
+    - sensor.galaxy_tab
+    - device_tracker.rich_phone
+    
+people:
+  name: People
+  entities:
+    - device_tracker.rich_s6
+    - device_tracker.rich_s8

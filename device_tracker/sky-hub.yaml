@@ -1,0 +1,4 @@
+- platform: sky_hub
+  host: !secret sky_router_ip
+  username: !secret sky_router_username
+  password: !secret sky_router_password

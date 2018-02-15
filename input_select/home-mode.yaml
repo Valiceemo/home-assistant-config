@@ -1,0 +1,9 @@
+home_mode:
+  name: Security Mode
+  options:
+   - Home
+   - Away
+   - Night
+  initial: Home
+  icon: mdi:home-modern
+  

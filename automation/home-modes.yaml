@@ -1,0 +1,66 @@
+######################################################################
+##  Away Mode
+######################################################################
+
+- alias: Away Mode
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: device_tracker.rich_s8
+      to: 'not_home'
+      from: 'home'
+
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.home_mode
+      data:
+        option: 'Away'
+    - service: automation.turn_on
+      entity_id: automation.intruder
+
+######################################################################
+##  Home Mode
+######################################################################
+
+- alias: Home Mode
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: device_tracker.rich_s8
+      to: 'home'
+      from: 'not_home'
+
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.home_mode
+      data:
+        option: 'Home'
+    - service: automation.turn_off
+      entity_id: automation.intruder
+
+######################################################################
+##  Sleep Mode
+######################################################################
+
+- alias: Night Mode
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: time
+      at: '23:01:00'
+    - platform: state
+      entity_id: input_select.home_mode
+      to: 'Night'
+      
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.home_mode
+      data:
+        option: 'Night'
+    - service: automation.turn_off
+      entity_id: automation.motion_lights_bedroom_full
+      
+      
+      
