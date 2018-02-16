@@ -159,7 +159,7 @@
       for: 
         minutes: 10
         
-   condition:
+  condition:
     - condition: state
       entity_id: light.lounge_lamp
       state: 'on'

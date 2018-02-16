@@ -4,3 +4,6 @@ media_player.plex_galaxy_s8:
 media_player.plex_plex_web_chrome:
   platform: plex
   unique_id: hidat42ii66jwpyjhcqqhjqo
+media_player.plex_web_chrome:
+  platform: plex
+  unique_id: fl6b3ze27cuu0yfk50x76bt8
