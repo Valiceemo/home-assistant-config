@@ -139,6 +139,9 @@
     - condition: state
       entity_id: light.lounge_lamp
       state: 'on'
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
   
   action:
     - service: light.turn_off
