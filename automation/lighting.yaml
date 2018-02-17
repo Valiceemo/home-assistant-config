@@ -157,8 +157,8 @@
   trigger:
     - platform: state
       entity_id: sensor.bedroom_sensor_node_pir
-      to: 'standy'
       from: 'motion detected'
+      to: 'standby'
       for: 
         minutes: 10
         
