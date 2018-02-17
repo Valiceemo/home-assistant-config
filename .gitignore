@@ -22,7 +22,7 @@ plex.conf
 
 deps
 tts
-
+www/images
 
 #######################
 ## LOGS + DB
