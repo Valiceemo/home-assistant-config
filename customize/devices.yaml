@@ -62,5 +62,9 @@ sensor.richnetbook:
   icon: mdi:laptop-windows 
 sensor.xbox:
   icon: mdi:xbox
+  
+device_tracker.emily_kurio:
+  entity_picture: /local/images/emily.JPG
 
-
+device_tracker.rich_s8:
+  entity_picture: /local/images/rich.jpg

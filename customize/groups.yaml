@@ -1,0 +1,17 @@
+group.view_lounge:
+  order: 1
+
+group.view_bedroom:
+  order: 2
+  
+group.view_devices:
+  order: 3
+  
+group.view_network:
+  order: 4
+  
+group.view_system:
+  order: 5
+  
+group.tv:
+  custom_ui_state_card: state-card-custom-ui

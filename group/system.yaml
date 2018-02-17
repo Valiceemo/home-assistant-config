@@ -1,4 +1,4 @@
-system:
+view_system:
   name: System
   view: yes
   entities:
@@ -30,6 +30,8 @@ system_status:
     - sensor.ha_uptime
     - weblink.has
     - sensor.ha_installed_version
+    - sensor.homeassistant_v2db
+    - sensor.homeassistantlog
     - history_graph.cpu_temperature
     - history_graph.ram_usage
     

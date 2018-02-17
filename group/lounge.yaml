@@ -30,13 +30,13 @@ lounge_conditions:
     - sensor.lounge_sensor_node_pir
     - sensor.dht_sensor_temperature
     - sensor.dht_sensor_humidity
+    - light.sensor_node_lounge_led
 
 lounge_lights:
   name: Lounge Lights
   entities:
     - light.lounge_lamp
     - light.bridge
-    - light.sensor_node_lounge_led
     
 tv_backlight:
   name: TV Backlight

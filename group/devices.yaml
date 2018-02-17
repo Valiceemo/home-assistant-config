@@ -20,10 +20,10 @@ devices:
     - sensor.lenovo_tab
     - sensor.galaxy_ace
     - sensor.galaxy_tab
-    - device_tracker.rich_phone
     
 people:
   name: People
   entities:
     - device_tracker.rich_s6
     - device_tracker.rich_s8
+    - device_tracker.emily_kurio

@@ -9,8 +9,11 @@
 - platform: uptime
   name: Time Online
   unit_of_measurement: hours
- 
-- platform: database
+
+- platform: filesize
+  file_paths:
+    - /home/homeassistant/.homeassistant/home-assistant_v2.db
+    - /home/homeassistant/.homeassistant/home-assistant.log
 
 - platform: command_line
   name: "HA Uptime"

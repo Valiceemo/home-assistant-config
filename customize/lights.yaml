@@ -7,13 +7,13 @@ light.bedroom_light:
   custom_ui_state_card: state-card-custom-ui
   state_card_mode: break-slider
   stretch_slider: true
-  show_last_changed: true
-  hide_control: false
+  show_last_changed: false
+  hide_control: true
   slider_theme:
-    min: 10
-    max: 20
+    min: 0
+    max: 255
     pin: true
-    off_when_min: false
+    off_when_min: true
     report_when_not_changed: false
 
 light.lounge_lamp:
@@ -22,22 +22,22 @@ light.lounge_lamp:
   custom_ui_state_card: state-card-custom-ui
   state_card_mode: break-slider
   stretch_slider: true
-  show_last_changed: true
+  show_last_changed: false
   hide_control: false
   slider_theme:
     min: 0
     max: 255
     pin: true
-    off_when_min: false
+    off_when_min: true
     report_when_not_changed: false
-
+  
 light.bridge:
   emulated_hue_name: "Mi-Light Bridge"
   emulated_hue_hidden: false
   custom_ui_state_card: state-card-custom-ui
   state_card_mode: break-slider
   stretch_slider: true
-  show_last_changed: true
+  show_last_changed: false
   hide_control: false
   slider_theme:
     min: 0
@@ -49,3 +49,14 @@ light.bridge:
 light.sensor_node_lounge_led:
   emulated_hue_name: "Lounge Sensor Node Light"
   emulated_hue_hidden: false
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: hide-slider
+  stretch_slider: true
+  show_last_changed: false
+  hide_control: false
+  slider_theme:
+    min: 0
+    max: 255
+    pin: true
+    off_when_min: false
+    report_when_not_changed: false

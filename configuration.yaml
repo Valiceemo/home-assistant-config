@@ -7,7 +7,9 @@ homeassistant:
   time_zone: Europe/London
   customize: !include_dir_merge_named customize
   customize_glob: !include customize-glob.yaml
-  
+  whitelist_external_dirs:
+    - /home/homeassistant/.homeassistant/
+
 
 customizer:
   custom_ui: local
@@ -28,7 +30,7 @@ panel_iframe:
   piholesysinfo:
     title: 'Pi Hole System Info'
     icon: mdi:raspberrypi
-    url: http://!secret pi-hole_ip/pisysinfo
+    url: http://192.168.0.45/pisysinfo
 
 mqtt:
   broker: !secret mqtt_broker
@@ -87,6 +89,5 @@ logbook: !include logbook.yaml
 recorder: !include recorder.yaml
 switch: !include_dir_merge_list switch
 input_select: !include_dir_merge_named input_select
-input_boolean: !include_dir_merge_named input_boolean
 # history_graph: !include_dir_merge_named history_stats
 

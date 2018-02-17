@@ -10,8 +10,8 @@ view_Bedroom:
 bedroom_conditions:
   name: Bedroom Conditions
   entities:
-    - sensor.bedroom_humidity
     - sensor.bedroom_temperature
+    - sensor.bedroom_humidity
     - sensor.bedroom_sensor_node_pir
     
 bedroom_lights:
