@@ -2,7 +2,7 @@
 ##  Away Mode
 ######################################################################
 
-- alias: Away Mode
+- alias: Away Mode On
   initial_state: 'on'
   hide_entity: False
   trigger:
@@ -18,12 +18,18 @@
         option: 'Away'
     - service: automation.turn_on
       entity_id: automation.intruder
+    - service: light.turn_on
+      data:
+        entity_id: 
+          - light.sensor_node_lounge_led
+        brightness: 255
+        color_name: green
 
 ######################################################################
 ##  Home Mode
 ######################################################################
 
-- alias: Home Mode
+- alias: Home Mode On
   initial_state: 'on'
   hide_entity: False
   trigger:
@@ -39,6 +45,8 @@
         option: 'Home'
     - service: automation.turn_off
       entity_id: automation.intruder
+    - service: light.turn_off
+      entity_id: light.sensor_node_lounge_led
 
 ######################################################################
 ##  Sleep Mode

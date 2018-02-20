@@ -29,7 +29,10 @@ light.lounge_lamp:
     max: 255
     pin: true
     off_when_min: true
-    report_when_not_changed: false
+    report_when_not_changed: true
+  extra_badge:
+    - attribute: brightness
+      unit: br
   
 light.bridge:
   emulated_hue_name: "Mi-Light Bridge"
