@@ -30,12 +30,12 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the file size sensor."""
     sensors = []
     for path in config.get(CONF_FILE_PATHS):
-            if not hass.config.is_allowed_path(path):
-                _LOGGER.error(
-                    "Filepath {} is not valid or allowed".format(path))
-                return
-            else:
-                sensors.append(Filesize(path))
+        if not hass.config.is_allowed_path(path):
+            _LOGGER.error(
+                "Filepath %s is not valid or allowed", path)
+            continue
+        else:
+            sensors.append(Filesize(path))
 
     if sensors:
         add_devices(sensors, True)
@@ -54,21 +54,10 @@ class Filesize(Entity):
 
     def update(self):
         """Update the sensor."""
-        self._size = self.get_file_size(self._path)
-        self._last_updated = self.get_last_updated(self._path)
-
-    def get_file_size(self, path):
-        """Return the size of the file in bytes."""
-        statinfo = os.stat(path)
-        file_size_bytes = statinfo.st_size
-        return file_size_bytes
-
-    def get_last_updated(self, path):
-        """Return the time the file was last modified."""
-        statinfo = os.stat(path)
+        statinfo = os.stat(self._path)
+        self._size = statinfo.st_size
         last_updated = datetime.datetime.fromtimestamp(statinfo.st_mtime)
-        last_updated = last_updated.isoformat(' ')
-        return last_updated
+        self._last_updated = last_updated.isoformat()
 
     @property
     def name(self):
