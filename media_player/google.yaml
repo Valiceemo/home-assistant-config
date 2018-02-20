@@ -1,8 +1,8 @@
   - platform: cast
-    host: 192.168.0.240
+    host: !secret lounge_chromecast_ip
   - platform: cast
-    host: 192.168.0.250
+    host: !secret bedroom_chromecast_ip
   - platform: cast
-    host: 192.168.0.3
+    host: !secret google_home_ip
   - platform: cast
-    host: 192.168.0.96
+    host: !secret google_home_mini_ip
