@@ -15,6 +15,9 @@ light.bedroom_light:
     pin: true
     off_when_min: true
     report_when_not_changed: false
+  extra_badge:
+    - attribute: brightness
+      unit: br
 
 light.lounge_lamp:
   emulated_hue_name: "Lounge Lamp"
@@ -46,8 +49,11 @@ light.bridge:
     min: 0
     max: 255
     pin: true
-    off_when_min: false
-    report_when_not_changed: false
+    off_when_min: true
+    report_when_not_changed: true
+  extra_badge:
+    - attribute: brightness
+      unit: br
   
 light.sensor_node_lounge_led:
   emulated_hue_name: "Lounge Sensor Node Light"
