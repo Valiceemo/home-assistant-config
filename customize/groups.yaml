@@ -13,5 +13,17 @@ group.view_network:
 group.view_system:
   order: 5
   
-group.tv:
-  custom_ui_state_card: state-card-custom-ui
+group.lounge_lights:
+  order: 1
+
+group.lounge_conditions:
+  order: 2
+
+group.bedroom_lights:
+  order: 1
+
+group.bedroom_conditions:
+  order: 2
+
+group.bedroom_media:
+  order: 3
