@@ -14,6 +14,8 @@ known_devices.yaml
 certificate.pem
 privkey.pem
 plex.conf
+entity_registry.yaml
+
 
 
 #######################
