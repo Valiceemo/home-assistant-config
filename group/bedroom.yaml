@@ -2,10 +2,9 @@ view_Bedroom:
   name: Bedroom
   view: yes
   entities:
-    - group.bedroom_conditions
     - group.bedroom_lights
-    - media_player.bedroom_speaker
-    
+    - group.bedroom_conditions
+    - group.bedroom_media    
     
 bedroom_conditions:
   name: Bedroom Conditions
@@ -18,3 +17,8 @@ bedroom_lights:
   name: Bedroom Lights
   entities:
     - light.bedroom_light
+
+bedroom_media:
+  name: Bedroom Media
+  entities:
+    - media_player.bedroom_speaker
