@@ -1,4 +1,5 @@
 - platform: plex
-  host: 192.168.0.50
-  token: SGwwVxpyFppeHo5L4BGq
+  host: !secret plex_server_ip
+  port: !secret plex_server_port
+  token: !secret plex_token
   

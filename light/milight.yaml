@@ -1,6 +1,6 @@
 - platform: limitlessled
   bridges:
-    - host: 192.168.0.216
+    - host: !secret mi-light_ip
       groups:
       - number: 1
         name: Lounge Lamp

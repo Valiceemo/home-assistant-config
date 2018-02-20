@@ -1,6 +1,6 @@
 entities:
   - name: router
-    url: http://192.168.0.1
+    url: http://!secret sky_router_ip
   - name: HAS
     url: https://home-assistant.io
   - name: Pihole
