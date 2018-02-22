@@ -1,6 +1,0 @@
-group.memory:
-  entity_id:
-  - sensor.disk_free_home
-  - sensor.disk_used_homepikodi
-  - sensor.disk_free_mediasharehdd1
-  - sensor.ram_used
