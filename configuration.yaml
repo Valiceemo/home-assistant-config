@@ -13,6 +13,9 @@ homeassistant:
 
 customizer:
   custom_ui: local
+
+camera:
+  - platform: rpi_camera
     
     
 http:
