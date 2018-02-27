@@ -7,7 +7,7 @@
 #  host: 192.168.0.50:8181
 #  ssl: true
 #  verify_ssl: false
-#  token: 354ce75c559afcaddb0a97bafff38f44
+#  token: !secret plexpy_api
 #  monitored_conditions:
 #    - stream_count
 #    - stream_count_transcode
