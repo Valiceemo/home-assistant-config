@@ -3,14 +3,14 @@
   port: !secret plex_server_port
   token: !secret plex_token
   
-- platform: tautulli
-  host: 192.168.0.50:8181
-  ssl: true
-  verify_ssl: false
-  token: ae18d35d350612b773af4dd835d51d6c
-  monitored_conditions:
-    - stream_count
-    - stream_count_transcode
-    - stream_count_direct_play
-    - stream_count_direct_stream
-    - total_bandwidth
+#- platform: tautulli
+#  host: 192.168.0.50:8181
+#  ssl: true
+#  verify_ssl: false
+#  token: 354ce75c559afcaddb0a97bafff38f44
+#  monitored_conditions:
+#    - stream_count
+#    - stream_count_transcode
+#    - stream_count_direct_play
+#    - stream_count_direct_stream
+#    - total_bandwidth

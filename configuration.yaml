@@ -26,10 +26,10 @@ http:
   login_attempts_threshold: 5
   
 panel_iframe:
-  router:
-    title: 'PiHole Dashboard'
-    icon: mdi:raspberrypi
-    url: http://!secret sky_router_ip/sky_index.html
+  plex:
+    title: 'PlexPy'
+    icon: mdi:plex
+    url: http://192.168.0.50:8181
   piholesysinfo:
     title: 'Pi Hole System Info'
     icon: mdi:raspberrypi
