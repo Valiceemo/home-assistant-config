@@ -1,0 +1,6 @@
+- platform: command_line
+  switches:
+    plex_server:
+      command_on: sudo service plexmediaserver start
+      command_off: sudo service plexmediaserver stop
+      friendly_name: Plex Server
