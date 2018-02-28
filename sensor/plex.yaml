@@ -3,14 +3,14 @@
   port: !secret plex_server_port
   token: !secret plex_token
   
-#- platform: tautulli
-#  host: 192.168.0.50:8181
-#  ssl: true
-#  verify_ssl: false
-#  token: !secret plexpy_api
-#  monitored_conditions:
-#    - stream_count
-#    - stream_count_transcode
-#    - stream_count_direct_play
-#    - stream_count_direct_stream
-#    - total_bandwidth
+- platform: tautulli
+  host: 192.168.0.50:8181
+  ssl: false
+  verify_ssl: false
+  token: !secret plexpy_api
+  monitored_conditions:
+    - stream_count
+    - stream_count_transcode
+    - stream_count_direct_play
+    - stream_count_direct_stream
+    - total_bandwidth
