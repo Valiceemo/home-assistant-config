@@ -1,9 +1,9 @@
-input_text.dummy_tiles:
+input_text.tv_led_power:
   custom_ui_state_card: state-card-tiles
   config:
     columns: 3 # optional
-    column_width: 75px # optional
-    row_height: 75px # optional
+    column_width: 25px # optional
+    row_height: 25px # optional
     gap: 4px # optional
     color: blue # optional
     color_on: green # optional
@@ -12,9 +12,9 @@ input_text.dummy_tiles:
     text_color_on: #FFF # optional
     text_color_off: #FFF # optional
     entities:
-      - entity: script.test
+      - entity: switch.tv_backlight_power
         label: S1 # optional
-        label_state: input_boolean.switch2 # optional
+        label_state: switch.tv_backlight_power # optional
         icon: mdi:power # optional
         image: /local/test.png # optional
         data: {value: right} # optional
@@ -23,6 +23,37 @@ input_text.dummy_tiles:
         row: 2 # optional
         row_span: 2 # optional
         color: blue # optional
+        color_on: green # optional
+        color_off: red # optional
+        text_color: #FFF # optional
+        text_color_on: #FFF # optional
+        text_color_off: #FFF   # optional
+        
+input_text.tv_led_blue:
+  custom_ui_state_card: state-card-tiles
+  config:
+    columns: 3 # optional
+    column_width: 25px # optional
+    row_height: 25px # optional
+    gap: 4px # optional
+    color: yellow # optional
+    color_on: green # optional
+    color_off: red # optional
+    text_color: #FFF # optional
+    text_color_on: #FFF # optional
+    text_color_off: #FFF # optional
+    entities:
+      - entity: switch.tv_backlight_blue
+        label: Blue # optional
+        label_state: switch.tv_backlight_blue # optional
+        #icon: mdi:power # optional
+        #image: /local/test.png # optional
+        data: {value: right} # optional
+        #column: 2 # optional
+        #column_span: 2 # optional
+        #row: 2 # optional
+        #row_span: 2 # optional
+        color: yellow # optional
         color_on: green # optional
         color_off: red # optional
         text_color: #FFF # optional

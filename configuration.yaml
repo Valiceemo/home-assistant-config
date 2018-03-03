@@ -92,6 +92,7 @@ logbook: !include logbook.yaml
 recorder: !include recorder.yaml
 switch: !include_dir_merge_list switch
 input_select: !include_dir_merge_named input_select
-#input_text: !include dir_merge_named input_text
+input_boolean: !include_dir_merge_named input_boolean
+input_text: !include_dir_merge_named input_text
 # history_graph: !include_dir_merge_named history_stats
 
