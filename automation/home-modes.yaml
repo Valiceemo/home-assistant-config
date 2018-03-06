@@ -25,7 +25,7 @@
         brightness: 255
         color_name: green
 
-######################################################################
+#####################################################################
 ##  Home Mode
 ######################################################################
 
@@ -69,6 +69,26 @@
         option: 'Night'
     - service: automation.turn_off
       entity_id: automation.motion_lights_bedroom_full
+      
+
+######################################################################
+##  Morning Mode
+######################################################################
+
+- alias: Morning Mode
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: time
+      at: '08:11:00'
+      
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.home_mode
+      data:
+        option: 'Home'
+    - service: automation.turn_on
+      entity_id: automation.bedroom_lights_off_after_10
       
       
       
