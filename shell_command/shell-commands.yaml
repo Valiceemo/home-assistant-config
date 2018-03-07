@@ -1,0 +1,1 @@
+clear_tts_cache: rm -f /home/homeassistant/.homeassistant/tts*
