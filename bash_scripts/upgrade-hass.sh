@@ -15,5 +15,5 @@ cd /home/homeassistant/.homeassistant
 source /srv/homeassistant/bin/activate
 
 # Install Home Assistant
-#pip3 install --upgrade homeassistant exit
+pip3 install --upgrade homeassistant exit
 EOM
