@@ -1,0 +1,4 @@
+  tv_led_power:
+    name: TV LED Power
+  tv_led_blue:
+    name: TV LED Blue
