@@ -1,0 +1,51 @@
+- platform: template
+  sensors:
+      raspberrypi:
+        friendly_name: 'Raspberry Pi3'
+        value_template: "{{ 'Online' if is_state('device_tracker.mediapi', 'home') else 'Offline' }}"
+
+      pi_hole:  
+        friendly_name: 'Pi-Hole'
+        value_template: "{{ 'Online' if is_state('device_tracker.pihole', 'home') else 'Offline' }}"
+      
+      richlaptop:
+        friendly_name: 'Rich Laptop'
+        value_template: "{{ 'Online' if is_state('device_tracker.richlaptop', 'home') else 'Offline' }}"
+        
+      sony_tv:
+        friendly_name: 'Sony TV'
+        value_template: "{{ 'Online' if is_state('device_tracker.sony_tv', 'home') else 'Offline' }}"
+      
+      chromecast_bedroom:
+        friendly_name: 'Chromecast Bedroom'
+        value_template: "{{ 'Online' if is_state('device_tracker.chromecast_bedroom', 'home') else 'Offline' }}"
+        
+      chromecast_lounge:
+        friendly_name: 'Chromecast Lounge'
+        value_template: "{{ 'Online' if is_state('device_tracker.chromecast_lounge', 'home') else 'Offline' }}"
+      
+      galaxy_ace:
+        friendly_name: 'Galaxy Ace'
+        value_template: "{{ 'Online' if is_state('device_tracker.galaxy_ace', 'home') else 'Offline' }}"
+      
+      galaxy_tab:
+        friendly_name: 'Galaxy Tab'
+        value_template: "{{ 'Online' if is_state('device_tracker.galaxy_tab', 'home') else 'Offline' }}"
+
+      googlehome:
+        friendly_name: 'Google Home'
+        value_template: "{{ 'Online' if is_state('device_tracker.googlehome', 'home') else 'Offline' }}"
+        
+      googlehomemini:
+        friendly_name: 'Google Home Mini'
+        value_template: "{{ 'Online' if is_state('device_tracker.googlehomemini', 'home') else 'Offline' }}"
+        
+        
+      xbox:
+        friendly_name: 'X-Box One'
+        value_template: "{{ 'Online' if is_state('device_tracker.xboxone', 'home') else 'Offline' }}"
+
+      lenovo_tab:
+        friendly_name: 'Lenovo Tablet'
+        value_template: "{{ 'Online' if is_state('device_tracker.lenovo_tab', 'home') else 'Offline' }}"
+
