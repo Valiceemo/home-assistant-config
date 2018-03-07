@@ -8,18 +8,17 @@ view_Devices:
 devices:
   name: Devices
   entities:
-    - sensor.raspberrypi
-    - sensor.pi_hole
-    - sensor.sony_tv
-    - sensor.chromecast_lounge
-    - sensor.chromecast_bedroom
-    - sensor.googlehome
-    - sensor.googlehomemini
-    - sensor.richlaptop
-    - sensor.xbox
-    - sensor.lenovo_tab
-    - sensor.galaxy_ace
-    - sensor.galaxy_tab
+    - binary_sensor.device_tracker_chromecast_bedroom
+    - binary_sensor.device_tracker_chromecast_lounge
+    - binary_sensor.device_tracker_galaxy_tab
+    - binary_sensor.device_tracker_googlehome
+    - binary_sensor.device_tracker_googlehomemini
+    - binary_sensor.device_tracker_lenovo_tab
+    - binary_sensor.device_tracker_mediapi
+    - binary_sensor.device_tracker_pihole
+    - binary_sensor.device_tracker_richlaptop
+    - binary_sensor.device_tracker_sony_tv
+    - binary_sensor.device_tracker_xboxone
     
 people:
   name: People
