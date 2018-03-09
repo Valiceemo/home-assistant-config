@@ -9,3 +9,6 @@
       (t=Math.floor(s/3600))?t+(t>1?" hours":" hour"):
       (t=Math.floor(s/60))?t+(t>1?" minutes":" minute"):
       (t=Math.floor(s))!==1?t+" seconds":" second")+" ago";
+
+  device_tracker.*:
+    hidden: true

@@ -26,7 +26,7 @@ light.lounge_lamp:
   state_card_mode: break-slider
   stretch_slider: true
   show_last_changed: false
-  hide_control: false
+  hide_control: true
   slider_theme:
     min: 0
     max: 255
@@ -44,7 +44,7 @@ light.bridge:
   state_card_mode: break-slider
   stretch_slider: true
   show_last_changed: false
-  hide_control: false
+  hide_control: true
   slider_theme:
     min: 0
     max: 255

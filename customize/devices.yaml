@@ -1,13 +1,13 @@
 ## device trackers hidden - reploaced wih online offline sensor
 
-device_tracker.sony_tv:
-  hidden: true 
+#device_tracker.sony_tv:
+#  hidden: true 
 device_tracker.raspberrypi:
   hidden: true 
 device_tracker.galaxy_tab:
   hidden: true 
-device_tracker.richlaptop:
-  hidden: true 
+#device_tracker.richlaptop:
+#  hidden: true 
 device_tracker.chromecast_bedroom:
   hidden: true 
 device_tracker.chromecast_lounge:
