@@ -7,17 +7,16 @@
   hide_entity: False
   trigger:
     - platform: state
-      entity_id: device_tracker.rich_s8
-      to: 'not_home'
-      from: 'home'
+      entity_id: input_select.home_mode
+      to: 'Away'
 
   action:
-    - service: input_select.select_option
-      entity_id: input_select.home_mode
-      data:
-        option: 'Away'
     - service: automation.turn_on
       entity_id: automation.intruder
+    - service: automation.turn_off
+      entity_id: automation.motion_lights_bedroom_full
+    - service: automation.turn_off
+      entity_id: automation.bedroom_lights_off_after_10
     - service: light.turn_on
       data:
         entity_id: 
@@ -34,17 +33,16 @@
   hide_entity: False
   trigger:
     - platform: state
-      entity_id: device_tracker.rich_s8
-      to: 'home'
-      from: 'not_home'
-
-  action:
-    - service: input_select.select_option
       entity_id: input_select.home_mode
-      data:
-        option: 'Home'
+      to: 'Home'
+      
+  action:
     - service: automation.turn_off
       entity_id: automation.intruder
+    - service: automation.turn_on
+      entitiy_id: automation.motion_lights_bedroom_full
+    - service: automation.turn_on
+      entity_id: automation.bedroom_lights_off_after_10
     - service: light.turn_off
       entity_id: light.sensor_node_lounge_led
 
@@ -62,13 +60,18 @@
       entity_id: input_select.home_mode
       to: 'Night'
       
+  condition:
+    - condition: state
+      entity_id: device_tracker.rich_s8
+      state: 'home'
+      
   action:
-    - service: input_select.select_option
-      entity_id: input_select.home_mode
-      data:
-        option: 'Night'
     - service: automation.turn_off
       entity_id: automation.motion_lights_bedroom_full
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: switch.turn_off
+      entity_id: switch.tv_backlight_power
       
 
 ######################################################################
@@ -82,13 +85,13 @@
     - platform: time
       at: '08:11:00'
       
+  condition:
+    - condition: state
+      entity_id: device_tracker.rich_s8
+      state: 'home'
+      
   action:
     - service: input_select.select_option
       entity_id: input_select.home_mode
       data:
         option: 'Home'
-    - service: automation.turn_on
-      entity_id: automation.bedroom_lights_off_after_10
-      
-      
-      
