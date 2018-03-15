@@ -4,6 +4,7 @@ view_Devices:
   entities:
     - group.devices
     - group.people
+    - group.phone_status
 
 devices:
   name: Devices
@@ -26,3 +27,9 @@ people:
     - binary_sensor.device_tracker_rich_s6
     - binary_sensor.device_tracker_rich_s8
     - binary_sensor.device_tracker_emily_kurio
+  
+phone_status:
+  name: Phone Status
+  entities:
+    - sensor.rich_phone_battery
+    - sensor.rich_phone_power
