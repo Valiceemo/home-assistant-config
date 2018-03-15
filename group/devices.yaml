@@ -25,4 +25,4 @@ people:
   entities:
     - binary_sensor.device_tracker_rich_s6
     - binary_sensor.device_tracker_rich_s8
-    - binary_sensor/device_tracker_emily_kurio
+    - binary_sensor.device_tracker_emily_kurio
