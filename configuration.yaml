@@ -56,6 +56,8 @@ updater:
 conversation:
 history:
 discovery:
+  ignore:
+    - songpal
 
 logger:
   default: error
@@ -92,7 +94,7 @@ logbook: !include logbook.yaml
 recorder: !include recorder.yaml
 switch: !include_dir_merge_list switch
 input_select: !include_dir_merge_named input_select
-input_boolean: !include_dir_merge_named input_boolean
+#input_boolean: !include_dir_merge_named input_boolean
 input_text: !include_dir_merge_named input_text
 binary_sensor: !include_dir_merge_list binary_sensor
 shell_command: !include_dir_merge_named shell_command
