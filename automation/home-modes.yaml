@@ -40,7 +40,7 @@
     - service: automation.turn_off
       entity_id: automation.intruder
     - service: automation.turn_on
-      entitiy_id: automation.motion_lights_bedroom_full
+      entity_id: automation.motion_lights_bedroom_full
     - service: automation.turn_on
       entity_id: automation.bedroom_lights_off_after_10
     - service: light.turn_off
