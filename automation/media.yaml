@@ -1,0 +1,52 @@
+######################################################################
+##  TV Backlights
+######################################################################
+
+- alias: Lounge TV Backlighting
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: media_player.bravia_tv
+      state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.lounge_light_level
+        above: 907  
+      - condition: state
+        entity_id: switch.tv_backlight_power
+        state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.tv_backlight_power
+          
+######################################################################
+## Chromecast Playing at Night
+######################################################################
+
+- alias: Bedroom Chromecast Playing PM
+  initial state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: media_player.bedroom_chromecast
+      to: 'playing'
+      from: 'idle'
+  condition: and
+  conditions:
+    - platform: state
+      entitiy_id: light.bedroom_light
+      state: 'on'
+    - platform: time
+      after: 22:00:00
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.bedroom_light
+        transition: 5
+    - service: automation.turn_off
+      entity_id: automation.motion_lights_bedroom_full
