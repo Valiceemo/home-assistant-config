@@ -8,7 +8,8 @@
   trigger:
     - platform: state
       entity_id: media_player.bravia_tv
-      state: 'on'
+      from: 'standby'
+      to: 'on'
   condition:
     condition: and
     conditions:
@@ -17,7 +18,7 @@
         above: 907  
       - condition: state
         entity_id: switch.tv_backlight_power
-        state: 'off'
+        state: off
   action:
     - service: switch.turn_on
       data:
@@ -29,7 +30,7 @@
 ######################################################################
 
 - alias: Bedroom Chromecast Playing PM
-  initial state: 'on'
+  initial_state: 'on'
   hide_entity: False
   trigger:
     - platform: state
@@ -40,7 +41,7 @@
   conditions:
     - platform: state
       entitiy_id: light.bedroom_light
-      state: 'on'
+      state: on
     - platform: time
       after: 22:00:00
   action:
