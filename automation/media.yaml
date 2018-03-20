@@ -13,10 +13,10 @@
   condition:
     condition: and
     conditions:
-      - platform: numeric_state
+      - condition: numeric_state
         entity_id: sensor.lounge_light_level
         above: '907'
-      - platform: state
+      - condition: state
         entity_id: switch.tv_backlight_power
         state: 'off'
   action:
@@ -40,10 +40,10 @@
   condition:
     condition: and
     conditions:
-      - platform: state
+      - condition: state
         entitiy_id: light.bedroom_light
         state: 'on'
-      - platform: time
+      - condition: time
         after: '22:00:00'
   action:
     - service: light.turn_off
