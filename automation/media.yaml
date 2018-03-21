@@ -41,7 +41,7 @@
     condition: and
     conditions:
       - condition: state
-        entitiy_id: light.bedroom_light
+        entity_id: light.bedroom_light
         state: 'on'
       - condition: time
         after: '22:00:00'
