@@ -13,10 +13,7 @@ homeassistant:
 
 customizer:
   custom_ui: local
-
-camera:
-  - platform: rpi_camera
-    
+ 
     
 http:
   api_password: !secret http_password
@@ -29,7 +26,7 @@ panel_iframe:
   plex:
     title: 'PlexPy'
     icon: mdi:plex
-    url: http://192.168.0.50:8181
+    url: http://192.168.0.236:32400
   piholesysinfo:
     title: 'Pi Hole System Info'
     icon: mdi:raspberrypi
