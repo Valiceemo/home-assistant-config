@@ -1,0 +1,91 @@
+title: Home
+views:
+
+## LIVING ROOM VIEW ##
+
+  - title: Living Room
+    cards:
+      - type: markdown
+        title: Lovelace
+        content: >
+          Welcome to your **Lovelace UI**.
+      - type: light
+        entity: light.lounge_lamp
+        name: Lounge Lamp
+      - type: light
+        entity: light.bridge
+        name: Book Shelf
+      - type: media-control
+        entity: media_player.lounge_google_home
+      - type: media-control
+        entity: media_player.living_room_chromecast
+
+## BEDROOM VIEW ##
+
+  - title: Bedroom
+    cards:
+      - type: light
+        entity: light.bedroom_light
+        name: Bedroom
+      - type: media-control
+        entity: media_player.bedroom_google_home
+      - type: media-control
+        entity: media_player.bedroom_room_chromecast
+
+
+## NETWORK VIEW ##
+
+  - title: Network
+    cards:
+      - type: entities
+        title: Pi-Hole
+        show_header_toggle: true
+        entities:
+          - entity: sensor.pihole_dns_queries_today
+            name: DNS Queries today
+          - entity: sensor.pihole_ads_blocked_today
+            name: Queries Blocked today
+          - entity: sensor.pihole_ads_percentage_blocked_today
+            name: Percentage Blocked Today
+          - entity: sensor.pihole_domains_blocked
+            name: Total Domains being Blocked
+
+      - type: entities
+        title: Network Speeds
+        show_header_toggle: false
+        entities:
+          - entity: sensor.speedtest_download
+            name: Download Speed
+          - entity: sensor.speedtest_upload
+            name: Upload Speed
+          - entity: sensor.speedtest_ping
+            name: Ping
+    
+      - type: sensor
+        entity: sensor.speedtest_download
+        name: Download Speeds
+        icon: mdi:download
+        graph: line
+        height: 75
+        line_color: "#3498db"
+        hours_to_show: 24
+
+      - type: sensor
+        entity: sensor.speedtest_upload
+        name: Upload Speeds
+        icon: mdi:download
+        graph: none
+        hours_to_show: 24
+
+## SYSTEM VIEW ##
+
+  - title: sYSTEM
+    cards:
+      - type: gauge
+        entity: sensor.cpu_usage
+      - type: entities
+        title: System Info
+        show_header_toggle: false
+        entities:
+          - entity: sensor.since_last_boot
+            name: Uptime 

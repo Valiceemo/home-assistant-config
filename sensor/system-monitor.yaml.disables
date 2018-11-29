@@ -52,10 +52,10 @@
         {%- endif -%}
         
 
-- platform: mqtt
-  state_topic: 'pi/cpu/temp'
-  name: 'CPU Temp'
-  unit_of_measurement: '°C'
+# inslatform: mqtt
+#  state_topic: 'pi/cpu/temp'
+#  name: 'CPU Temp'
+#  unit_of_measurement: '°C'
 #- platform: mqtt
 #  state_topic: 'pi/cpu/fan'
 #  name: 'CPU fan'

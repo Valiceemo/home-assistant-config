@@ -1,0 +1,26 @@
+{
+    "data": {
+        "devices": [
+            {
+                "config_entries": [
+                    "36341e50b6bd4d949cb933030f527ad5"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "eb498f169297404b9b940810fa7fd691",
+                "identifiers": [
+                    [
+                        "cast",
+                        "e9cfa19a6f435057d7ddbcde6e0c24f2"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Living Room Chromecast",
+                "sw_version": null
+            }
+        ]
+    },
+    "key": "core.device_registry",
+    "version": 1
+}
