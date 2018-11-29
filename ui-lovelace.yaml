@@ -5,20 +5,25 @@ views:
 
   - title: Living Room
     cards:
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
-      - type: light
-        entity: light.lounge_lamp
-        name: Lounge Lamp
-      - type: light
-        entity: light.bridge
-        name: Book Shelf
-      - type: media-control
-        entity: media_player.lounge_google_home
-      - type: media-control
-        entity: media_player.living_room_chromecast
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.lounge_lamp
+          - type: light
+            entity: light.bridge
+            name: Book Shelf
+
+      - type: entity-filter
+        entities:
+          - entity: media_player.living_room_chromecast
+            name: Lounge Cast
+        state_filter: 
+          - "unavailable"
+      - type: entity-filter
+        entities:
+          - entity: media_player.lounger_google_home
+        state_filter:
+          - "off"
 
 ## BEDROOM VIEW ##
 
@@ -30,7 +35,7 @@ views:
       - type: media-control
         entity: media_player.bedroom_google_home
       - type: media-control
-        entity: media_player.bedroom_room_chromecast
+        entity: media_player.bedroom_chromecast
 
 
 ## NETWORK VIEW ##
