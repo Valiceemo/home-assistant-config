@@ -6,6 +6,10 @@
   name: HA Installed Version
   scan_interval: 86400
 
+- platform: command_line
+  name: Version CL sensor
+  command: "cat /home/homeassistant/.homeassistant/.HA_VERSION"
+
 - platform: uptime
   name: Time Online
   unit_of_measurement: hours

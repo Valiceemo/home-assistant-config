@@ -1,0 +1,3 @@
+- platform: braviatv
+  name: Bravia TV
+  host: !secret bravia_tv_ip
