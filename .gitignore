@@ -9,12 +9,15 @@
 .uuid
 *.crt
 *.pem
+*.uuid
 secrets.yaml
 known_devices.yaml
+home-assistant.log
 certificate.pem
 privkey.pem
 plex.conf
 entity_registry.yaml
+rich-icon.jpg
 
 
 
@@ -25,6 +28,8 @@ entity_registry.yaml
 deps
 tts
 www/images
+.storage
+www/icons
 
 #######################
 ## LOGS + DB

@@ -1,7 +1,10 @@
 - platform: speedtest
-  minute:
+  minute: 30
+  hour:
     - 0
-    - 30
+    - 6
+    - 12
+    - 18
   monitored_conditions:
     - ping
     - download

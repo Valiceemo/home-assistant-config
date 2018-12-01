@@ -6,21 +6,17 @@
   name: HA Installed Version
   scan_interval: 86400
 
-- platform: command_line
-  name: Version CL sensor
-  command: "cat /home/homeassistant/.homeassistant/.HA_VERSION"
-
 - platform: uptime
   name: Time Online
   unit_of_measurement: hours
 
-# - platform: filesize
-#   file_paths:
-#     - /home/homeassistant/.homeassistant/home-assistant_v2.db
+- platform: filesize
+  file_paths:
+    - /home/homeassistant/.homeassistant/home-assistant_v2.db
 #     - /home/homeassistant/.homeassistant/home-assistant.log
 
 - platform: command_line
-  name: "HA Uptime"
+  name: "HA Uptime CL"
   command: echo "$(($(date +%s) - $(date -d "$(head -n1 /config/home-assistant.log | cut -d' ' -f-2)" +%s)))"
   scan_interval: 720
   value_template: >-

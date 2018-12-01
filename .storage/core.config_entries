@@ -9,6 +9,21 @@
                 "source": "discovery",
                 "title": "Google Cast",
                 "version": 1
+            },
+            {
+                "connection_class": "local_push",
+                "data": {
+                    "broker": "192.168.0.133",
+                    "discovery": false,
+                    "password": "ri31scan",
+                    "port": 1883,
+                    "username": "rich"
+                },
+                "domain": "mqtt",
+                "entry_id": "eeba60cf76bd4a489f35f30a263cdec4",
+                "source": "user",
+                "title": "192.168.0.133",
+                "version": 1
             }
         ]
     },

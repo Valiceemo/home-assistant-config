@@ -1,7 +1,24 @@
 - platform: pi_hole
-  host: !secret pi-hole_ip
+  host: !secret pihole_ip
   monitored_conditions:
     - ads_blocked_today
     - ads_percentage_today
     - dns_queries_today
     - domains_being_blocked
+
+- platform: mqtt
+  state_topic: 'pihole/cpu/temp'
+  name: 'Pi-Hole CPU Temp'
+  unit_of_measurement: 'C'
+  value_template: '{{ value_json.cputemp | round(1) }}'
+
+- platform: mqtt
+  state_topic: 'pihole/cpu/temp'
+  name: 'Pi-Hole CPU Usage'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.cpuusage }}'
+
+- platform: mqtt
+  state_topic: 'pihole/cpu/temp'
+  name: 'Pi-Hole Disk Usage'
+  value_template: '{{ value_json.disktotal }}'

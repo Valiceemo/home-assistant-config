@@ -1,0 +1,4 @@
+  include:
+    entities:
+      - device_tracker.rich_phone_s8
+      - device_tracker.sony_braviatv

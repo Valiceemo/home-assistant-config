@@ -1,5 +1,85 @@
+resources:
+  - url: /local/mini-media-player-bundle.js?v=0.9.5
+    type: module
+  - url: /local/custom_ui/weather-card.js
+    type: js
+  - url: /local/tracker-card.js?v=0.1.5
+    type: js
+  - url: /local/gauge-card.js?v=1
+    type: js
+
 title: Home
 views:
+
+## HOME VIEW ###
+
+  - title: Home
+    cards:
+    
+      - type: entities
+        entities:
+          - sensor.tv_watched_this_week
+      - type: entity-filter
+        entities: 
+          - device_tracker.rich_phone_s8
+        state_filter:
+          - home
+        show_empty: false
+        card:
+          type: glance
+          title: People at home
+          
+      - type: entity-filter
+        entities: 
+          - light.lounge_lamp
+          - light.bridge
+          - light.bedroom_light
+        state_filter:
+          - on
+        show_empty: false
+        card:
+          type: glance
+          show_state: false
+          title: Lights Left On
+          
+      - type: entity-filter
+        entities:
+          - entity: media_player.living_room_chromecast
+            name: Lounge Chromecast
+        show_empty: false
+        state_filter: 
+          - "on"
+      - type: entity-filter
+        entities:
+          - entity: media_player.lounge_google_home
+        state_filter:
+          - "on"
+        show_empty: false
+      - type: entity-filter
+        entities:
+          - entity: media_player.bravia_tv
+            name: Lounge TV
+        state_filter:
+          - on
+        show_empty: false
+        card:
+          type: custom:mini-media-player
+          entity: media_player.bravia_tv
+          icon: mdi:router-wireless
+          artwork_border: true
+          show_source: true
+          hide_volume: true
+          hide_controls: true
+       
+      - type: "custom:weather-card"
+        entity_weather: weather.home_weather
+        entity_sun: sun.sun
+      
+      - type: custom:tracker-card
+        title: Trackers
+        trackers: 
+          - sensor.custom_card_tracker
+
 
 ## LIVING ROOM VIEW ##
 
@@ -12,18 +92,30 @@ views:
           - type: light
             entity: light.bridge
             name: Book Shelf
+      - type: glance
+        title: AV ambient temperature
+        column_width: calc(100% / 2)
+        entities:
+          - entity: sensor.av_temps_humidity
+            name: Humidity
+          - entity: sensor.av_temps_temperature
+            name: Temperature
+      - type: media-control
+        entity: media_player.lounge_google_home
+      - type: media-control
+        entity: media_player.living_room_chromecast
+      - type: media-control
+        entity: media_player.bravia_tv
+        
+      - type: custom:mini-media-player
+        entity: media_player.bravia_tv
+        icon: mdi:router-wireless
+        artwork_border: true
+        show_source: true
+        hide_volume: true
+        hide_controls: true
 
-      - type: entity-filter
-        entities:
-          - entity: media_player.living_room_chromecast
-            name: Lounge Cast
-        state_filter: 
-          - "unavailable"
-      - type: entity-filter
-        entities:
-          - entity: media_player.lounger_google_home
-        state_filter:
-          - "off"
+
 
 ## BEDROOM VIEW ##
 
@@ -42,55 +134,125 @@ views:
 
   - title: Network
     cards:
+      
+      - type: glance
+        title: Network Speeds
+        column_width: calc(100% / 3)
+        show_name: false
+        entities:
+          - entity: sensor.speedtest_download
+            name: Download
+            icon: mdi:download
+          - entity: sensor.speedtest_upload
+            name: Upload
+            icon: mdi:upload
+          - entity: sensor.speedtest_ping
+            name: Ping
+            icon: mdi:speedometer
+            hold_action: call-service
+            service: sensor.update_speedtest
+      
+      - type: entities
+        entities:
+          - entity: sensor.external_ip
+            name: External IP
+          - entity: sensor.ipv4_address_eth0
+            name: Local IP
+      
       - type: entities
         title: Pi-Hole
         show_header_toggle: true
         entities:
+          - entity: sensor.connectivity_rpi_pihole
+            name: Status
+          - entity: sensor.pihole_domains_blocked
+            name: Total Domains Being Blocked
           - entity: sensor.pihole_dns_queries_today
-            name: DNS Queries today
+            name: DNS Queries Today
           - entity: sensor.pihole_ads_blocked_today
-            name: Queries Blocked today
+            name: Queries Blocked Today
           - entity: sensor.pihole_ads_percentage_blocked_today
             name: Percentage Blocked Today
-          - entity: sensor.pihole_domains_blocked
-            name: Total Domains being Blocked
-
+          - type: divider
+          - entity: sensor.pihole_cpu_temp
+            name: CPU Temp
+          - type: weblink
+            name: Pi-Hole
+            url: http://pi.hole/admin
+            icon: mdi:raspberrypi
+          - type: divider
+          - type: weblink
+            name: Sky Hub
+            url: http://192.168.0.1
+            icon: mdi:router-wireless
+            
       - type: entities
-        title: Network Speeds
-        show_header_toggle: false
+        title: Device Status
+        show_header_toggle: true
         entities:
-          - entity: sensor.speedtest_download
-            name: Download Speed
-          - entity: sensor.speedtest_upload
-            name: Upload Speed
-          - entity: sensor.speedtest_ping
-            name: Ping
-    
-      - type: sensor
-        entity: sensor.speedtest_download
-        name: Download Speeds
-        icon: mdi:download
-        graph: line
-        height: 75
-        line_color: "#3498db"
-        hours_to_show: 24
-
-      - type: sensor
-        entity: sensor.speedtest_upload
-        name: Upload Speeds
-        icon: mdi:download
-        graph: none
-        hours_to_show: 24
+          - entity: sensor.connectivity_sony_tv
+            name: Lounge TV
+          - entity: sensor.connectivity_sky_tv
+            name: Sky+
+          - entity: sensor.connectivity_chromecast_lounge
+            name: Lounge Chromecast
+          - entity: sensor.connectivity_google_home_lounge
+            name: Lounge Google Home
+          - entity: sensor.connectivity_xbox_one
+            name: Xbox
+          - type: divider
+          - entity: sensor.connectivity_chromecast_bedroom
+            name: Bedroom Chromecast
+          - entity: sensor.connectivity_google_home_bedroom
+            name: Bedroom Google Home
+          - type: divider
+          - entity: sensor.connectivity_milight_bridge
+            name: Mi-Light
+          - entity: sensor.connectivity_richlaptop
+            name: Rich Laptop
+          - entity: sensor.connectivity_gear_watch
+            name: Rich S2 Watch
+          - entity: sensor.connectivity_lenovo_tab
+            name: Rich Tablet
+           
 
 ## SYSTEM VIEW ##
 
-  - title: sYSTEM
+  - title: System
     cards:
-      - type: gauge
-        entity: sensor.cpu_usage
       - type: entities
-        title: System Info
-        show_header_toggle: false
+        title: System
+        show_header_toggle: true
         entities:
-          - entity: sensor.since_last_boot
-            name: Uptime 
+          - entity: sensor.ha_uptime_cl
+            name: HA Uptime
+            icon: mdi:update
+          - entity: sensor.time_online
+            name: Time online
+          - entity: sensor.ha_installed_version
+            name: HA Version
+          - type: divider
+          - type: weblink
+            name: Home Assistant
+            url: https://www.home-assistant.io
+            icon: mdi:home-assistant
+          - type: gauge
+            entity: sensor.processor_use
+            
+      - type: horizontal-stack
+        cards:
+          - type: custom:gauge-card
+            title: CPU Use
+            entity: sensor.processor_use
+            min: 0
+            max: 100
+            severity:
+              red: 50
+              green: 0
+              amber: 40
+          - type: custom:gauge-card
+            entity: sensor.cpu_speed
+            title: CPU Speed
+            min: 0
+            max: 1.2
+      

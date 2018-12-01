@@ -18,6 +18,24 @@
                 "model": "Chromecast",
                 "name": "Living Room Chromecast",
                 "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "36341e50b6bd4d949cb933030f527ad5"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "d33634fb1f434d59ae50340bc0388f1c",
+                "identifiers": [
+                    [
+                        "cast",
+                        "d0fcdaf9babbd45f2581f388091b4f0b"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Bedroom Chromecast",
+                "sw_version": null
             }
         ]
     },

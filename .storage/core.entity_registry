@@ -20,13 +20,22 @@
                 "unique_id": "b4d80506-8063-ee3a-46b4-e88122f3199c"
             },
             {
-                "config_entry_id": "36341e50b6bd4d949cb933030f527ad5",
-                "device_id": "eb498f169297404b9b940810fa7fd691",
+                "config_entry_id": null,
+                "device_id": null,
                 "disabled_by": null,
                 "entity_id": "media_player.living_room_chromecast",
                 "name": null,
                 "platform": "cast",
                 "unique_id": "e9cfa19a-6f43-5057-d7dd-bcde6e0c24f2"
+            },
+            {
+                "config_entry_id": null,
+                "device_id": null,
+                "disabled_by": null,
+                "entity_id": "media_player.bedroom_chromecast",
+                "name": null,
+                "platform": "cast",
+                "unique_id": "d0fcdaf9-babb-d45f-2581-f388091b4f0b"
             }
         ]
     },
