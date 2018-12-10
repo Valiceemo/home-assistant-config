@@ -1,0 +1,20 @@
+######################################################################
+##  Monitor Netork Device Status
+######################################################################
+
+- alias: Network Device Notifier
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id:
+      - sensor.connectivity_milight_bridge
+      - sensor.connectivity_rpi_pihole
+      - sensor.connectivity_sky_tv
+      - sensor.connectivity_google_home_bedroom
+      - sensor.connectivity_google_home_lounge
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant Network Monitor
+        message: "{{trigger.from_state.attributes.friendly_name}} changed to {{trigger.to_state.state}}"
