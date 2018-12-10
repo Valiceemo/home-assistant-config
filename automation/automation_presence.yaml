@@ -1,5 +1,5 @@
 ######################################################################
-##  Arrive at Home
+##  Presence Detection 
 ######################################################################
 
 - alias: Presence detection
@@ -8,11 +8,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.rich_phone_s8
-      to: 'home'
-      for: '00:05:00'
-    - platform: state
-      entity_id: device_tracker.rich_phone_s8
-      to: 'not_home'
 
   action:
     - service: input_select.select_option
@@ -28,8 +23,5 @@
     - service: notify.pushbullet
       data_template:
         title: Home Assistant Presence Monitoring
-        message: "{{trigger.entity_id}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}}"
+        message: "{{trigger.from_state.attributes.friendly_name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}}"
   
-######################################################################
-##  Leave Home
-######################################################################
