@@ -1,0 +1,73 @@
+######################################################################
+##  Home Assistant Update Available
+######################################################################
+
+- alias: Update Avaialable
+  initial_state: 'on'
+  hide_entity: False
+  trigger: 
+    - platform: state
+      entity_id: updater.udpate
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant Update Avaialable
+        message: Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}
+
+
+- alias: HAS Update Available Notification
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: updater.update
+
+  condition:
+    - condition: template
+      value_template: "{{ states('updater.updater') != 'unknown' }}"
+  
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Update HASS
+        message: Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}
+        data:
+          url: https://home-assistant.io/blog/
+    - service: persistent_notification.create
+      data:
+        title: "Update Available"
+        message: "Home Assistant {{ states('updater.updater') }} is available."
+        notification_id: "update_available"
+
+######################################################################
+##  Home Assistant Started
+######################################################################
+
+- alias: Home Assistant Started Notify
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant Ready
+        message: Home Assistant has started up to
+        
+######################################################################
+##  Failed Login
+######################################################################
+
+- alias: Login Failure
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: template
+      value_template: "{{ states('persistent_notification.httplogin') != 'unknown' }}"
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Failed login attempt to your Home Assistant
+
