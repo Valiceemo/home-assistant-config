@@ -1,0 +1,9 @@
+theme_changer:
+  name: System Theme
+  options:
+   - default
+   - midnight
+   - midnight_black
+  initial: default
+  icon: mdi:palette
+  

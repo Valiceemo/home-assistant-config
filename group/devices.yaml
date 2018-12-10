@@ -1,32 +1,30 @@
-view_Devices:
+devices:
   name: Devices
-  view: yes
+  view: no
   entities:
-    - group.devices
+    - group.device_trackers
     - group.people
     - group.phone_status
 
-devices:
+device_trackers:
   name: Devices
   entities:
-    - binary_sensor.device_tracker_chromecast_bedroom
-    - binary_sensor.device_tracker_chromecast_lounge
-    - binary_sensor.device_tracker_galaxy_tab
-    - binary_sensor.device_tracker_googlehome
-    - binary_sensor.device_tracker_googlehomemini
-    - binary_sensor.device_tracker_lenovo_tab
-    - binary_sensor.device_tracker_mediapi
-    - binary_sensor.device_tracker_pihole
-    - binary_sensor.device_tracker_richlaptop
-    - binary_sensor.device_tracker_sony_tv
-    - binary_sensor.device_tracker_xboxone
+    - device_tracker.chromecast_bedroom
+    - device_tracker.chromecast_lounge
+    - device_tracker.gear_watch
+    - device_tracker.google_home_bedroom
+    - device_tracker.google_home_lounge
+    - device_tracker.milight_bridge
+    - device_tracker.rpi_hassbian
+    - device_tracker.rpi_pihole
+    - device_tracker.skyhd
+    - device_tracker.sony_braviatv
+    - device_tracker.xbox_one
     
 people:
-  name: People
+  name: people
   entities:
-    - binary_sensor.device_tracker_rich_s6
-    - binary_sensor.device_tracker_rich_s8
-    - binary_sensor.device_tracker_emily_kurio
+    - device_tracker.rich_phone_s8
   
 phone_status:
   name: Phone Status

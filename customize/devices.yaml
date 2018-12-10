@@ -1,70 +1,11 @@
-## device trackers hidden - reploaced wih online offline sensor
+## device trackers hidden - replaced wih online offline sensor
 
-#device_tracker.sony_tv:
-#  hidden: true 
-device_tracker.raspberrypi:
-  hidden: true 
-device_tracker.galaxy_tab:
-  hidden: true 
-#device_tracker.richlaptop:
-#  hidden: true 
-device_tracker.chromecast_bedroom:
-  hidden: true 
-device_tracker.chromecast_lounge:
-  hidden: true
-device_tracker.googlehome:
-  hidden: true 
-device_tracker.googlehomemini:
-  hidden: true 
-device_tracker.kindle_tab:
-  hidden: true 
-device_tracker.blu_ray:
-  hidden: true 
-device_tracker.galaxy_ace:
-  hidden: true 
-device_tracker.gear_s2:
-  hidden: true
-device_tracker.esp_238a99:
-  hidden: true
-device_tracker.xboxone:
-  hidden: true
-device_tracker.lenovo_tab:
-  hidden: true
-device_tracker.mediapi:
-  hidden: true
-device_tracker.pihole:
-  hidden: true
 
 ## DEVICES ##
-sensor.sony_tv:
-  icon: mdi:television 
-sensor.raspberrypi:
-  icon: mdi:raspberrypi
-sensor.pihole:
-  icon: mdi:raspberrypi 
-sensor.samsunggalaxytab:
-  icon: mdi:tablet-android 
-sensor.richlaptop:
-  icon: mdi:laptop 
-sensor.chromecast_lounge:
-  icon: mdi:cast
-sensor.chromecast_bedroom:
-  icon: mdi:cast  
-sensor.lenovo_tablet:
-  icon: mdi:tablet 
-sensor.galaxy_ace:
-  icon: mdi:cellphone-android 
-sensor.googlehome:
-  icon: mdi:google-home 
-sensor.googlehomemini:
-  icon: mdi:google 
-sensor.richnetbook:
-  icon: mdi:laptop-windows 
-sensor.xbox:
-  icon: mdi:xbox
-  
-device_tracker.emily_kurio:
-  entity_picture: /local/images/emily.JPG
 
-device_tracker.rich_s8:
-  entity_picture: /local/images/rich.jpg
+  
+# device_tracker.emily_kurio:
+#  entity_picture: /local/images/emily.JPG
+
+device_tracker.rich_phone_s8:
+  entity_picture: /local/rich-icon.jpg

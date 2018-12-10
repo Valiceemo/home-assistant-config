@@ -6,9 +6,9 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/London
   customize: !include_dir_merge_named customize
-  customize_glob: !include customize-glob.yaml
-  whitelist_external_dirs:
-    - /home/homeassistant/.homeassistant/
+#  customize_glob: !include customize-glob.yaml
+#  whitelist_external_dirs:
+#    - home/homeassistant/.homeassistant/
 
 http:
   api_password: !secret http_password
@@ -22,14 +22,23 @@ custom_updater:
     - cards
   card_urls:
     - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
-# mqtt:
-#  broker: !secret mqtt_broker
-#  port: !secret mqtt_port
-#  client_id: home_assistant1
-#  username: !secret mqtt_username
-#  password: !secret mqtt_password
-#  discovery: true
-#  discovery_prefix: homeassistant
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  client_id: home_assistant1
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery: true
+  discovery_prefix: homeassistant
+  
+camera:
+  - platform: rpi_camera
+    name: Lounge Camera
+    horizontal_flip: 1
+    vertical_flip: 1
+    image_quality: 50
+  
 
 weather:
   - platform: yweather
@@ -69,16 +78,16 @@ weblink: !include weblink.yaml
 media_player: !include_dir_merge_list media_player
 light: !include_dir_merge_list light
 sensor: !include_dir_merge_list sensor
-# group: !include_dir_merge_named group
-# automation: !include_dir_merge_list automation
-# frontend: !include frontend.yaml
+group: !include_dir_merge_named group
+automation: !include_dir_merge_list automation
+frontend: !include frontend.yaml
 logbook: !include logbook.yaml
 recorder: !include recorder.yaml
 history: !include history.yaml
 switch: !include_dir_merge_list switch
 input_select: !include_dir_merge_named input_select
 #input_boolean: !include_dir_merge_named input_boolean
-input_text: !include_dir_merge_named input_text
+#input_text: !include_dir_merge_named input_text
 shell_command: !include_dir_merge_named shell_command
 #history_stats: !include_dir_merge_list history_stats
 

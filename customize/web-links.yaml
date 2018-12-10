@@ -1,8 +1,9 @@
 ## WEB LINKS ##
+
 weblink.router:
   friendly_name: 'Sky Hub'
   icon: mdi:router-wireless
 
 weblink.has:
   friendly_name: 'HAS'
-  icon: mdi:home
+  icon: mdi:home-assistant

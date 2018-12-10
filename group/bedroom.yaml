@@ -1,6 +1,6 @@
 view_Bedroom:
   name: Bedroom
-  view: yes
+  view: no
   entities:
     - group.bedroom_lights
     - group.bedroom_conditions
@@ -21,4 +21,5 @@ bedroom_lights:
 bedroom_media:
   name: Bedroom Media
   entities:
-    - media_player.bedroom_speaker
+    - media_player.bedroom_chromecast
+    - media_player.bedroom_google_home

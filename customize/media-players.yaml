@@ -2,5 +2,4 @@ media_player.bravia_tv:
   emulated_hue_name: "Sony Bravia TV"
   emulated_hue_hidden: false
   
-media_player.kodi:
-  emulated_hue_hidden: false
+

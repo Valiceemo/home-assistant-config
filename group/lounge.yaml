@@ -1,6 +1,6 @@
 view_lounge:
   name: Lounge
-  view: yes
+  view: no
   entities:
     - camera.raspberry_pi_camera
     - group.lounge_lights
@@ -12,17 +12,9 @@ lounge_media:
   name: Television
   entities:
     - media_player.bravia_tv
-    - media_player.living_room_home
     - media_player.living_room_chromecast
-    - media_player.kodi_pi
-    - media_player.plex_web_chrome
-    - sensor.tautulli_direct_play
-    - sensor.tautulli_direct_stream
-    - sensor.tautulli_total
-    - sensor.tautulli_total_bandwidth
-    - sensor.tautulli_transcode
-    - sensor.lastfm_valiceemo
-
+    - media_player.lounge_google_home
+  
 lounge_conditions:
   name: Lounge Conditions
   entities:

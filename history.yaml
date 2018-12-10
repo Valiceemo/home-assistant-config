@@ -1,4 +1,18 @@
+  use_include_order: True
+  exclude:
+    domains:
+      - weather
+      - sun
+      - automations
+      - switch
+      - light
+    
+
   include:
     entities:
       - device_tracker.rich_phone_s8
-      - device_tracker.sony_braviatv
+      - light.bedroom_light
+      - light.lounge_lamp
+      - media_player.bravia_tv
+      - sensor.speedtest_download
+      - sensor.speedtest_upload

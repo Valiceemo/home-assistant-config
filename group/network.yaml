@@ -1,6 +1,6 @@
 view_network:
   name: Network
-  view: yes
+  view: no
   entities:
     - group.network_info
     - group.network_speeds
@@ -29,6 +29,23 @@ pihole:
     - sensor.pihole_domains_blocked
     - sensor.pihole_cpu_temp
     - sensor.pihole_cpu_usage
-    - sensor.pihole_last_booted
+    - sensor.pihole_boot_time
     - sensor.pihole_disk_usage
     - weblink.pihole
+    
+device_network_status:
+  name: Device Network Status
+  entities:
+    - sensor.connectivity_chromecast_bedroom
+    - sensor.connectivity_chromecast_lounge
+    - sensor.connectivity_gear_watch
+    - sensor.connectivity_google_home_bedroom
+    - sensor.connectivity_google_home_lounge
+    - sensor.connectivity_lenovo_tab
+    - sensor.connectivity_milight_bridge
+    - sensor.connectivity_richlaptop
+    - sensor.connectivity_rpi_hassbian
+    - sensor.connectivity_rpi_pihole
+    - sensor.connectivity_sky_tv
+    - sensor.connectivity_sony_tv
+    - sensor.connectivity_xbox_one

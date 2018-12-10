@@ -12,7 +12,7 @@ sun.sun:
   hidden: true
   
 sensor.since_last_boot:
-  hidden: true
+  hidden: false
   
 sensor.hass_uptime:
   icon: mdi:clock
@@ -24,9 +24,7 @@ sensor.disk_free_mediasharehdd1:
   friendly_name: Hard drive Available
 sensor.disk_free_home:
   friendly_name: Available Home Dir
-sensor.disk_used_homepikodi:
-  friendly_name: Used by Kodi
-  
+
 sensor.dht_sensor_temperature:
   friendly_name: AV Temperature
 sensor.dht_sensor_humidity:

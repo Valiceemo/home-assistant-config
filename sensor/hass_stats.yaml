@@ -1,19 +1,25 @@
 ###################################################
-## * Special HASS related sensors - Thanks @torn8o
+## * Special HASS related sensors 
 ###################################################
 
 - platform: version
   name: HA Installed Version
   scan_interval: 86400
 
+- platform: rest
+  resource: https://pypi.python.org/pypi/homeassistant/json
+  name: HA Upstream
+  value_template: '{{ value_json.info_version }}'
+  scan_interval: 86400
+
 - platform: uptime
   name: Time Online
   unit_of_measurement: hours
 
-- platform: filesize
-  file_paths:
-    - /home/homeassistant/.homeassistant/home-assistant_v2.db
-#     - /home/homeassistant/.homeassistant/home-assistant.log
+#- platform: filesize
+#  file_paths:
+#    - config/home-assistant_v2.db
+#    - config/home-assistant.log
 
 - platform: command_line
   name: "HA Uptime CL"

@@ -1,0 +1,15 @@
+######################################################################
+##  Away Mode
+######################################################################
+
+- alias: Set Theme
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: input_select.theme_changer
+
+  action:
+    service: frontend.set_theme
+    data_template: 
+      name: "{{states('input_select.theme_changer')}}"

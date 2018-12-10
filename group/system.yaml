@@ -13,32 +13,23 @@ processes:
   entities:
     - sensor.process_mosquitto
     - sensor.process_smbd
-    - sensor.process_fail2ban
-    - sensor.process_kodi
 
 system_status:
   name: System
   control: hidden
   entities:
     - sensor.processor_use
-    - sensor.cpu_temp
-    - sensor.cpu_fan
     - sensor.memory_use_percent
     - sensor.since_last_boot_templated
     - sensor.release
     - sensor.time_online
-    - sensor.ha_uptime
+    - sensor.ha_uptime_cl
+    - sensor.last_boot
     - weblink.has
     - sensor.ha_installed_version
-    - sensor.homeassistant_v2db
-    - sensor.homeassistantlog
-    - history_graph.cpu_temperature
-    - history_graph.ram_usage
-    
+
 memory:
   name: Memory
   control: hidden
   entities:
     - sensor.disk_free_home
-    - sensor.disk_free_mediasharehdd1
-    - sensor.disk_use_homepikodi

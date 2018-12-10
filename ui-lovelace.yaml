@@ -7,6 +7,8 @@ resources:
     type: js
   - url: /local/gauge-card.js?v=1
     type: js
+  - url: /local/card-modder.js
+    type: js
 
 title: Home
 views:
@@ -19,6 +21,7 @@ views:
       - type: entities
         entities:
           - sensor.tv_watched_this_week
+          - sensor.tv_watched_today
       - type: entity-filter
         entities: 
           - device_tracker.rich_phone_s8
@@ -85,6 +88,8 @@ views:
 
   - title: Living Room
     cards:
+      - type: picture-entity
+        entity: camera.lounge_camera
       - type: horizontal-stack
         cards:
           - type: light
@@ -92,14 +97,42 @@ views:
           - type: light
             entity: light.bridge
             name: Book Shelf
-      - type: glance
-        title: AV ambient temperature
-        column_width: calc(100% / 2)
+
+      - type: custom:card-modder
+        style: 
+         --paper-card-background-color: rgba(0,100,0,0.2)
+         --paper-item-icon-colour: white
+         color: rgb(0, 0, 100)
+         border-radius: 10px
+        card: 
+          type: glance
+          title: Style
+          entities:
+            - light.lounge_lamp
+            - light.bridge
+            - light.bedroom_light
+             
+
+      - type: entities
         entities:
-          - entity: sensor.av_temps_humidity
-            name: Humidity
-          - entity: sensor.av_temps_temperature
-            name: Temperature
+          - sensor.valiceemo
+
+      - type: custom:card-modder
+        style: 
+          --paper-card-background-color: rgba(0,100,0,0.2)
+          --paper-item-icon-colour: white
+          border-radius: 10px
+          color: rgb(102,0,102)
+        card:
+          type: glance
+          title: AV ambient temperature
+          column_width: calc(100% / 2)
+          entities:
+            - entity: sensor.av_temps_humidity
+              name: Humidity
+            - entity: sensor.av_temps_temperature
+              name: Temperature
+
       - type: media-control
         entity: media_player.lounge_google_home
       - type: media-control
@@ -128,6 +161,7 @@ views:
         entity: media_player.bedroom_google_home
       - type: media-control
         entity: media_player.bedroom_chromecast
+  
 
 
 ## NETWORK VIEW ##
@@ -151,13 +185,15 @@ views:
             icon: mdi:speedometer
             hold_action: call-service
             service: sensor.update_speedtest
-      
+            
       - type: entities
         entities:
           - entity: sensor.external_ip
             name: External IP
+            icon: mdi:ip-network
           - entity: sensor.ipv4_address_eth0
             name: Local IP
+            icon: mdi:ip-network
       
       - type: entities
         title: Pi-Hole
@@ -176,6 +212,17 @@ views:
           - type: divider
           - entity: sensor.pihole_cpu_temp
             name: CPU Temp
+            icon: mdi:thermometer
+          - entity: sensor.pihole_cpu_usage
+            name: CPU Usage
+            icon: mdi:memory
+          - entity: sensor.pihole_boot_time
+            name: Last Booted
+            icon: mdi:update
+          - entity: sensor.pihole_disk_usage
+            name: Disk Usage
+            icon: mdi:micro-sd
+          - type: divider
           - type: weblink
             name: Pi-Hole
             url: http://pi.hole/admin
@@ -227,10 +274,11 @@ views:
           - entity: sensor.ha_uptime_cl
             name: HA Uptime
             icon: mdi:update
-          - entity: sensor.time_online
-            name: Time online
           - entity: sensor.ha_installed_version
             name: HA Version
+          - type: divider
+          - entity: input_select.theme_changer
+            name: Theme select
           - type: divider
           - type: weblink
             name: Home Assistant
@@ -238,6 +286,7 @@ views:
             icon: mdi:home-assistant
           - type: gauge
             entity: sensor.processor_use
+         
             
       - type: horizontal-stack
         cards:
@@ -250,9 +299,45 @@ views:
               red: 50
               green: 0
               amber: 40
-          - type: custom:gauge-card
-            entity: sensor.cpu_speed
-            title: CPU Speed
-            min: 0
-            max: 1.2
-      
+          
+## AUTOMATIONS ##
+
+  - title: Automations
+    cards:
+      - type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - entity: automation.evening_lights_on
+          - entity: automation.motion_lights_lounge_full
+          - entity: automation.motion_lights_bedroom_full
+          - entity: automation.bedroom_lights_off_after_10
+          - entity: automation.lounge_lamp_off_sun_up
+          - entity: automation.turn_all_lights_off_at_night
+          - entity: automation.turn_all_lights_off_when_away
+          
+      - type: entities
+        title: Presence Detection
+        show_header_toggle: true
+        entities:
+          - entity: automation.presence_detection
+
+      - type: entities
+        title: System
+        show_header_toggle: true
+        entities:
+          - entity: automation.has_update_available_notification
+          - entity: automation.home_assistant_started_notify
+          - entity: automation.login_failure
+          - entity: automation.set_theme
+            
+      - type: entities
+        title: Home Modes
+        show_header_toggle: true
+        entities:
+          - entity: automation.home_mode_home
+          - entity: automation.home_mode_away
+          - entity: automation.home_mode_morning
+          - entity: automation.home_mode_night
+          
+          

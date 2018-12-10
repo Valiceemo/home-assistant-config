@@ -2,7 +2,7 @@
 ##  Away Mode
 ######################################################################
 
-- alias: Away Mode On
+- alias: Home Mode Away
   initial_state: 'on'
   hide_entity: False
   trigger:
@@ -28,7 +28,7 @@
 ##  Home Mode
 ######################################################################
 
-- alias: Home Mode On
+- alias: Home Mode Home
   initial_state: 'on'
   hide_entity: False
   trigger:
@@ -50,7 +50,7 @@
 ##  Sleep Mode
 ######################################################################
 
-- alias: Night Mode
+- alias: Home Mode Night
   initial_state: 'on'
   hide_entity: False
   trigger:
@@ -62,7 +62,7 @@
       
   condition:
     - condition: state
-      entity_id: device_tracker.rich_s8
+      entity_id: device_tracker.rich_phone_s8
       state: 'home'
       
   action:
@@ -78,7 +78,7 @@
 ##  Morning Mode
 ######################################################################
 
-- alias: Morning Mode
+- alias: Home Mode Morning
   initial_state: 'on'
   hide_entity: False
   trigger:

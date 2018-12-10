@@ -22,3 +22,8 @@
   state_topic: 'pihole/cpu/temp'
   name: 'Pi-Hole Disk Usage'
   value_template: '{{ value_json.disktotal }}'
+
+- platform: mqtt
+  state_topic: 'pihole/cpu/temp'
+  name: 'Pi-Hole Boot time'
+  value_template: '{{ value_json.boottime }}'

@@ -2,27 +2,24 @@
   purge_interval: 1
   exclude:
     domains:
+      - weather
       - sun
       - weblink
-      - zone
-      - updater
-      - automation
       - device_tracker
-      - group
-      - switch 
-      - weather
+      - switch
+      - sensor
+      - automation
+      - zone
+      - media_player
+
+  include: 
     entities:
-      - device_tracker.milight_bridge
-      - device_tracker.chromecast_bedroom
-      - device_tracker.chromecast_lounge
-      - device_tracker.lounge_google_home
-      - device_tracker.raspberrypi_hassbian
-      - device_tracker.skyhd
-      - device_tracker.xbox_one
-      - sensor.ha_installed_version
-      - sensor.ha_uptime
-      - sensor.pihole_ads_blocked_today
-      - sensor.pihole_ads_percentage_blocked_today
-      - sensor.pihole_dns_queries_today
-      - sensor.pihole_domains_blocked
-      - sensor.time_online
+      - device_tracker.rich_phone_s8
+      - light.bedroom_light
+      - light.lounge_lamp
+      - media_player.bravia_tv
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
+      - sensor.tv_watched_this_week
+      - sensor.tv_watched_today

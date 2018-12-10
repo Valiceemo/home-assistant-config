@@ -2,6 +2,19 @@
 ##  Home Assistant Update Available
 ######################################################################
 
+- alias: Update Avaialable
+  initial_state: 'on'
+  hide_entity: False
+  trigger: 
+    - platform: state
+      entity_id: updater.udpate
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant Update Avaialable
+        message: Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}
+
+
 - alias: HAS Update Available Notification
   initial_state: 'on'
   hide_entity: False
@@ -40,7 +53,7 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant Ready
-        message: Home Assistant has started up
+        message: Home Assistant has started up to
         
 ######################################################################
 ##  Failed Login

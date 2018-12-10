@@ -10,21 +10,21 @@
       at: '20:00:00'
   condition:
     - condition: state
-      entity_id: device_tracker.rich_s8
+      entity_id: device_tracker.rich_phone_s8
       state: 'home'  
   action:
     - service: light.turn_on
       data:
         entity_id:
           - light.lounge_lamp
-          - light.bridge
         brightness: 255
         color_name: white
-    - service: switch.turn_on
+    - service: light.turn_on
       data:
         entity_id:
-          - switch.tv_backlight_power
-    
+          - light.bridge
+        brightness: 255
+        color_name: blue
 
 ######################################################################
 ##  Master Bedroom Lights
@@ -41,7 +41,7 @@
   
   condition: 
     - condition: state
-      entity_id: device_tracker.rich_s8
+      entity_id: device_tracker.rich_phone_s8
       state: 'home'
     - condition: state
       entity_id: sun.sun
@@ -66,11 +66,56 @@
     - platform: state
       entity_id: input_select.home_mode
       to: 'Away'
+      for: '00:05:00'
+  condition: 
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: light.lounge_lamp
+        state: 'on'
+      - condition: state
+        entity_id: light.bridge
+        state: 'on'
   action:
+
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant Lights left on
+        message: >
+          The following lights are on, I will turn them off...
+            {%- for entity_id in states.group.all_lights.attributes.entity_id -%}
+            {% set parts = entity_id.split('.') -%}
+            {%- if states(entity_id) == 'on' %}
+            {%- if loop.first %} {% elif loop.last %} and the {% else %}, the {% endif -%}{{ states[parts[0]][parts[1]].name }}
+            {% endif -%}
+            {%- endfor %}
+        
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: switch.turn_off
-      entity_id: switch.tv_backlight_power
+      
+#   - service: switch.turn_off
+#     entity_id: switch.tv_backlight_power
+
+######################################################################
+##  Turn All Lights Off When Returning and It's Dark
+######################################################################
+
+- alias: Turn All Lights On When Returning
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: input_select.home_mode
+      to: 'Home'
+  condition: 
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+        
+    - service: light.turn_on
+      entity_id: group.lounge_lights
+      
 
 ######################################################################
 ##  Turn All Lights Off At Night
@@ -85,8 +130,8 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: switch.turn_off
-      entity_id: switch.tv_backlight_power
+#    - service: switch.turn_off
+#      entity_id: switch.tv_backlight_power
       
 ######################################################################
 ##  Motion Lights Lounge
@@ -103,7 +148,7 @@
   
   condition: 
     - condition: state
-      entity_id: device_tracker.rich_s8
+      entity_id: device_tracker.rich_phone_s8
       state: 'home'
     - condition: state
       entity_id: light.lounge_lamp
@@ -121,10 +166,10 @@
         color_name: white
       
 ######################################################################
-##  Lounge Lamp off Light on
+##  Lounge Lamp off Sun Up
 ######################################################################
 
-- alias: Lounge Lamp Off - Light on
+- alias: Lounge Lamp Off Sun Up
   initial_state: 'on'
   hide_entity: False
   trigger:
@@ -134,7 +179,7 @@
   
   condition: 
     - condition: state
-      entity_id: device_tracker.rich_s8
+      entity_id: device_tracker.rich_phone_s8
       state: 'home'
     - condition: state
       entity_id: light.lounge_lamp
