@@ -12,19 +12,19 @@
       event: start
   condition:
     - condition: template
-      value_template: "{{ states('sensor.ha_installed_version') != states('sensor.latest_vers') }}"
+      value_template: "{{ states('sensor.ha_installed_version') != states('sensor.ha_latest_vers') }}"
   
   action:
     - service: notify.pushbullet
       data:
         title: Update HASS
-        message: Home Assistant {{ states('sensor.latest_vers') }} is available. Currently running {{ states('sensor.ha_installed_version') }}
+        message: Home Assistant {{ states('sensor.ha_latest_vers') }} is available. Currently running {{ states('sensor.ha_installed_version') }}
         data:
           url: https://home-assistant.io/blog/
     - service: persistent_notification.create
       data:
         title: "Update Available"
-        message: "Home Assistant {{ states('sensor.latest_vers') }} is available. Currently running {{ states('sensor.ha_installed_version') }}"
+        message: "Home Assistant {{ states('sensor.ha_latest_vers') }} is available. Currently running {{ states('sensor.ha_installed_version') }}"
         notification_id: "update_available"
 
 ######################################################################

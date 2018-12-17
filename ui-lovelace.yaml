@@ -127,7 +127,7 @@ views:
            
       - type: custom:card-modder
         style: 
-          --paper-card-background-color: rgba(0,100,0,0.2)
+          --paper-card-background-color: rgba(0,100,0,100)
           --paper-item-icon-colour: white
           border-radius: 10px
           color: rgb(102,0,102)
