@@ -42,7 +42,7 @@ views:
           - type: "custom:button-card"
             color_type: label-card
             color: rgb(44, 109, 214)
-            name: Away
+            name: Aways
             action: service
             service: 
               domain: media_player
