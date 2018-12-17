@@ -14,6 +14,7 @@ resources:
 
 title: Home
 views:
+
 ## HOME VIEW ###
 
   - title: Home
@@ -41,7 +42,7 @@ views:
           - type: "custom:button-card"
             color_type: label-card
             color: rgb(44, 109, 214)
-            name: Kitchen 2
+            name: Away
             action: service
             service: 
               domain: media_player
