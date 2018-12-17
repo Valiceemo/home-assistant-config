@@ -29,7 +29,7 @@ deps
 tts
 www/images
 .storage
-www/icons
+www
 
 #######################
 ## LOGS + DB
