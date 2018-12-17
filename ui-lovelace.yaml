@@ -1,27 +1,54 @@
 resources:
-  - url: /local/mini-media-player-bundle.js?v=0.9.5
+  - url: /local/mini-media-player-bundle.js?v=0.9.7
     type: module
   - url: /local/custom_ui/weather-card.js
     type: js
   - url: /local/tracker-card.js?v=0.1.5
     type: js
-  - url: /local/gauge-card.js?v=1
+  - url: /local/gauge-card.js?v=0.2.0
     type: js
   - url: /local/card-modder.js
     type: js
+  - url: /local/button-card.js
+    type: module
 
 title: Home
 views:
-
 ## HOME VIEW ###
 
   - title: Home
+    panel: false
     cards:
     
       - type: entities
         entities:
-          - sensor.tv_watched_this_week
-          - sensor.tv_watched_today
+          - sensor.tv_watched_daily
+          - sensor.tv_watched_weekly
+          
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            color_type: label-card
+            color: rgb(44, 109, 214)
+            name: Home
+            action: service
+            service: 
+              domain: input_select
+              action: select_option
+              data: 
+                entity_id: input_select.home_mode
+                option: "Away"
+          - type: "custom:button-card"
+            color_type: label-card
+            color: rgb(44, 109, 214)
+            name: Kitchen 2
+            action: service
+            service: 
+              domain: media_player
+              action: turn_off
+              data:
+                entity_id: media_player.bravia_tv
+          
       - type: entity-filter
         entities: 
           - device_tracker.rich_phone_s8
@@ -75,7 +102,7 @@ views:
           hide_controls: true
        
       - type: "custom:weather-card"
-        entity_weather: weather.home_weather
+        entity_weather: weather.dark_sky
         entity_sun: sun.sun
       
       - type: custom:tracker-card
@@ -97,26 +124,7 @@ views:
           - type: light
             entity: light.bridge
             name: Book Shelf
-
-      - type: custom:card-modder
-        style: 
-         --paper-card-background-color: rgba(0,100,0,0.2)
-         --paper-item-icon-colour: white
-         color: rgb(0, 0, 100)
-         border-radius: 10px
-        card: 
-          type: glance
-          title: Style
-          entities:
-            - light.lounge_lamp
-            - light.bridge
-            - light.bedroom_light
-             
-
-      - type: entities
-        entities:
-          - sensor.valiceemo
-
+           
       - type: custom:card-modder
         style: 
           --paper-card-background-color: rgba(0,100,0,0.2)
@@ -274,6 +282,9 @@ views:
           - entity: sensor.ha_uptime_cl
             name: HA Uptime
             icon: mdi:update
+          - entity: sensor.hassbian_cpu_temp
+            name: CPU Temperature
+            icon: mdi:thermometer
           - entity: sensor.ha_installed_version
             name: HA Version
           - type: divider
@@ -284,9 +295,6 @@ views:
             name: Home Assistant
             url: https://www.home-assistant.io
             icon: mdi:home-assistant
-          - type: gauge
-            entity: sensor.processor_use
-         
             
       - type: horizontal-stack
         cards:

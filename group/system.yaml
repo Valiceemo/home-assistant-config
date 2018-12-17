@@ -20,11 +20,11 @@ system_status:
   entities:
     - sensor.processor_use
     - sensor.memory_use_percent
-    - sensor.since_last_boot_templated
-    - sensor.release
-    - sensor.time_online
-    - sensor.ha_uptime_cl
-    - sensor.last_boot
+    - sensor.hassbian_cpu_temp
+    - sensor.av_temps_humidity
+    - sensor.av_temps_temperature
+    - sensor.ha_time_online
+    - sensor.hassbian_boot_time
     - weblink.has
     - sensor.ha_installed_version
 

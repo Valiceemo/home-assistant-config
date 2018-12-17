@@ -6,7 +6,7 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/London
   customize: !include_dir_merge_named customize
-#  customize_glob: !include customize-glob.yaml
+  customize_glob: !include customize-glob.yaml
 #  whitelist_external_dirs:
 #    - home/homeassistant/.homeassistant/
 
@@ -22,6 +22,7 @@ custom_updater:
     - cards
   card_urls:
     - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
 
 mqtt:
   broker: !secret mqtt_broker
@@ -43,7 +44,12 @@ camera:
 weather:
   - platform: yweather
     woeid: !secret yahoo_woeid
-    name: Home Weather  
+    name: Home Weather 
+  - platform: darksky
+    api_key: !secret dark_sky_api
+    latitude: !secret latitude
+    longitude: !secret longitude
+    
 
 
 config:
@@ -67,6 +73,17 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_api
+  - name: join
+    platform: joaoapps_join
+    api_key: !secret join_api_key
+    device_id: !secret join_deviceid_s8
+    device_names: Rich_S8
+joaoapps_join:
+  - name: Mobile
+    device_id: GROUP.GROUP_NAME
+    api_key: !secret join_api_key
+
+  
     
 ####################################################
 #                                                  #
@@ -89,5 +106,4 @@ input_select: !include_dir_merge_named input_select
 #input_boolean: !include_dir_merge_named input_boolean
 #input_text: !include_dir_merge_named input_text
 shell_command: !include_dir_merge_named shell_command
-#history_stats: !include_dir_merge_list history_stats
 

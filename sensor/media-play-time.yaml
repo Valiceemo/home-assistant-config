@@ -1,13 +1,21 @@
 - platform: history_stats
-  name: TV Watched This Week
+  name: TV Watched Weekly Raw
   entity_id: media_player.bravia_tv
   state: 'on'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
   end: '{{ now() }}'
   
+- platform: template
+  sensors:
+    tv_watched_weekly:
+      friendly_name: "TV Watched This Week"
+#    unit_of_measurement: 'degrees' 
+      value_template: "{{ state_attr('sensor.tv_watched_weekly_raw', 'value') }}" 
+
+  
 - platform: history_stats
-  name: TV Watched Today
+  name: TV Watched Daily Raw
   entity_id: media_player.bravia_tv
   state: 'on'
   type: time
@@ -15,11 +23,29 @@
   duration: 
     hours: 18
 
+- platform: template
+  sensors:
+    tv_watched_daily:
+      friendly_name: "TV Watched Today"
+#    unit_of_measurement: 'degrees' 
+      value_template: "{{ state_attr('sensor.tv_watched_daily_raw', 'value') }}" 
 
+## XBOX PLAY TIME ##
+  
 - platform: history_stats
-  name: Xbox This Week
+  name: Xbox Played Daily Raw
   entity_id: sensor.valiceemo
   state: 'online'
   type: time
-  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-  end: '{{ now() }}'
+  start: '{{ now().replace(hour=6).replace(minute=0).replace(second=0) }}'
+  duration: 
+    hours: 18
+    
+- platform: template
+  sensors:
+    xbox_daily:
+      friendly_name: "Xbox Played Today"
+#    unit_of_measurement: 'degrees' 
+      value_template: "{{ state_attr('sensor.xbox_played_daily_raw', 'value') }}" 
+
+

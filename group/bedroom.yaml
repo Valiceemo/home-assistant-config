@@ -1,17 +1,17 @@
 view_Bedroom:
   name: Bedroom
-  view: no
+  view: yes
   entities:
     - group.bedroom_lights
-    - group.bedroom_conditions
+#    - group.bedroom_conditions
     - group.bedroom_media    
     
-bedroom_conditions:
-  name: Bedroom Conditions
-  entities:
-    - sensor.bedroom_temperature
-    - sensor.bedroom_humidity
-    - sensor.bedroom_sensor_node_pir
+#bedroom_conditions:
+#  name: Bedroom Conditions
+#   entities:
+#    - sensor.bedroom_temperature
+#    - sensor.bedroom_humidity
+#    - sensor.bedroom_sensor_node_pir
     
 bedroom_lights:
   name: Bedroom Lights

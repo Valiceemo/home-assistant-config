@@ -1,6 +1,5 @@
 - platform: systemmonitor
   resources:
-    - type: last_boot
     - type: ipv4_address
       arg: eth0
     - type: memory_use_percent
@@ -13,13 +12,15 @@
       arg: /home
   
 
-# platform: mqtt
-#  state_topic: 'pi/cpu/temp'
-#  name: 'CPU Temp'
-#  unit_of_measurement: '°C'
-#- platform: mqtt
-#  state_topic: 'pi/cpu/fan'
-#  name: 'CPU fan'
+- platform: mqtt
+  state_topic: 'hassbian/cpu/temp'
+  value_template: '{{ value_json.cputemp | round(1) }}'
+  name: 'Hassbian CPU Temp'
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: 'hassbian/cpu/temp'
+  value_template: '{{ value_json.boottime }}'
+  name: 'Hassbian Boot time'
   
 
 - platform: rest

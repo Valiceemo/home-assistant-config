@@ -1,6 +1,6 @@
 devices:
   name: Devices
-  view: no
+  view: yes
   entities:
     - group.device_trackers
     - group.people

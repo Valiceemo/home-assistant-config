@@ -6,6 +6,7 @@
       - automations
       - switch
       - light
+      - sensor
     
 
   include:
@@ -16,3 +17,5 @@
       - media_player.bravia_tv
       - sensor.speedtest_download
       - sensor.speedtest_upload
+      - sensor.lastfm_valiceemo
+      - sensor.valiceemo

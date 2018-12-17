@@ -1,0 +1,14 @@
+sun.sun:
+  hidden: true
+  
+sensor.since_last_boot:
+  hidden: false
+  
+sensor.ha_latest_vers:
+  hidden: true
+  
+sensor.tv_watched_daily_raw:
+  hidden: true
+  
+sensor.tv_watched_weekly_raw:
+  hidden: true

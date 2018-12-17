@@ -1,11 +1,12 @@
 view_lounge:
   name: Lounge
-  view: no
+  view: yes
   entities:
-    - camera.raspberry_pi_camera
+    - camera.lounge_camera
     - group.lounge_lights
-    - group.lounge_conditions
+#    - group.lounge_conditions
     - group.lounge_media
+    - group.media_watch_time
     - group.tv_backlight
 
 lounge_media:
@@ -15,16 +16,24 @@ lounge_media:
     - media_player.living_room_chromecast
     - media_player.lounge_google_home
   
-lounge_conditions:
-  name: Lounge Conditions
+media_watch_time:
+  name: TV Watched
   entities:
-    - sensor.lounge_temperature
-    - sensor.lounge_humidity
-    - sensor.lounge_light_level
-    - sensor.lounge_sensor_node_pir
-    - sensor.dht_sensor_temperature
-    - sensor.dht_sensor_humidity
-    - light.sensor_node_lounge_led
+    - sensor.tv_watched_daily
+    - sensor.tv_watched_weekly
+    - sensor.xbox_this_week
+  
+  
+#lounge_conditions:
+#  name: Lounge Conditions
+#  entities:
+#    - sensor.lounge_temperature
+#    - sensor.lounge_humidity
+#    - sensor.lounge_light_level
+#    - sensor.lounge_sensor_node_pir
+#    - sensor.dht_sensor_temperature
+#    - sensor.dht_sensor_humidity
+#    - light.sensor_node_lounge_led
 
 lounge_lights:
   name: Lounge Lights

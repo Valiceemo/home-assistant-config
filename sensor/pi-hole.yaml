@@ -9,7 +9,7 @@
 - platform: mqtt
   state_topic: 'pihole/cpu/temp'
   name: 'Pi-Hole CPU Temp'
-  unit_of_measurement: 'C'
+  unit_of_measurement: "°C"
   value_template: '{{ value_json.cputemp | round(1) }}'
 
 - platform: mqtt

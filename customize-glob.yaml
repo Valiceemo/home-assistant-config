@@ -10,5 +10,8 @@
       (t=Math.floor(s/60))?t+(t>1?" minutes":" minute"):
       (t=Math.floor(s))!==1?t+" seconds":" second")+" ago";
 
-#  device_tracker.*:
-#    hidden: true
+  device_tracker.*:
+    hidden: true
+  device_tracker.rich_phone_s8:
+    hidden: false
+  

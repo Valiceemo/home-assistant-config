@@ -1,6 +1,6 @@
 view_network:
   name: Network
-  view: no
+  view: yes
   entities:
     - group.network_info
     - group.network_speeds

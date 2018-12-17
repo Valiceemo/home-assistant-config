@@ -2,41 +2,29 @@
 ##  Home Assistant Update Available
 ######################################################################
 
-- alias: Update Avaialable
-  initial_state: 'on'
-  hide_entity: False
-  trigger: 
-    - platform: state
-      entity_id: updater.udpate
-  action:
-    - service: notify.pushbullet
-      data:
-        title: Home Assistant Update Avaialable
-        message: Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}
-
-
-- alias: HAS Update Available Notification
+- alias: HA Update Available
   initial_state: 'on'
   hide_entity: False
   trigger:
-    - platform: state
-      entity_id: updater.update
-
+    - platform: time
+      at: '05:24:00'
+    - platform: homeassistant
+      event: start
   condition:
     - condition: template
-      value_template: "{{ states('updater.updater') != 'unknown' }}"
+      value_template: "{{ states('sensor.ha_installed_version') != states('sensor.latest_vers') }}"
   
   action:
     - service: notify.pushbullet
       data:
         title: Update HASS
-        message: Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}
+        message: Home Assistant {{ states('sensor.latest_vers') }} is available. Currently running {{ states('sensor.ha_installed_version') }}
         data:
           url: https://home-assistant.io/blog/
     - service: persistent_notification.create
       data:
         title: "Update Available"
-        message: "Home Assistant {{ states('updater.updater') }} is available."
+        message: "Home Assistant {{ states('sensor.latest_vers') }} is available. Currently running {{ states('sensor.ha_installed_version') }}"
         notification_id: "update_available"
 
 ######################################################################

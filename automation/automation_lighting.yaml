@@ -76,6 +76,9 @@
       - condition: state
         entity_id: light.bridge
         state: 'on'
+      - condition: state
+        entity_id: light.bedroom_light
+        state: 'on'
   action:
 
     - service: notify.pushbullet

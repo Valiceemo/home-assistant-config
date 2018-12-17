@@ -1,14 +1,15 @@
-  include:
-    entities:
-      - device_tracker.rich_phone_s8
-      - light.bedroom_light
-      - light.lounge_lamp
-      - media_player.bravia_tv
-      - sensor.speedtest_download
-      
   exclude:
     domains:
       - sun
       - weather
       - device_tracker
       - sensor
+
+  include:
+    entities:
+      - device_tracker.rich_phone_s8
+      - light.bedroom_light
+      - light.lounge_lamp
+      - media_player.bravia_tv
+      - sensor.connectivity_google_home_bedroom
+      - sensor.connectivity_google_home_lounge
