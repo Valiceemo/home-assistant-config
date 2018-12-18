@@ -13,6 +13,7 @@
       - sensor.connectivity_sky_tv
       - sensor.connectivity_google_home_bedroom
       - sensor.connectivity_google_home_lounge
+      - sensor.connectivity_chromecast_lounge
   action:
     - service: notify.pushbullet
       data_template:
