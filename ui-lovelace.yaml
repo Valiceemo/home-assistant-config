@@ -11,6 +11,10 @@ resources:
     type: js
   - url: /local/button-card.js
     type: module
+  - url: /local/group-card.js
+    type: js
+  - url: /local/bignumber-card.js
+    type: js
 
 title: Home
 views:
@@ -25,12 +29,12 @@ views:
         entities:
           - sensor.tv_watched_daily
           - sensor.tv_watched_weekly
-          
+
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
             color_type: label-card
-            color: rgb(44, 109, 214)
+            color: auto
             name: Home
             action: service
             service: 
@@ -38,7 +42,7 @@ views:
               action: select_option
               data: 
                 entity_id: input_select.home_mode
-                option: "Away"
+                option: Away
           - type: "custom:button-card"
             color_type: label-card
             color: rgb(44, 109, 214)
@@ -46,9 +50,23 @@ views:
             action: service
             service: 
               domain: media_player
-              action: turn_off
+              action: turn_on
               data:
                 entity_id: media_player.bravia_tv
+          - type: "custom:button-card"
+            entity: media_player.bravia_tv
+            color_type: label-card
+            color: rgb(44, 109, 214)
+            name: More info
+            action: more_info
+                
+      - type: entities
+        title: System
+        show_header_toggle: true
+        entities:
+          - entity: input_select.home_mode
+            name: Home Mode
+            icon: mdi:home
           
       - type: entity-filter
         entities: 
@@ -107,7 +125,7 @@ views:
         entity_sun: sun.sun
       
       - type: custom:tracker-card
-        title: Trackers
+#        title: Tracker poo
         trackers: 
           - sensor.custom_card_tracker
 
@@ -125,38 +143,61 @@ views:
           - type: light
             entity: light.bridge
             name: Book Shelf
-           
-      - type: custom:card-modder
-        style: 
-          --paper-card-background-color: rgba(0,100,0,100)
-          --paper-item-icon-colour: white
-          border-radius: 10px
-          color: rgb(102,0,102)
-        card:
-          type: glance
-          title: AV ambient temperature
-          column_width: calc(100% / 2)
-          entities:
-            - entity: sensor.av_temps_humidity
-              name: Humidity
-            - entity: sensor.av_temps_temperature
-              name: Temperature
 
-      - type: media-control
-        entity: media_player.lounge_google_home
-      - type: media-control
-        entity: media_player.living_room_chromecast
-      - type: media-control
-        entity: media_player.bravia_tv
-        
+      - type: vertical-stack
+        cards:
+          - type: custom:mini-media-player
+            entity: media_player.bravia_tv
+            icon: mdi:television
+            artwork_border: true
+            show_source: full
+            hide_volume: false
+            hide_controls: false
+          - type: custom:mini-media-player
+            entity: media_player.lounge_google_home
+            icon: mdi:google-home
+            artwork: full-cover
+            volume_stateless: false
+            show_progress: true
+            show_source: true
+            show_tts: google
+            
+      - type: custom:bignumber-card
+        title: AV ambient temperature
+        entity: sensor.av_temps_humidity
+        scale: 30px
+        from: left
+        severity:
+          - value: 45
+            style: #2ed924
+          - value: 60
+            style: #f19727
+          - value: 75
+            style: #FF001A
+            
       - type: custom:mini-media-player
         entity: media_player.bravia_tv
-        icon: mdi:router-wireless
+        icon: mdi:television
         artwork_border: true
-        show_source: true
-        hide_volume: true
-        hide_controls: true
+        show_source: full
+        hide_volume: false
+        hide_controls: false
 
+      - type: custom:mini-media-player
+        entity: media_player.lounge_google_home
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+        
+      - type: custom:mini-media-player
+        entity: media_player.living_room_chromecast
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
 
 
 ## BEDROOM VIEW ##
@@ -166,13 +207,21 @@ views:
       - type: light
         entity: light.bedroom_light
         name: Bedroom
-      - type: media-control
+      - type: custom:mini-media-player
         entity: media_player.bedroom_google_home
-      - type: media-control
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+      - type: custom:mini-media-player
         entity: media_player.bedroom_chromecast
-  
-
-
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+        
 ## NETWORK VIEW ##
 
   - title: Network
@@ -280,8 +329,11 @@ views:
         title: System
         show_header_toggle: true
         entities:
-          - entity: sensor.ha_uptime_cl
+          - entity: sensor.ha_time_online
             name: HA Uptime
+            icon: mdi:update
+          - entity: sensor.hassbian_boot_time
+            name: Hasdbian Last Boot
             icon: mdi:update
           - entity: sensor.hassbian_cpu_temp
             name: CPU Temperature
@@ -335,7 +387,7 @@ views:
         title: System
         show_header_toggle: true
         entities:
-          - entity: automation.has_update_available_notification
+          - entity: automation.ha_update_available
           - entity: automation.home_assistant_started_notify
           - entity: automation.login_failure
           - entity: automation.set_theme
