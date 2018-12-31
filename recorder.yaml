@@ -11,6 +11,7 @@
       - automation
       - zone
       - media_player
+      - binary_sensor
 
   include: 
     entities:

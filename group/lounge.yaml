@@ -4,7 +4,7 @@ view_lounge:
   entities:
     - camera.lounge_camera
     - group.lounge_lights
-#    - group.lounge_conditions
+    - group.lounge_conditions
     - group.lounge_media
     - group.media_watch_time
     - group.tv_backlight
@@ -24,16 +24,16 @@ media_watch_time:
     - sensor.xbox_this_week
   
   
-#lounge_conditions:
-#  name: Lounge Conditions
-#  entities:
-#    - sensor.lounge_temperature
-#    - sensor.lounge_humidity
-#    - sensor.lounge_light_level
-#    - sensor.lounge_sensor_node_pir
-#    - sensor.dht_sensor_temperature
-#    - sensor.dht_sensor_humidity
-#    - light.sensor_node_lounge_led
+lounge_conditions:
+  name: Lounge Conditions
+  entities:
+    - sensor.lounge_temperature
+    - sensor.lounge_humidity
+    - sensor.lounge_light_level
+    - sensor.lounge_sensor_motion
+    - sensor.av_temps_temperature
+    - sensor.av_temps_humidity
+    - light.sensor_node_lounge_led
 
 lounge_lights:
   name: Lounge Lights

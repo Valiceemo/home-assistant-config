@@ -15,50 +15,101 @@ resources:
     type: js
   - url: /local/bignumber-card.js
     type: js
+  - url: /local/useful-markdown-card.js
+    type: js
+  - url: /local/dark-sky-weather-card.js?v=4
+    type: js
 
 title: Home
 views:
 
-## HOME VIEW ###
+## HOME VIEW ####
 
   - title: Home
     panel: false
+#    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     cards:
-    
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:card-modder
+            style:
+              background-color: rgb(241, 196, 15)
+              color: rgb(255, 255, 255)
+              border-radius: 10px
+              border: solid 1px rgba(100,100,100,0.3)
+              #box-shadow: 3px 3px rgba(255,255,255,255)
+            card:
+              type: custom:useful-markdown-card 
+              content: >
+                SECURITY MODE: 
+                [[ input_select.home_mode.state ]]
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                style:
+                  background-color: rgb(241, 196, 15)
+                  color: rgb(255, 255, 255)
+                  border-radius: 10px
+                  border: solid 1px rgba(100,100,100,0.3)
+                  #box-shadow: 3px 3px rgba(255,255,255,255)
+                card: 
+                  type: custom:button-card
+                  color_type: card
+                  color: rgb(241, 196, 15)
+                  color_off: rgb(255, 0, 25)
+                  name: Home
+                  action: service
+                  service: 
+                    domain: input_select
+                    action: select_option
+                    data: 
+                      entity_id: input_select.home_mode
+                      option: Home
+              - type: "custom:button-card"
+                color_type: card
+                color: rgb(241, 196, 15)
+                name: Away
+                action: service
+                service: 
+                  domain: input_select
+                  action: select_option
+                  data: 
+                    entity_id: input_select.home_mode
+                    option: Away
+              - type: "custom:button-card"
+                color_type: card
+                color: rgb(241, 196, 15)
+                name: Night
+                action: service
+                service: 
+                  domain: input_select
+                  action: select_option
+                  data: 
+                    entity_id: input_select.home_mode
+                    option: Night
+              - type: "custom:button-card"
+                color_type: card
+                color: rgb(241, 196, 15)
+                name: Vacation
+                action: service
+                service: 
+                  domain: input_select
+                  action: select_option
+                  data: 
+                    entity_id: input_select.home_mode
+                    option: Vacation
+          - type: "custom:button-card"
+            color_type: blank-card
+
+                
       - type: entities
         entities:
-          - sensor.tv_watched_daily
-          - sensor.tv_watched_weekly
-
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            color_type: label-card
-            color: auto
-            name: Home
-            action: service
-            service: 
-              domain: input_select
-              action: select_option
-              data: 
-                entity_id: input_select.home_mode
-                option: Away
-          - type: "custom:button-card"
-            color_type: label-card
-            color: rgb(44, 109, 214)
-            name: Aways
-            action: service
-            service: 
-              domain: media_player
-              action: turn_on
-              data:
-                entity_id: media_player.bravia_tv
-          - type: "custom:button-card"
-            entity: media_player.bravia_tv
-            color_type: label-card
-            color: rgb(44, 109, 214)
-            name: More info
-            action: more_info
+          - entity: sensor.tv_watched_daily
+            icon: mdi:television
+          - entity: sensor.tv_watched_weekly
                 
       - type: entities
         title: System
@@ -77,6 +128,7 @@ views:
         card:
           type: glance
           title: People at home
+          
           
       - type: entity-filter
         entities: 
@@ -119,10 +171,41 @@ views:
           show_source: true
           hide_volume: true
           hide_controls: true
+          
+      - type: map
+        entities: 
+          - device_tracker.rich_phone_s8
        
-      - type: "custom:weather-card"
-        entity_weather: weather.dark_sky
+      - type: custom:dark-sky-weather-card
         entity_sun: sun.sun
+        entity_daily_summary: sensor.dark_sky_daily_summary
+        entity_current_conditions: sensor.dark_sky_icon
+        entity_humidity: sensor.dark_sky_humidity
+        entity_pressure: sensor.dark_sky_pressure
+        entity_temperature: sensor.dark_sky_temperature
+        entity_visibility: sensor.dark_sky_visibility
+        entity_wind_bearing: sensor.dark_sky_wind_bearing
+        entity_wind_speed: sensor.dark_sky_wind_speed
+        entity_forecast_high_temp_1: sensor.dark_sky_daytime_high_temperature_1
+        entity_forecast_high_temp_2: sensor.dark_sky_daytime_high_temperature_2
+        entity_forecast_high_temp_3: sensor.dark_sky_daytime_high_temperature_3
+        entity_forecast_high_temp_4: sensor.dark_sky_daytime_high_temperature_4
+        entity_forecast_high_temp_5: sensor.dark_sky_daytime_high_temperature_5
+        entity_forecast_low_temp_1: sensor.dark_sky_overnight_low_temperature_1
+        entity_forecast_low_temp_2: sensor.dark_sky_overnight_low_temperature_2
+        entity_forecast_low_temp_3: sensor.dark_sky_overnight_low_temperature_3
+        entity_forecast_low_temp_4: sensor.dark_sky_overnight_low_temperature_4
+        entity_forecast_low_temp_5: sensor.dark_sky_overnight_low_temperature_5
+        entity_forecast_icon_1: sensor.dark_sky_icon_1
+        entity_forecast_icon_2: sensor.dark_sky_icon_2
+        entity_forecast_icon_3: sensor.dark_sky_icon_3
+        entity_forecast_icon_4: sensor.dark_sky_icon_4
+        entity_forecast_icon_5: sensor.dark_sky_icon_5
+        entity_summary_1: sensor.dark_sky_summary_1
+        entity_summary_2: sensor.dark_sky_summary_2
+        entity_summary_3: sensor.dark_sky_summary_3
+        entity_summary_4: sensor.dark_sky_summary_4
+        entity_summary_5: sensor.dark_sky_summary_5
       
       - type: custom:tracker-card
 #        title: Tracker poo
@@ -143,6 +226,19 @@ views:
           - type: light
             entity: light.bridge
             name: Book Shelf
+         
+      - type: custom:card-modder
+        card:
+          type: picture-elements
+          title: Shiiiiit Nigga
+          image: /local/lovelace/background-15.gif
+          elements:
+            - type: state-icon
+              entity: sensor.lounge_sensor_motion
+            - type: state-label
+              entity: sensor.lounge_sensor_motion
+          style:
+            border-radius: 20px
 
       - type: vertical-stack
         cards:
@@ -161,45 +257,28 @@ views:
             show_progress: true
             show_source: true
             show_tts: google
+          - type: custom:mini-media-player
+            entity: media_player.living_room_chromecast
+            icon: mdi:cast
+            artwork: full-cover
+            volume_stateless: false
+            show_progress: true
+            show_source: true
+            show_tts: google
+          - type: custom:mini-media-player
+            entity: media_player.spotify
+            icon: mdi:spotify
+            artwork: full-cover
+            volume_stateless: false
+            show_progress: true
+            show_source: true
+            show_tts: google
             
-      - type: custom:bignumber-card
-        title: AV ambient temperature
-        entity: sensor.av_temps_humidity
-        scale: 30px
-        from: left
-        severity:
-          - value: 45
-            style: #2ed924
-          - value: 60
-            style: #f19727
-          - value: 75
-            style: #FF001A
             
-      - type: custom:mini-media-player
-        entity: media_player.bravia_tv
-        icon: mdi:television
-        artwork_border: true
-        show_source: full
-        hide_volume: false
-        hide_controls: false
-
-      - type: custom:mini-media-player
-        entity: media_player.lounge_google_home
-        icon: mdi:google-home
-        artwork: full-cover
-        volume_stateless: false
-        show_progress: true
-        show_source: true
-        
-      - type: custom:mini-media-player
-        entity: media_player.living_room_chromecast
-        icon: mdi:google-home
-        artwork: full-cover
-        volume_stateless: false
-        show_progress: true
-        show_source: true
-
-
+      - type: picture-entity
+        entity: sensor.lounge_sensor_motion
+        camera_image: camera.lounge_camera
+            
 ## BEDROOM VIEW ##
 
   - title: Bedroom
@@ -257,7 +336,7 @@ views:
         title: Pi-Hole
         show_header_toggle: true
         entities:
-          - entity: sensor.connectivity_rpi_pihole
+          - entity: binary_sensor.device_tracker_rpi_pihole
             name: Status
           - entity: sensor.pihole_domains_blocked
             name: Total Domains Being Blocked
@@ -295,30 +374,36 @@ views:
         title: Device Status
         show_header_toggle: true
         entities:
-          - entity: sensor.connectivity_sony_tv
-            name: Lounge TV
-          - entity: sensor.connectivity_sky_tv
+          - entity: binary_sensor.device_tracker_sony_braviatv
+            name: Lounge Sony TV
+          - entity: binary_sensor.device_tracker_skyhd
             name: Sky+
-          - entity: sensor.connectivity_chromecast_lounge
+            icon: mdi: satellite-uplink
+          - entity: binary_sensor.device_tracker_chromecast_lounge
             name: Lounge Chromecast
-          - entity: sensor.connectivity_google_home_lounge
+          - entity: binary_sensor.device_tracker_google_home_lounge
             name: Lounge Google Home
-          - entity: sensor.connectivity_xbox_one
+          - entity: binary_sensor.device_tracker_xbox_one
             name: Xbox
           - type: divider
-          - entity: sensor.connectivity_chromecast_bedroom
+          - entity: binary_sensor.device_tracker_chromecast_bedroom
             name: Bedroom Chromecast
-          - entity: sensor.connectivity_google_home_bedroom
+          - entity: binary_sensor.device_tracker_google_home_bedroom
             name: Bedroom Google Home
           - type: divider
-          - entity: sensor.connectivity_milight_bridge
+          - entity: binary_sensor.device_tracker_milight_bridge
             name: Mi-Light
-          - entity: sensor.connectivity_richlaptop
+          - entity: binary_sensor.device_tracker_rich_laptop
             name: Rich Laptop
-          - entity: sensor.connectivity_gear_watch
+          - entity: binary_sensor.device_tracker_gear_watch
             name: Rich S2 Watch
-          - entity: sensor.connectivity_lenovo_tab
+          - entity: binary_sensor.device_tracker_lenovo_tab
             name: Rich Tablet
+          - type: divider
+          - entity: binary_sensor.connectivity_sensor_node_lounge
+            name: Lounge Sensor Node
+          - entity: binary_sensor.connectivity_sensor_node_bedroom
+            name: Bedroom Sensor Node
            
 
 ## SYSTEM VIEW ##
@@ -333,7 +418,7 @@ views:
             name: HA Uptime
             icon: mdi:update
           - entity: sensor.hassbian_boot_time
-            name: Hasdbian Last Boot
+            name: Hassbian Last Boot
             icon: mdi:update
           - entity: sensor.hassbian_cpu_temp
             name: CPU Temperature

@@ -2,7 +2,7 @@ devices:
   name: Devices
   view: yes
   entities:
-    - group.device_trackers
+    - group.device_connectivity
     - group.people
     - group.phone_status
 
@@ -20,6 +20,23 @@ device_trackers:
     - device_tracker.skyhd
     - device_tracker.sony_braviatv
     - device_tracker.xbox_one
+    
+device_connectivity:
+  name: Device Network Status
+  entities:
+    - binary_sensor.device_tracker_chromecast_bedroom
+    - binary_sensor.device_tracker_chromecast_lounge
+    - binary_sensor.device_tracker_gear_watch
+    - binary_sensor.device_tracker_google_home_bedroom
+    - binary_sensor.device_tracker_google_home_lounge
+    - binary_sensor.device_tracker_lenovo_tab
+    - binary_sensor.device_tracker_milight_bridge
+    - binary_sensor.device_tracker_rich_laptop
+    - binary_sensor.device_tracker_rpi_hassbian
+    - binary_sensor.device_tracker_rpi_pihole
+    - binary_sensor.device_tracker_skyhd
+    - binary_sensor.device_tracker_sony_braviatv
+    - binary_sensor.device_tracker_xbox_one
     
 people:
   name: people

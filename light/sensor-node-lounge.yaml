@@ -1,4 +1,4 @@
-- platform: mqtt_json
+- platform: mqtt
   name: "Sensor node lounge LED"
   state_topic: "sensor-node/lounge"
   command_topic: "sensor-node/lounge/set"

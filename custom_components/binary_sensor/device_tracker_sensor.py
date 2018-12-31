@@ -17,7 +17,7 @@ from homeassistant.exceptions import TemplateError
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity, async_generate_entity_id
 from homeassistant.helpers.event import async_track_state_change
-from homeassistant.helpers.restore_state import async_get_last_state
+# from homeassistant.helpers.restore_state import async_get_last_state
 from homeassistant.helpers import template as template_helper
 
 _LOGGER = logging.getLogger(__name__)

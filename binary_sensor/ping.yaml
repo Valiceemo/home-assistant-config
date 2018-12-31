@@ -1,0 +1,9 @@
+- platform: ping
+  host: 192.168.0.163
+  name: connectivity sensor node lounge
+  count: 3
+  
+- platform: ping
+  host: 192.168.0.34
+  name: connectivity sensor node bedroom
+  count: 3

@@ -38,10 +38,11 @@
     - platform: homeassistant
       event: start
   action:
+    - delay: '00:07:00'
     - service: notify.pushbullet
       data:
         title: Home Assistant Ready
-        message: Home Assistant has started up to
+        message: Home Assistant has started up! Good Times!
         
 ######################################################################
 ##  Failed Login

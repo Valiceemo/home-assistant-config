@@ -12,3 +12,6 @@ sensor.tv_watched_daily_raw:
   
 sensor.tv_watched_weekly_raw:
   hidden: true
+  
+#sensor.lounge_sensor_motion:
+#  icon: mdi:walk

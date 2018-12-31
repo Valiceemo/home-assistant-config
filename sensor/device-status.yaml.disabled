@@ -1,0 +1,54 @@
+- platform: template
+  sensors:
+     
+      connectivity_rpi_pihole:  
+        friendly_name: 'Pi-Hole'
+        value_template: "{{ 'Connected' if is_state('device_tracker.rpi_pihole', 'home') else 'Offline' }}"
+      
+      connectivity_richlaptop:
+        friendly_name: 'Rich Laptop'
+        value_template: "{{ 'Connected' if is_state('device_tracker.richlaptop', 'home') else 'Offline' }}"
+        
+      connectivity_sony_tv:
+        friendly_name: 'Sony TV'
+        value_template: "{{ 'Connected' if is_state('device_tracker.sony_braviatv', 'home') else 'Offline' }}"
+      
+      connectivity_chromecast_bedroom:
+        friendly_name: 'Chromecast Bedroom'
+        value_template: "{{ 'Connected' if is_state('device_tracker.chromecast_bedroom', 'home') else 'Offline' }}"
+        
+      connectivity_chromecast_lounge:
+        friendly_name: 'Chromecast Lounge'
+        value_template: "{{ 'Connected' if is_state('device_tracker.chromecast_lounge', 'home') else 'Offline' }}"
+      
+      connectivity_google_home_lounge:
+        friendly_name: 'Lounge Google Home'
+        value_template: "{{ 'Connected' if is_state('device_tracker.google_home_lounge', 'home') else 'Offline' }}"
+        
+      connectivity_google_home_bedroom:
+        friendly_name: 'Google Home Mini'
+        value_template: "{{ 'Connected' if is_state('device_tracker.google_home_bedroom', 'home') else 'Offline' }}"
+    
+      connectivity_lenovo_tab:
+        friendly_name: 'Lenovo Tablet'
+        value_template: "{{ 'Connected' if is_state('device_tracker.lenovo_tab', 'home') else 'Offline' }}"
+
+      connectivity_gear_watch:
+        friendly_name: 'Gear Watch'
+        value_template: "{{ 'Connected' if is_state('device_tracker.gear_watch', 'home') else 'Offline' }}"
+
+      connectivity_milight_bridge:
+        friendly_name: 'Mi-light Bridge'
+        value_template: "{{ 'Connected' if is_state('device_tracker.milight_bridge', 'home') else 'Offline' }}"
+        
+      connectivity_rpi_hassbian:
+        friendly_name: 'Hassbian'
+        value_template: "{{ 'Connected' if is_state('device_tracker.rpi_hassbian', 'home') else 'Offline' }}"
+
+      connectivity_sky_tv:
+        friendly_name: 'Sky TV'
+        value_template: "{{ 'Connected' if is_state('device_tracker.skyhd', 'home') else 'Offline' }}"
+        
+      connectivity_xbox_one:
+        friendly_name: 'Xbox'
+        value_template: "{{ 'Connected' if is_state('device_tracker.xbox_one', 'home') else 'Offline' }}"

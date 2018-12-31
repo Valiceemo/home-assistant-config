@@ -1,0 +1,15 @@
+- platform: device_tracker_sensor
+  entities: 
+    - device_tracker.chromecast_bedroom
+    - device_tracker.chromecast_lounge
+    - device_tracker.gear_watch
+    - device_tracker.google_home_bedroom
+    - device_tracker.google_home_lounge
+    - device_tracker.lenovo_tab
+    - device_tracker.milight_bridge
+    - device_tracker.rich_laptop
+    - device_tracker.rpi_hassbian
+    - device_tracker.rpi_pihole
+    - device_tracker.skyhd
+    - device_tracker.sony_braviatv
+    - device_tracker.xbox_one

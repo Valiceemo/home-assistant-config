@@ -4,6 +4,7 @@ theme_changer:
    - default
    - midnight
    - midnight_black
+   - midnight-remake
   initial: default
   icon: mdi:palette
   
