@@ -20,8 +20,8 @@
           Away
           {% endif %}
         
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant Presence Monitoring
-        message: "{{trigger.from_state.attributes.friendly_name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}}"
+#    - service: notify.pushbullet
+#      data_template:
+#        title: Home Assistant Presence Monitoring
+#        message: "{{trigger.from_state.attributes.friendly_name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}}"
   

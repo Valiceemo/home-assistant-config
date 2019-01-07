@@ -21,7 +21,7 @@
       pulselength: 394
       code_on: 2952705 
       code_off: 2952705 
-      signal_repetitions: 10
+      signal_repetitions: 5
       
     tv_backlight_white:
       protocol: 1

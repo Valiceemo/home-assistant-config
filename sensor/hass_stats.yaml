@@ -6,11 +6,11 @@
   name: HA Installed Version
   scan_interval: 86400
 
-#- platform: rest
-#  resource: https://pypi.python.org/pypi/homeassistant/json
-#  name: HA Upstream
-#  value_template: '{{ value_json.info.version }}'
-#  scan_interval: 60
+- platform: rest
+  resource: https://pypi.python.org/pypi/homeassistant/json
+  name: HA Upstream
+  value_template: '{{ value_json.info.version }}'
+  scan_interval: 60
 
 - platform: version
   name: HA Latest Vers
@@ -20,7 +20,7 @@
   name: HA Time Online
   unit_of_measurement: hours
 
-#- platform: filesize
-#  file_paths:
-#    - /config/home-assistant_v2.db
+- platform: filesize
+  file_paths:
+    - /home/homeassistant/.homeassistant/home-assistant_v2.db
 #    - /home/homeassistant/.homeassistant /home-assistant.log

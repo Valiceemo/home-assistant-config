@@ -21,14 +21,5 @@
         title: Home Assistant Alarm
         message: "Motion has been detected by {{ trigger.from_state.attributes.friendly_name }}"
 
-    - service: tts.google_say
-      entity_id: media_player.lounge_google_home
-      data:
-        message: 'Intruder, your presence has been detected. Fuck Off, the police are on their way!'
-    - service: light.turn_on
-      data:
-        entity_id: 
-          - light.lounge_lamp
-        brightness: 255
-        color_name: red
-  
+    - service: script.turn_on
+      entity_id: script.intruder_detected

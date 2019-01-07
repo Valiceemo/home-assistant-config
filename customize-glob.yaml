@@ -26,6 +26,7 @@
   
   binary_sensor.device_tracker*:
     icon: mdi:server-network
+    device_class: connectivity
     
   sensor.connectivity_*:
     icon: mdi:server-network

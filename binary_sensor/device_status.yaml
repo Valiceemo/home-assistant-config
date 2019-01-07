@@ -13,3 +13,4 @@
     - device_tracker.skyhd
     - device_tracker.sony_braviatv
     - device_tracker.xbox_one
+    - device_tracker.sonoff1_bedside_lamp

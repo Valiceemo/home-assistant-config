@@ -93,8 +93,8 @@
             {% endif -%}
             {%- endfor %}
         
-    - service: light.turn_off
-      entity_id: group.all_lights
+    - service: script.turn_on
+      entity_id: script.all_lights_off
       
 #   - service: switch.turn_off
 #     entity_id: switch.tv_backlight_power
@@ -247,3 +247,21 @@
   action:
     - service: light.turn_off
       entity_id: light.lounge_lamp
+
+######################################################################
+##  TV backlight Off
+######################################################################
+
+- alias: TV backlight switch all to off
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: switch.tv_backlight_power
+      from: 'on'
+      to: 'off'
+       
+  action:
+    - delay: '00:00:15'
+    - service: switch.turn_off
+      entity_id: group.tv_backlight

@@ -1,0 +1,11 @@
+# light.kitchen_under_cupboard_leds:
+#   emulated_hue: false
+
+light.bedroom_light:
+  icon: mdi:lightbulb
+
+light.lounge_lamp:
+  icon: mdi:lamp
+  
+light.bridge:
+  icon: mdi:lamp

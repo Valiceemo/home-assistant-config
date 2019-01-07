@@ -1,0 +1,37 @@
+intruder_detected:
+  sequence:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.lounge_camera
+        filename: /home/homeassistant/.homeassistant/www/images/intruder.jpg
+    
+    - service: script.notify_engine
+      data: 
+        value1: 'Home Assistant Alarm'
+        value2: 'Intruder detected, here is a photo'
+        value3: '/home/homeassistant/.homeassistant/www/images/intruder.jpg'
+   
+    - service: light.turn_on
+      data:
+        entity_id: 
+          - light.lounge_lamp
+          - light.bridge
+        brightness: 255
+        color_name: red
+    
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.lounge_google_home
+      data:
+        volume_level: 1
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.lounge_google_home
+        media_content_type: music
+        media_content_id: "http://192.168.0.133:8123/local/sounds/burglar-alarm.mp3"
+        
+        
+#    - service: logbook.log
+#      data:
+#        name: "Intruder Alert"
+#        message: "Intruder detection triggered"

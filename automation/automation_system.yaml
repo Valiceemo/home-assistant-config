@@ -8,8 +8,6 @@
   trigger:
     - platform: time
       at: '05:24:00'
-    - platform: homeassistant
-      event: start
   condition:
     - condition: template
       value_template: "{{ states('sensor.ha_installed_version') != states('sensor.ha_latest_vers') }}"
@@ -38,7 +36,6 @@
     - platform: homeassistant
       event: start
   action:
-    - delay: '00:07:00'
     - service: notify.pushbullet
       data:
         title: Home Assistant Ready

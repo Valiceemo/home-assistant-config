@@ -1,0 +1,7 @@
+- platform: mqtt
+  state_topic: "sensor-node/lounge"
+  name: 'Lounge Sensor Motion2'
+  device_class: motion
+  value_template: '{{ value_json.motion }}'
+  payload_on: "motion detected"
+  payload_off: "standby"

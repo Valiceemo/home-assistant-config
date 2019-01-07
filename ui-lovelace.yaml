@@ -1,5 +1,5 @@
 resources:
-  - url: /local/mini-media-player-bundle.js?v=0.9.7
+  - url: /local/mini-media-player-bundle.js?v=0.9.8
     type: module
   - url: /local/custom_ui/weather-card.js
     type: js
@@ -7,7 +7,7 @@ resources:
     type: js
   - url: /local/gauge-card.js?v=0.2.0
     type: js
-  - url: /local/card-modder.js
+  - url: /local/slider-entity-row.js?v=d6da75
     type: js
   - url: /local/button-card.js
     type: module
@@ -34,83 +34,86 @@ views:
         cards:
           - type: custom:button-card
             color_type: blank-card
-          - type: custom:card-modder
-            style:
-              background-color: rgb(241, 196, 15)
-              color: rgb(255, 255, 255)
-              border-radius: 10px
-              border: solid 1px rgba(100,100,100,0.3)
-              #box-shadow: 3px 3px rgba(255,255,255,255)
-            card:
-              type: custom:useful-markdown-card 
-              content: >
-                SECURITY MODE: 
-                [[ input_select.home_mode.state ]]
+          - type: custom:button-card
+            color_type: card
+            color: rgb(241, 196, 15)
+            color_off: rgb(255, 0, 25)
+            name: SECURITY MODE
           - type: horizontal-stack
             cards:
-              - type: custom:card-modder
-                style:
-                  background-color: rgb(241, 196, 15)
-                  color: rgb(255, 255, 255)
-                  border-radius: 10px
-                  border: solid 1px rgba(100,100,100,0.3)
-                  #box-shadow: 3px 3px rgba(255,255,255,255)
-                card: 
-                  type: custom:button-card
-                  color_type: card
-                  color: rgb(241, 196, 15)
-                  color_off: rgb(255, 0, 25)
-                  name: Home
-                  action: service
-                  service: 
-                    domain: input_select
-                    action: select_option
-                    data: 
-                      entity_id: input_select.home_mode
-                      option: Home
-              - type: "custom:button-card"
+              - type: custom:button-card
                 color_type: card
                 color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
+                name: Home
+                action: service
+                service:
+                  domain: input_select
+                  action: select_option
+                  data:
+                    entity_id: input_select.home_mode
+                    option: Home
+              - type: custom:button-card
+                color_type: card
+                color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
                 name: Away
                 action: service
-                service: 
+                service:
                   domain: input_select
                   action: select_option
-                  data: 
+                  data:
                     entity_id: input_select.home_mode
                     option: Away
-              - type: "custom:button-card"
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
                 color_type: card
                 color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
                 name: Night
                 action: service
-                service: 
+                service:
                   domain: input_select
                   action: select_option
-                  data: 
+                  data:
                     entity_id: input_select.home_mode
                     option: Night
-              - type: "custom:button-card"
+              - type: custom:button-card
                 color_type: card
                 color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
                 name: Vacation
                 action: service
-                service: 
+                service:
                   domain: input_select
                   action: select_option
-                  data: 
+                  data:
                     entity_id: input_select.home_mode
                     option: Vacation
-          - type: "custom:button-card"
-            color_type: blank-card
 
-                
+      - type: entity-filter
+        entities:
+          - light.lounge_lamp
+          - light.bridge
+          - light.bedroom_light
+          - switch.bedside_lamp
+        state_filter:
+          - "on"
+        show_empty: false
+        card:
+          type: glance
+          show_state: false
+          title: Lights Left On
+          tap_action:
+            action: toggle
+            
       - type: entities
         entities:
           - entity: sensor.tv_watched_daily
             icon: mdi:television
           - entity: sensor.tv_watched_weekly
-                
+
       - type: entities
         title: System
         show_header_toggle: true
@@ -118,9 +121,9 @@ views:
           - entity: input_select.home_mode
             name: Home Mode
             icon: mdi:home
-          
+
       - type: entity-filter
-        entities: 
+        entities:
           - device_tracker.rich_phone_s8
         state_filter:
           - home
@@ -128,27 +131,28 @@ views:
         card:
           type: glance
           title: People at home
-          
-          
+
+
       - type: entity-filter
-        entities: 
-          - light.lounge_lamp
-          - light.bridge
-          - light.bedroom_light
+        entities:
+          - media_player.lounge_google_home
+          - media_player.living_room_chromecast
+          - media_player.bravia_tv
         state_filter:
-          - on
+          - "on"
         show_empty: false
         card:
           type: glance
           show_state: false
-          title: Lights Left On
-          
+          title: Media On
+
+
       - type: entity-filter
         entities:
           - entity: media_player.living_room_chromecast
             name: Lounge Chromecast
         show_empty: false
-        state_filter: 
+        state_filter:
           - "on"
       - type: entity-filter
         entities:
@@ -161,7 +165,7 @@ views:
           - entity: media_player.bravia_tv
             name: Lounge TV
         state_filter:
-          - on
+          - "on"
         show_empty: false
         card:
           type: custom:mini-media-player
@@ -171,11 +175,10 @@ views:
           show_source: true
           hide_volume: true
           hide_controls: true
-          
-      - type: map
-        entities: 
-          - device_tracker.rich_phone_s8
-       
+          power_color: true
+
+
+
       - type: custom:dark-sky-weather-card
         entity_sun: sun.sun
         entity_daily_summary: sensor.dark_sky_daily_summary
@@ -206,10 +209,10 @@ views:
         entity_summary_3: sensor.dark_sky_summary_3
         entity_summary_4: sensor.dark_sky_summary_4
         entity_summary_5: sensor.dark_sky_summary_5
-      
+
       - type: custom:tracker-card
 #        title: Tracker poo
-        trackers: 
+        trackers:
           - sensor.custom_card_tracker
 
 
@@ -217,28 +220,86 @@ views:
 
   - title: Living Room
     cards:
-      - type: picture-entity
-        entity: camera.lounge_camera
-      - type: horizontal-stack
-        cards:
-          - type: light
+#      - type: picture-entity
+#        entity: camera.lounge_camera
+
+      - type: glance
+#        title: Life
+        column_width: calc(100% / 4)
+        show_name: false
+        entities:
+          - entity: sensor.lounge_temperature
+            #name: Download
+            icon: mdi:thermometer
+          - entity: sensor.lounge_humidity
+            #name: Upload
+            icon: mdi:water-percent
+          - entity: sensor.lounge_sensor_motion
+            #name: Ping
+            #icon: mdi:speedometer
+          - entity: sensor.lounge_light_level
+          
+      - type: picture-elements
+        image: /local/lovelace/image.jpg
+        elements:
+          - type: image
+            entity: camera.lounge_camera
+            camera_image: camera.lounge_camera
+            style:
+              right: 0%
+              top: 0%
+              transform: initial
+          - type: state-icon
+            entity: sensor.lounge_temperature
+            style:
+              bottom: 0%
+              left: 0%
+              width: 100%
+              transform: initial
+              background-color: rgba(0, 0, 0, 0.5)
+              #"--paper-item-icon-color": "white"
+          - type: state-label
+            entity: sensor.lounge_temperature
+            style:
+              bottom: 0%
+              left: 5%
+              color: white
+              #background-color: rgba(0, 0, 0, 0)
+              width: 100%
+              transform: initial
+              #line-height: 32px
+          - type: state-icon
+            entity: sensor.lounge_humidity
+            style:
+              bottom: 0%
+              left: 20%
+              width: 100%
+              transform: initial
+          - type: state-label
+            entity: sensor.lounge_humidity
+            style:
+              bottom: 0%
+              left: 25%
+              color: white
+              #background-color: rgba(0, 0, 0, 0)
+              width: 100%
+              transform: initial
+
+
+      - type: entities
+        title: Lights
+        show_header_toggle: false
+        entities: 
+          - type: section
+            label: Light
+          - type: custom:slider-entity-row
             entity: light.lounge_lamp
-          - type: light
+            icon: mdi:lamp
+          - type: custom:slider-entity-row
             entity: light.bridge
-            name: Book Shelf
-         
-      - type: custom:card-modder
-        card:
-          type: picture-elements
-          title: Shiiiiit Nigga
-          image: /local/lovelace/background-15.gif
-          elements:
-            - type: state-icon
-              entity: sensor.lounge_sensor_motion
-            - type: state-label
-              entity: sensor.lounge_sensor_motion
-          style:
-            border-radius: 20px
+            icon: mdi:lamp
+            
+ 
 
       - type: vertical-stack
         cards:
@@ -247,8 +308,9 @@ views:
             icon: mdi:television
             artwork_border: true
             show_source: full
-            hide_volume: false
-            hide_controls: false
+            hide_volume: true
+            hide_controls: true
+            power_color: true
           - type: custom:mini-media-player
             entity: media_player.lounge_google_home
             icon: mdi:google-home
@@ -265,27 +327,59 @@ views:
             show_progress: true
             show_source: true
             show_tts: google
-          - type: custom:mini-media-player
-            entity: media_player.spotify
-            icon: mdi:spotify
-            artwork: full-cover
-            volume_stateless: false
-            show_progress: true
-            show_source: true
-            show_tts: google
-            
-            
-      - type: picture-entity
-        entity: sensor.lounge_sensor_motion
-        camera_image: camera.lounge_camera
-            
+
 ## BEDROOM VIEW ##
 
   - title: Bedroom
     cards:
+
+      - type: glance
+#        title: Life
+        column_width: calc(100% / 4)
+        show_name: false
+        entities:
+          - entity: sensor.bedroom_temperature
+            #name: Download
+            icon: mdi:thermometer
+          - entity: sensor.bedroom_temperature
+            #name: Upload
+            icon: mdi:water-percent
+          - entity: sensor.bedroom_sensor_motion
+            #name: Ping
+            #icon: mdi:speedometer
+          - entity: sensor.master_bedroom_light_level
+
       - type: light
         entity: light.bedroom_light
         name: Bedroom
+
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: switch.bedside_lamp
+            icon: mdi:lamp
+            
+      - type: entities
+        title: Lights
+        show_header_toggle: false
+        entities: 
+          - type: section
+            label: Light
+          - type: custom:slider-entity-row
+            entity: light.bedroom_light
+          - entity: switch.bedside_lamp
+            icon: mdi:lamp
+
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.bedroom_light
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: switch.bedside_lamp
+                icon: mdi:lamp
+
       - type: custom:mini-media-player
         entity: media_player.bedroom_google_home
         icon: mdi:google-home
@@ -295,17 +389,17 @@ views:
         show_source: true
       - type: custom:mini-media-player
         entity: media_player.bedroom_chromecast
-        icon: mdi:google-home
+        #icon: mdi:google-home
         artwork: full-cover
         volume_stateless: false
         show_progress: true
         show_source: true
-        
+
 ## NETWORK VIEW ##
 
   - title: Network
     cards:
-      
+
       - type: glance
         title: Network Speeds
         column_width: calc(100% / 3)
@@ -322,7 +416,7 @@ views:
             icon: mdi:speedometer
             hold_action: call-service
             service: sensor.update_speedtest
-            
+
       - type: entities
         entities:
           - entity: sensor.external_ip
@@ -331,10 +425,10 @@ views:
           - entity: sensor.ipv4_address_eth0
             name: Local IP
             icon: mdi:ip-network
-      
+
       - type: entities
         title: Pi-Hole
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: binary_sensor.device_tracker_rpi_pihole
             name: Status
@@ -369,16 +463,16 @@ views:
             name: Sky Hub
             url: http://192.168.0.1
             icon: mdi:router-wireless
-            
+
       - type: entities
         title: Device Status
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: binary_sensor.device_tracker_sony_braviatv
             name: Lounge Sony TV
           - entity: binary_sensor.device_tracker_skyhd
             name: Sky+
-            icon: mdi: satellite-uplink
+            icon: mdi:satellite-uplink
           - entity: binary_sensor.device_tracker_chromecast_lounge
             name: Lounge Chromecast
           - entity: binary_sensor.device_tracker_google_home_lounge
@@ -404,7 +498,7 @@ views:
             name: Lounge Sensor Node
           - entity: binary_sensor.connectivity_sensor_node_bedroom
             name: Bedroom Sensor Node
-           
+
 
 ## SYSTEM VIEW ##
 
@@ -412,7 +506,7 @@ views:
     cards:
       - type: entities
         title: System
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: sensor.ha_time_online
             name: HA Uptime
@@ -423,6 +517,8 @@ views:
           - entity: sensor.hassbian_cpu_temp
             name: CPU Temperature
             icon: mdi:thermometer
+          - entity: sensor.homeassistant_v2db
+            name: Database Size
           - entity: sensor.ha_installed_version
             name: HA Version
           - type: divider
@@ -433,7 +529,7 @@ views:
             name: Home Assistant
             url: https://www.home-assistant.io
             icon: mdi:home-assistant
-            
+
       - type: horizontal-stack
         cards:
           - type: custom:gauge-card
@@ -445,45 +541,47 @@ views:
               red: 50
               green: 0
               amber: 40
-          
+
 ## AUTOMATIONS ##
 
   - title: Automations
     cards:
       - type: entities
         title: Lights
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: automation.evening_lights_on
           - entity: automation.motion_lights_lounge_full
           - entity: automation.motion_lights_bedroom_full
+          - entity: automation.lounge_lamp_off_after_10
           - entity: automation.bedroom_lights_off_after_10
           - entity: automation.lounge_lamp_off_sun_up
           - entity: automation.turn_all_lights_off_at_night
           - entity: automation.turn_all_lights_off_when_away
-          
+          - entity: automation.turn_all_lights_on_when_returning
+
       - type: entities
         title: Presence Detection
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: automation.presence_detection
 
       - type: entities
         title: System
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: automation.ha_update_available
           - entity: automation.home_assistant_started_notify
           - entity: automation.login_failure
           - entity: automation.set_theme
-            
+          - entity: automation.network_device_notifier
+
       - type: entities
         title: Home Modes
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - entity: automation.home_mode_home
           - entity: automation.home_mode_away
           - entity: automation.home_mode_morning
           - entity: automation.home_mode_night
-          
-          
+          - entity: automation.intruder

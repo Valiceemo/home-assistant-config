@@ -1,0 +1,15 @@
+test:
+  sequence:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: "test script ran"
+
+notify_engine:
+  sequence:
+    - service: notify.pushbullet
+      data_template: 
+        title: "{{ value1 }}"
+        message: "{{ value2 }}"
+        data:
+          file: "{{ value3 }}"

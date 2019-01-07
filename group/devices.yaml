@@ -37,6 +37,9 @@ device_connectivity:
     - binary_sensor.device_tracker_skyhd
     - binary_sensor.device_tracker_sony_braviatv
     - binary_sensor.device_tracker_xbox_one
+    - binary_sensor.connectivity_sensor_node_bedroom
+    - binary_sensor.connectivity_sensor_lounge
+    - binary_sensor.device_tracker_sonoff1_bedside_lamp
     
 people:
   name: people

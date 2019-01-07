@@ -7,8 +7,8 @@ homeassistant:
   time_zone: Europe/London
   customize: !include_dir_merge_named customize
   customize_glob: !include customize-glob.yaml
-#  whitelist_external_dirs:
-#    - home/homeassistant/.homeassistant/
+  whitelist_external_dirs:
+    - /home/homeassistant/.homeassistant/
 
 http:
   api_password: !secret http_password
@@ -79,7 +79,8 @@ joaoapps_join:
   - name: Mobile
     device_id: GROUP.GROUP_NAME
     api_key: !secret join_api_key
-
+ifttt:
+  key: !secret ifttt_key
   
     
 ####################################################
@@ -102,4 +103,5 @@ history: !include history.yaml
 switch: !include_dir_merge_list switch
 input_select: !include_dir_merge_named input_select
 shell_command: !include_dir_merge_named shell_command
+script: !include_dir_merge_named script
 

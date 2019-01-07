@@ -1,7 +1,0 @@
-- platform: flux_led
-  automatic_add: True
-  devices:
-    192.168.0.28:
-      name: Kitchen Cupboard Lights
-      protocol: 'ledenet'
-      mode: "rgbw"

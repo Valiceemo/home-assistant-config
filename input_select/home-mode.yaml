@@ -4,6 +4,7 @@ home_mode:
    - Home
    - Away
    - Night
-  initial: Home
+   - Vacation
+#  initial: Home
   icon: mdi:home-modern
   

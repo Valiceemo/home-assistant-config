@@ -1,9 +1,0 @@
-- platform: mqtt
-  name: "Sensor node lounge LED"
-  state_topic: "sensor-node/lounge"
-  command_topic: "sensor-node/lounge/set"
-  brightness: true
-  flash: true
-  rgb: true
-  optimistic: false
-  qos: 0 

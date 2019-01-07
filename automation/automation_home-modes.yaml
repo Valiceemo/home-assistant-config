@@ -12,18 +12,9 @@
       for: '00:05:00'
 
   action:
-    - service: automation.turn_on
-      entity_id: automation.intruder
-    - service: automation.turn_off
-      entity_id: automation.motion_lights_bedroom_full
-    - service: automation.turn_off
-      entity_id: automation.bedroom_lights_off_after_10
-    - service: light.turn_on
-      data:
-        entity_id: 
-          - light.sensor_node_lounge_led
-        brightness: 255
-        color_name: green
+    - service: script.turn_on
+      entity_id: script.home_mode_away
+
 
 #####################################################################
 ##  Home Mode
@@ -33,21 +24,13 @@
   initial_state: 'on'
   hide_entity: False
   trigger:
-    - platform: time
-      at: '09:01:00'
     - platform: state
       entity_id: input_select.home_mode
       to: 'Home'
       
   action:
-    - service: automation.turn_off
-      entity_id: automation.intruder
-    - service: automation.turn_on
-      entity_id: automation.motion_lights_bedroom_full
-    - service: automation.turn_on
-      entity_id: automation.bedroom_lights_off_after_10
-    - service: light.turn_off
-      entity_id: light.sensor_node_lounge_led
+    - service: script.turn_on
+      entity_id: script.home_mode_home
 
 ######################################################################
 ##  Sleep Mode
@@ -69,24 +52,57 @@
       state: 'home'
       
   action:
-    - service: automation.turn_off
-      entity_id: automation.motion_lights_bedroom_full
+    - service: script.turn_on
+      entity_id: script.home_mode_night
 
 ######################################################################
-##  Morning Mode
+##  Morning Mode weekend
 ######################################################################
 
-- alias: Home Mode Morning
+- alias: Home Mode Morning Weekend
   initial_state: 'on'
   hide_entity: False
   trigger:
     - platform: time
-      at: '08:11:00'
+      at: '09:10:00'
       
-  condition:
-    - condition: state
-      entity_id: device_tracker.rich_s8
-      state: 'home'
+  condition: 
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.rich_s8
+        state: 'home'
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'off'
+      
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.home_mode
+      data:
+        option: 'Home'
+
+
+######################################################################
+##  Morning Mode workday
+######################################################################
+
+- alias: Home Mode Workday
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: time
+      at: '06:32:00'
+      
+  condition: 
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.rich_s8
+        state: 'home'
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
       
   action:
     - service: input_select.select_option

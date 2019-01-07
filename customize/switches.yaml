@@ -28,3 +28,16 @@ switch.tv_backlight_cyan:
 switch.tv_backlight_pink:
   friendly_name: Pink
   icon: mdi:palette
+  
+## SONOFF SWITCHES
+
+switch.bedside_lamp:
+  icon: mdi:lamp
+  
+switch.switch_1:
+  icon: mdi:power-socket-uk
+  friendly_name: RF Socket 1
+  
+switch.switch_2:
+  icon: mdi:power-socket-uk
+  friendly_name: RF Socket 2
