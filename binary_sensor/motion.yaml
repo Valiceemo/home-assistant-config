@@ -5,3 +5,11 @@
   value_template: '{{ value_json.motion }}'
   payload_on: "motion detected"
   payload_off: "standby"
+  
+- platform: mqtt
+  state_topic: "sensor-node/master-bedroom"
+  name: 'Bedroom Sensor Motion2'
+  device_class: motion
+  value_template: '{{ value_json.motion }}'
+  payload_on: "motion detected"
+  payload_off: "standby"

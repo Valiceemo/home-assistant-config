@@ -7,7 +7,7 @@
 - platform: mqtt
   state_topic: "sensor-node/master-bedroom"
   name: "Bedroom Temperature"
-  unit_of_measurement: "°F"
+  unit_of_measurement: "°C"
   value_template: '{{ value_json.temperature | round(1) }}'
 
 - platform: mqtt

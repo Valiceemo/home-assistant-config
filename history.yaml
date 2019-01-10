@@ -8,7 +8,6 @@
       - light
       - sensor
     
-
   include:
     entities:
       - device_tracker.rich_phone_s8

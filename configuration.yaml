@@ -36,9 +36,9 @@ mqtt:
 camera:
   - platform: rpi_camera
     name: Lounge Camera
-    horizontal_flip: 1
-    vertical_flip: 1
-    image_quality: 50
+#    horizontal_flip: 1
+#    vertical_flip: 1
+    image_quality: 80
   
 
 weather:
@@ -104,4 +104,5 @@ switch: !include_dir_merge_list switch
 input_select: !include_dir_merge_named input_select
 shell_command: !include_dir_merge_named shell_command
 script: !include_dir_merge_named script
+alarm_control_panel: !include_dir_merge_list alarm_cp
 

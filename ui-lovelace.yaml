@@ -98,6 +98,7 @@ views:
           - light.bridge
           - light.bedroom_light
           - switch.bedside_lamp
+          - light.kitchen_cupboard_lights
         state_filter:
           - "on"
         show_empty: false
@@ -114,14 +115,6 @@ views:
             icon: mdi:television
           - entity: sensor.tv_watched_weekly
 
-      - type: entities
-        title: System
-        show_header_toggle: true
-        entities:
-          - entity: input_select.home_mode
-            name: Home Mode
-            icon: mdi:home
-
       - type: entity-filter
         entities:
           - device_tracker.rich_phone_s8
@@ -131,6 +124,7 @@ views:
         card:
           type: glance
           title: People at home
+    
 
 
       - type: entity-filter
@@ -177,8 +171,6 @@ views:
           hide_controls: true
           power_color: true
 
-
-
       - type: custom:dark-sky-weather-card
         entity_sun: sun.sun
         entity_daily_summary: sensor.dark_sky_daily_summary
@@ -211,7 +203,6 @@ views:
         entity_summary_5: sensor.dark_sky_summary_5
 
       - type: custom:tracker-card
-#        title: Tracker poo
         trackers:
           - sensor.custom_card_tracker
 
@@ -220,25 +211,206 @@ views:
 
   - title: Living Room
     cards:
-#      - type: picture-entity
-#        entity: camera.lounge_camera
+      - type: picture-entity
+        entity: camera.lounge_camera
 
       - type: glance
-#        title: Life
-        column_width: calc(100% / 4)
+        column_width: calc(100% / 5)
         show_name: false
         entities:
           - entity: sensor.lounge_temperature
-            #name: Download
             icon: mdi:thermometer
           - entity: sensor.lounge_humidity
-            #name: Upload
             icon: mdi:water-percent
           - entity: sensor.lounge_sensor_motion
-            #name: Ping
-            #icon: mdi:speedometer
+          - entity: binary_sensor.lounge_sensor_motion2
           - entity: sensor.lounge_light_level
-          
+
+            
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.lounge_lamp
+          - type: light
+            entity: light.bridge
+
+      - type: vertical-stack
+        cards:
+          - type: custom:mini-media-player
+            entity: media_player.bravia_tv
+            icon: mdi:television
+            artwork_border: true
+            show_source: full
+            hide_volume: true
+            hide_controls: true
+            power_color: true
+          - type: custom:mini-media-player
+            entity: media_player.lounge_google_home
+            icon: mdi:google-home
+            artwork: full-cover
+            volume_stateless: false
+            show_progress: true
+            show_source: true
+            show_tts: google
+          - type: custom:mini-media-player
+            entity: media_player.living_room_chromecast
+            icon: mdi:cast
+            artwork: full-cover
+            volume_stateless: false
+            show_progress: true
+            show_source: true
+            show_tts: google
+
+## KITCHEN VIEW ##
+
+  - title: Kitchen
+    cards:
+
+      - type: light
+        entity: light.kitchen_cupboard_lights
+        name: Kitchen Cupboard LEDs
+
+## BEDROOM VIEW ##
+#
+  - title: Bedroom
+    cards:
+
+      - type: glance
+        column_width: calc(100% / 4)
+        show_name: false
+        entities:
+          - entity: sensor.bedroom_temperature
+            icon: mdi:thermometer
+          - entity: sensor.bedroom_humidity
+            icon: mdi:water-percent
+          - entity: binary_sensor.bedroom_sensor_motion2
+          - entity: sensor.master_bedroom_light_level
+
+      - type: light
+        entity: light.bedroom_light
+        name: Bedroom
+
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: switch.bedside_lamp
+            icon: mdi:lamp
+            
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.bedroom_light
+          - type: entity-button
+            entity: switch.bedside_lamp
+            tap_action:
+              action: toggle
+
+      - type: entities
+        title: Lights
+        show_header_toggle: false
+        entities: 
+          - type: section
+            label: Light
+          - type: custom:slider-entity-row
+            entity: light.bedroom_light
+          - entity: switch.bedside_lamp
+            icon: mdi:lamp
+
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.bedroom_light
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: switch.bedside_lamp
+                icon: mdi:lamp
+
+      - type: custom:mini-media-player
+        entity: media_player.bedroom_google_home
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+      - type: custom:mini-media-player
+        entity: media_player.bedroom_chromecast
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+        
+## SECURITY VIEW ##
+
+  - title: Security
+    cards:
+    
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: card
+            color: rgb(241, 196, 15)
+            color_off: rgb(255, 0, 25)
+            name: SECURITY MODE
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: card
+                color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
+                name: Home
+                action: service
+                service:
+                  domain: input_select
+                  action: select_option
+                  data:
+                    entity_id: input_select.home_mode
+                    option: Home
+              - type: custom:button-card
+                color_type: card
+                color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
+                name: Away
+                action: service
+                service:
+                  domain: input_select
+                  action: select_option
+                  data:
+                    entity_id: input_select.home_mode
+                    option: Away
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: card
+                color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
+                name: Night
+                action: service
+                service:
+                  domain: input_select
+                  action: select_option
+                  data:
+                    entity_id: input_select.home_mode
+                    option: Night
+              - type: custom:button-card
+                color_type: card
+                color: rgb(241, 196, 15)
+                color_off: rgb(255, 0, 25)
+                name: Vacation
+                action: service
+                service:
+                  domain: input_select
+                  action: select_option
+                  data:
+                    entity_id: input_select.home_mode
+                    option: Vacation
+
+      - type: alarm-panel
+        entity: alarm_control_panel.ha_manual_alarm
+                    
       - type: picture-elements
         image: /local/lovelace/image.jpg
         elements:
@@ -284,116 +456,8 @@ views:
               #background-color: rgba(0, 0, 0, 0)
               width: 100%
               transform: initial
+              
 
-
-      - type: entities
-        title: Lights
-        show_header_toggle: false
-        entities: 
-          - type: section
-            label: Light
-          - type: custom:slider-entity-row
-            entity: light.lounge_lamp
-            icon: mdi:lamp
-          - type: custom:slider-entity-row
-            entity: light.bridge
-            icon: mdi:lamp
-            
- 
-
-      - type: vertical-stack
-        cards:
-          - type: custom:mini-media-player
-            entity: media_player.bravia_tv
-            icon: mdi:television
-            artwork_border: true
-            show_source: full
-            hide_volume: true
-            hide_controls: true
-            power_color: true
-          - type: custom:mini-media-player
-            entity: media_player.lounge_google_home
-            icon: mdi:google-home
-            artwork: full-cover
-            volume_stateless: false
-            show_progress: true
-            show_source: true
-            show_tts: google
-          - type: custom:mini-media-player
-            entity: media_player.living_room_chromecast
-            icon: mdi:cast
-            artwork: full-cover
-            volume_stateless: false
-            show_progress: true
-            show_source: true
-            show_tts: google
-
-## BEDROOM VIEW ##
-
-  - title: Bedroom
-    cards:
-
-      - type: glance
-#        title: Life
-        column_width: calc(100% / 4)
-        show_name: false
-        entities:
-          - entity: sensor.bedroom_temperature
-            #name: Download
-            icon: mdi:thermometer
-          - entity: sensor.bedroom_temperature
-            #name: Upload
-            icon: mdi:water-percent
-          - entity: sensor.bedroom_sensor_motion
-            #name: Ping
-            #icon: mdi:speedometer
-          - entity: sensor.master_bedroom_light_level
-
-      - type: light
-        entity: light.bedroom_light
-        name: Bedroom
-
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - entity: switch.bedside_lamp
-            icon: mdi:lamp
-            
-      - type: entities
-        title: Lights
-        show_header_toggle: false
-        entities: 
-          - type: section
-            label: Light
-          - type: custom:slider-entity-row
-            entity: light.bedroom_light
-          - entity: switch.bedside_lamp
-            icon: mdi:lamp
-
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.bedroom_light
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: switch.bedside_lamp
-                icon: mdi:lamp
-
-      - type: custom:mini-media-player
-        entity: media_player.bedroom_google_home
-        icon: mdi:google-home
-        artwork: full-cover
-        volume_stateless: false
-        show_progress: true
-        show_source: true
-      - type: custom:mini-media-player
-        entity: media_player.bedroom_chromecast
-        #icon: mdi:google-home
-        artwork: full-cover
-        volume_stateless: false
-        show_progress: true
-        show_source: true
 
 ## NETWORK VIEW ##
 
@@ -498,6 +562,8 @@ views:
             name: Lounge Sensor Node
           - entity: binary_sensor.connectivity_sensor_node_bedroom
             name: Bedroom Sensor Node
+          - entity: binary_sensor.device_tracker_sonoff1_bedside_lamp
+            name: Sonoff1 - Bedside Lamp 
 
 
 ## SYSTEM VIEW ##

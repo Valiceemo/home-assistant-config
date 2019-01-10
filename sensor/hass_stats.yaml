@@ -8,13 +8,13 @@
 
 - platform: rest
   resource: https://pypi.python.org/pypi/homeassistant/json
-  name: HA Upstream
+  name: HA Latest Vers.
   value_template: '{{ value_json.info.version }}'
-  scan_interval: 60
+  scan_interval: 86400
 
-- platform: version
-  name: HA Latest Vers
-  source: pypi
+#- platform: version
+#  name: HA Latest Vers
+#  source: pypi
 
 - platform: uptime
   name: HA Time Online

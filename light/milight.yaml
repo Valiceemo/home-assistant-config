@@ -11,4 +11,6 @@
       - number: 2
         name: Bedroom Light
         type: rgbw
-        
+      - number: 3
+        name: Kitchen Cupboard Lights
+        type: rgbw

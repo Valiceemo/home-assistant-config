@@ -1,0 +1,4 @@
+- platform: manual
+  name: HA Manual Alarm
+  code: 1234
+  
