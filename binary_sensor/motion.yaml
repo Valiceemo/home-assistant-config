@@ -13,3 +13,8 @@
   value_template: '{{ value_json.motion }}'
   payload_on: "motion detected"
   payload_off: "standby"
+  
+
+- platform: mqtt
+  state_topic: "cmnd/sonoff2-pir/POWER"
+  name: Node PIR

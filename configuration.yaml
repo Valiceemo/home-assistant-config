@@ -30,7 +30,7 @@ mqtt:
   client_id: home_assistant1
   username: !secret mqtt_username
   password: !secret mqtt_password
-  discovery: true
+  discovery: false
   discovery_prefix: homeassistant
   
 camera:
@@ -39,6 +39,8 @@ camera:
 #    horizontal_flip: 1
 #    vertical_flip: 1
     image_quality: 80
+  - platform: mjpeg
+    mjpeg_url: http://192.168.0.196:8081
   
 
 weather:
