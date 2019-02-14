@@ -7,7 +7,7 @@
   hide_entity: False
   trigger:
     - platform: time
-      at: '05:24:00'
+      at: '23:35:00'
   condition:
     - condition: template
       value_template: "{{ states('sensor.ha_installed_version') != states('sensor.ha_latest_vers') }}"
@@ -35,7 +35,7 @@
   trigger:
     - platform: homeassistant
       event: start
-  action:
+  action: 
     - service: notify.pushbullet
       data:
         title: Home Assistant Ready

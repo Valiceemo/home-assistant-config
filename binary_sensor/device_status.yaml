@@ -14,3 +14,5 @@
     - device_tracker.sony_braviatv
     - device_tracker.xbox_one
     - device_tracker.sonoff1_bedside_lamp
+    - device_tracker.sonoff_nodemcu_sensor_lounge
+    - device_tracker.sonoff_nodemcu_sensor_bedroom

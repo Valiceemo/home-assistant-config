@@ -3,13 +3,13 @@ resources:
     type: module
   - url: /local/custom_ui/weather-card.js
     type: js
-  - url: /local/tracker-card.js?v=0.1.5
+  - url: /local/tracker-card.js?v=0.2.0
     type: js
   - url: /local/gauge-card.js?v=0.2.0
     type: js
-  - url: /local/slider-entity-row.js?v=d6da75
+  - url: /local/slider-entity-row.js?v=ba8f50
     type: js
-  - url: /local/button-card.js
+  - url: /local/button-card.js?v=0.0.5
     type: module
   - url: /local/group-card.js
     type: js
@@ -19,6 +19,12 @@ resources:
     type: js
   - url: /local/dark-sky-weather-card.js?v=4
     type: js
+  - url: /local/fold-entity-row.js?v=6d11d3
+    type: js
+  - url: /local/card-tools.js?v=297fcc
+    type: js
+  - url: /local/weather-card.js
+    type: module
 
 title: Home
 background: radial-gradient(white, skyblue)
@@ -40,15 +46,16 @@ views:
             icon: mdi:thermometer
           - entity: sensor.lounge_humidity
             icon: mdi:water-percent
-          - entity: binary_sensor.lounge_sensor_motion2
+          - entity: binary_sensor.lounge_sonoff_pir
           - entity: sensor.lounge_light_level
-          ##
+          
       - type: horizontal-stack
         cards:
           - type: light
             entity: light.lounge_lamp
           - type: light
             entity: light.bridge
+            name: Bookshelf
          
       - type: glance
         column_width: calc(100% / 4)
@@ -59,81 +66,306 @@ views:
             icon: mdi:thermometer
           - entity: sensor.bedroom_humidity
             icon: mdi:water-percent
-          - entity: binary_sensor.bedroom_sensor_motion2
+          - entity: binary_sensor.bedroom_sonoff_pir
           - entity: sensor.master_bedroom_light_level
             
       - type: horizontal-stack
         cards:
-          - type: custom:button-card
-            color_type: icon
-            entity: light.bedroom_light
-            action: toggle
-            name: Main Light
-            icon: mdi:floor-lamp
-            #color: rgb(255, 131, 0)
-          - type: custom:button-card
-            entity: switch.bedside_lamp
-            name: Bedside Lamp
-            #color: rgb(255, 255, 0)
-            action: toggle
-            icon: mdi:lamp
-            #size: 82%
-            color_type: icon
-            color: rgb(255, 208, 0)
-            
-
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            color_type: blank-card
           - type: light
-            entity: light.kitchen_cupboard_lights
-            name: Poo
-          - type: "custom:button-card"
-            color_type: blank-card
+            entity: light.bedroom_light
+            name: Main Light
+          - type: light
+            entity: light.bedside_lampsonoff_mqtt
+            name: Bedside Lamp
             
+      - type: light
+        entity: light.kitchen_cupboard_lights
+        name: Kitchen Unit
+        
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - sensor.dark_sky_daily_summary
+          - sensor.waze_travel_time
+
+## MEDIA VIEW #######
+
+  - title: Media
+    panel: false
+    icon: mdi:television
+    
+    cards:
+      - type: glance
+        column_width: calc(100% / 5)
+        show_name: false
+        title: Lounge
+        entities:
+          - entity: sensor.av_temps_temperature
+            icon: mdi:thermometer
+          - entity: sensor.av_temps_humidity
+            icon: mdi:water-percent
+          - entity: sensor.tv_watched_daily
+          - entity: sensor.tv_watched_weekly
+      - type: custom:mini-media-player
+        entity: media_player.bravia_tv
+        icon: mdi:television
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+        hide_volume: true
+        hide_controls: true
+        
+      - type: custom:mini-media-player
+        entity: media_player.lounge_google_home
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+        
+      - type: custom:mini-media-player
+        entity: media_player.living_room_chromecast
+        icon: mdi:google-home
+        artwork: full-cover
+        volume_stateless: false
+        show_progress: true
+        show_source: true
+        
+
+
 ## SECURITY VIEW ##
 
   - title: Security
-    panel: true
-    icon: mdi:water-percent
+    panel: false
+    icon: mdi:cctv
     
     cards:
-
       - type: picture-entity
         entity: camera.lounge_camera
+        
+      - type: alarm-panel
+        entity: alarm_control_panel.ha_manual_alarm
 
-## SECURITY VIEW ##
+## AUTOMATIONS TEST VIEW ##
 
-  - title: poo
-    panel: false
-    
+  - title: Automations TEST
+    icon: mdi:home-automation
     cards:
-      - type: vertical-stack
-        cards: 
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                color_type: card
-                entity: light.lounge_lamp
-                action: toggle
-                name: Lounge Lamp
-                icon: mdi:floor-lamp
-                color: rgb(255, 131, 0)
-              - type: custom:button-card
-                color_type: card
-                entity: light.bridge
-                action: toggle
-                name: Bookshelf
-                icon: mdi:floor-lamp
-                color: rgb(255, 131, 0)
-          - type: horizontal-stack
-            cards:
-              - type: custom:bignumber-card
-                entity: sensor.lounge_temperature
-                scale: 30px
-              - type: custom:bignumber-card
-                entity: sensor.lounge_humidity
-                scale: 30px
-                icon: mdi:water-percent
-                
+      - type: entities
+        title: Automations
+        show_header_toggle: false
+        entities: 
+          - type: custom:fold-entity-row
+            head: 
+              type: section
+              label: Lighting
+            items:
+              - automation.evening_lights_on
+              - automation.motion_lights_lounge_full
+              - automation.motion_lights_bedroom_full
+              - automation.lounge_lamp_off_after_10
+              - automation.bedroom_lights_off_after_10
+              - automation.lounge_lamp_off_sun_up
+              - automation.turn_all_lights_off_at_night
+              - automation.turn_all_lights_off_when_away
+              - automation.turn_all_lights_on_when_returning
+
+          - type: custom:fold-entity-row
+            head: 
+              type: section
+              label: Presence
+            items:
+              - automation.presence_detection
+
+          - type: custom:fold-entity-row
+            head: 
+              type: section
+              label: System
+            group_config:
+              secondary_info: last-changed
+            items:
+              - automation.ha_update_available
+              - automation.home_assistant_started_notify
+              - automation.login_failure
+              - automation.set_theme
+              - automation.network_device_notifier
+
+          - type: custom:fold-entity-row
+            head: 
+              type: section
+              label: Home Modes
+            items:
+              - automation.home_mode_home
+              - automation.home_mode_away
+              - automation.home_mode_morning_weekend
+              - automation.home_mode_workday
+              - automation.home_mode_night
+              - automation.intruder
+              
+      - type: entities
+        title: Scripts
+        show_header_toggle: false
+        entities: 
+          - type: custom:fold-entity-row
+            head: group.all_scripts
+
+
+## NETWORK
+
+  - title: Network
+    icon: mdi:router-wireless
+    cards:
+
+      - type: glance
+        title: Network Speeds
+        column_width: calc(100% / 3)
+        show_name: false
+        entities:
+          - entity: sensor.speedtest_download
+            name: Download
+            icon: mdi:download
+          - entity: sensor.speedtest_upload
+            name: Upload
+            icon: mdi:upload
+          - entity: sensor.speedtest_ping
+            name: Ping
+            icon: mdi:speedometer
+            hold_action: call-service
+            service: sensor.update_speedtest
+
+      - type: entities
+        entities:
+          - entity: sensor.external_ip
+            name: External IP
+            icon: mdi:ip-network
+          - entity: sensor.ipv4_address_eth0
+            name: Local IP
+            icon: mdi:ip-network
+
+      - type: entities
+        title: Pi-Hole
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.device_tracker_rpi_pihole
+            name: Status
+          - entity: sensor.pi_hole_domains_blocked
+            name: Total Domains Being Blocked
+          - entity: sensor.pi_hole_dns_queries_today
+            name: DNS Queries Today
+          - entity: sensor.pi_hole_ads_blocked_today
+            name: Queries Blocked Today
+          - entity: sensor.pi_hole_ads_percentage_blocked_today
+            name: Percentage Blocked Today
+          - type: divider
+          - entity: sensor.pi_hole_cpu_temp
+            name: CPU Temp
+            icon: mdi:thermometer
+          - entity: sensor.pi_hole_cpu_usage
+            name: CPU Usage
+            icon: mdi:memory
+          - entity: sensor.pi_hole_boot_time
+            name: Last Booted
+            icon: mdi:update
+          - entity: sensor.pi_hole_disk_usage
+            name: Disk Usage
+            icon: mdi:micro-sd
+          - type: divider
+          - type: weblink
+            name: Pi-Hole
+            url: http://pi.hole/admin
+            icon: mdi:raspberrypi
+          - type: divider
+          - type: weblink
+            name: Sky Hub
+            url: http://192.168.0.1
+            icon: mdi:router-wireless
+
+      - type: entities
+        title: Device Status
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.device_tracker_sony_braviatv
+            name: Lounge Sony TV
+          - entity: binary_sensor.device_tracker_skyhd
+            name: Sky+
+          - entity: binary_sensor.device_tracker_chromecast_lounge
+            name: Lounge Chromecast
+          - entity: binary_sensor.device_tracker_google_home_lounge
+            name: Lounge Google Home
+          - entity: binary_sensor.device_tracker_xbox_one
+            name: Xbox
+          - entity: binary_sensor.device_tracker_sonoff_nodemcu_sensor_lounge
+            name: Lounge Sensor Node
+          - type: divider
+          - entity: binary_sensor.device_tracker_chromecast_bedroom
+            name: Bedroom Chromecast
+          - entity: binary_sensor.device_tracker_google_home_bedroom
+            name: Bedroom Google Home
+          - entity: binary_sensor.device_tracker_sonoff_nodemcu_sensor_bedroom
+            name: Bedroom Sensor Node
+          - entity: binary_sensor.device_tracker_sonoff1_bedside_lamp
+            name: Sonoff1 - Bedside Lamp 
+          - type: divider
+          - entity: binary_sensor.device_tracker_milight_bridge
+            name: Mi-Light
+          - entity: binary_sensor.device_tracker_rich_laptop
+            name: Rich Laptop
+          - entity: binary_sensor.device_tracker_gear_watch
+            name: Rich S2 Watch
+          - entity: binary_sensor.device_tracker_lenovo_tab
+            name: Rich Tablet
+
+
+
+## SYSTEM VIEW ##
+
+  - title: System
+    panel: false
+    icon: mdi:settings
+    cards:
+      - type: entities
+        title: System
+        show_header_toggle: false
+        entities:
+          - entity: sensor.ha_time_online
+            name: HA Uptime
+            icon: mdi:update
+          - entity: sensor.hassbian_boot_time
+            name: Hassbian Last Boot
+            icon: mdi:update
+          - entity: sensor.hassbian_cpu_temp
+            name: CPU Temperature
+            icon: mdi:thermometer
+          - entity: sensor.home_assistant_v2_db
+            name: Database Size
+          - entity: sensor.disk_free_home
+            name: Free SD space
+          - entity: sensor.ha_installed_version
+            name: HA Version
+          - type: divider
+          - entity: input_select.theme_changer
+            name: Theme select
+          - type: divider
+          - type: weblink
+            name: Home Assistant
+            url: https://www.home-assistant.io
+            icon: mdi:home-assistant
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:gauge-card
+            title: CPU Use
+            entity: sensor.processor_use
+            min: 0
+            max: 100
+            severity:
+              red: 50
+              green: 0
+              amber: 40
+             
+      - type: custom:tracker-card
+        trackers:
+          - sensor.custom_card_tracker
+        title: Card Updates
+          

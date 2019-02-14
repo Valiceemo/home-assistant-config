@@ -1,0 +1,4 @@
+- platform: waze_travel_time
+  origin: Upperbank End Road, Holmfirth, HD9 1EW
+  destination: Waleswood Road, Walesbar, Sheffield, S26 5PN
+  region: 'EU'

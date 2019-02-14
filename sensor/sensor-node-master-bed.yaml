@@ -1,14 +1,14 @@
-- platform: mqtt
-  state_topic: "sensor-node/master-bedroom"
-  name: "Bedroom Humidity"
-  unit_of_measurement: "%"
-  value_template: '{{ value_json.humidity | round(1) }}'
+#- platform: mqtt
+#  state_topic: "sensor-node/master-bedroom"
+#  name: "Bedroom Humidity"
+#  unit_of_measurement: "%"
+#  value_template: '{{ value_json.humidity | round(1) }}'
 
-- platform: mqtt
-  state_topic: "sensor-node/master-bedroom"
-  name: "Bedroom Temperature"
-  unit_of_measurement: "°C"
-  value_template: '{{ value_json.temperature | round(1) }}'
+#- platform: mqtt
+#  state_topic: "sensor-node/master-bedroom"
+#  name: "Bedroom Temperature"
+#  unit_of_measurement: "°C"
+#  value_template: '{{ value_json.temperature | round(1) }}'
 
 - platform: mqtt
   state_topic: "sensor-node/master-bedroom"
@@ -21,3 +21,19 @@
   ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
   unit_of_measurement: "LUX"
   value_template: '{{ value_json.ldr }}'
+
+## 
+
+## SWITCH TO TASMOTA BASED SENESOR
+
+- platform: mqtt
+  state_topic: "tele/sonoff-bedroom-sensor/SENSOR"
+  name: "Bedroom Temperature"
+  unit_of_measurement: "C"
+  value_template: '{{ value_json.AM2301.Temperature }}'
+
+- platform: mqtt
+  state_topic: "tele/sonoff-bedroom-sensor/SENSOR"
+  name: "Bedroom Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.AM2301.Humidity }}'

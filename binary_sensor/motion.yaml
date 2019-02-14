@@ -1,20 +1,13 @@
 - platform: mqtt
-  state_topic: "sensor-node/lounge"
-  name: 'Lounge Sensor Motion2'
+  state_topic: "stat/sonoff-lounge-sensor/POWER"
+  name: Lounge Sonoff PIR
   device_class: motion
-  value_template: '{{ value_json.motion }}'
-  payload_on: "motion detected"
-  payload_off: "standby"
+  payload_on: "ON"
+  payload_off: "OFF"
   
 - platform: mqtt
-  state_topic: "sensor-node/master-bedroom"
-  name: 'Bedroom Sensor Motion2'
+  state_topic: "stat/sonoff-bedroom-sensor/POWER"
+  name: Bedroom Sonoff PIR
   device_class: motion
-  value_template: '{{ value_json.motion }}'
-  payload_on: "motion detected"
-  payload_off: "standby"
-  
-
-- platform: mqtt
-  state_topic: "cmnd/sonoff2-pir/POWER"
-  name: Node PIR
+  payload_on: "ON"
+  payload_off: "OFF"

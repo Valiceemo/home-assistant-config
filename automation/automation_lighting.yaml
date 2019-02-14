@@ -35,9 +35,9 @@
   hide_entity: False
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_sensor_motion
-      to: 'motion detected'
-      from: 'standby'
+      entity_id: binary_sensor.bedroom_sonoff_pir
+      to: 'Clear'
+      from: 'Detected'
   
   condition: 
     - condition: state
@@ -145,9 +145,9 @@
   hide_entity: False
   trigger:
     - platform: state
-      entity_id: sensor.lounge_sensor_motion
-      to: 'motion detected'
-      from: 'standby'
+      entity_id: binary_sensor.lounge_sonoff_pir
+      to: 'Detected'
+      from: 'Clear'
   
   condition: 
     - condition: state
@@ -204,9 +204,9 @@
   hide_entity: False
   trigger:
     - platform: state
-      entity_id: sensor.bedroom_sensor_motion
-      from: 'motion detected'
-      to: 'standby'
+      entity_id: binary_sensor.bedroom_sonoff_pir
+      from: 'Detected'
+      to: 'Clear'
       for: 
         minutes: 10
         
@@ -230,9 +230,9 @@
   hide_entity: False
   trigger:
     - platform: state
-      entity_id: sensor.lounge_sensor_motion
-      from: 'motion detected'
-      to: 'standby'
+      entity_id: binary_sensor.lounge_sonoff_pir
+      from: 'Detected'
+      to: 'Clear'
       for: 
         minutes: 10
         

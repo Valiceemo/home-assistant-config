@@ -36,18 +36,17 @@ mqtt:
 camera:
   - platform: rpi_camera
     name: Lounge Camera
-#    horizontal_flip: 1
-#    vertical_flip: 1
     image_quality: 80
-  - platform: mjpeg
-    mjpeg_url: http://192.168.0.196:8081
-  
+    
+#  - platform: mjpeg
+#    mjpeg_url: http://192.168.0.196:8081
 
 weather:
   - platform: darksky
     api_key: !secret dark_sky_api
     latitude: !secret latitude
     longitude: !secret longitude
+    mode: daily
     
 
 config:
@@ -72,17 +71,6 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_api
-  - name: join
-    platform: joaoapps_join
-    api_key: !secret join_api_key
-    device_id: !secret join_deviceid_s8
-    device_names: Rich_S8
-joaoapps_join:
-  - name: Mobile
-    device_id: GROUP.GROUP_NAME
-    api_key: !secret join_api_key
-ifttt:
-  key: !secret ifttt_key
   
     
 ####################################################
