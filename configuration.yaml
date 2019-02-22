@@ -48,7 +48,7 @@ weather:
     longitude: !secret longitude
     mode: daily
     
-
+system_health:
 config:
 sun:
 updater:
@@ -57,7 +57,7 @@ lovelace:
   mode: yaml
 discovery:
   ignore:
-    - songpal
+    - igd
 
 logger:
   default: error
@@ -71,7 +71,12 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_api
-  
+
+panel_iframe:
+  plex_server:
+    title: 'Plex'
+    url: 'http://192.168.0.237:32400/web'
+    
     
 ####################################################
 #                                                  #

@@ -1,13 +1,13 @@
 resources:
-  - url: /local/mini-media-player-bundle.js?v=0.9.8
+  - url: /local/mini-media-player-bundle.js?v=1.0.1
     type: module
   - url: /local/custom_ui/weather-card.js
     type: js
-  - url: /local/tracker-card.js?v=0.2.0
+  - url: /local/tracker-card.js?v=0.3.2
     type: js
   - url: /local/gauge-card.js?v=0.2.0
     type: js
-  - url: /local/slider-entity-row.js?v=ba8f50
+  - url: /local/slider-entity-row.js?v=be80ff
     type: js
   - url: /local/button-card.js?v=0.0.5
     type: module
@@ -21,7 +21,7 @@ resources:
     type: js
   - url: /local/fold-entity-row.js?v=6d11d3
     type: js
-  - url: /local/card-tools.js?v=297fcc
+  - url: /local/card-tools.js?v=97d985
     type: js
   - url: /local/weather-card.js
     type: module
@@ -368,4 +368,4 @@ views:
         trackers:
           - sensor.custom_card_tracker
         title: Card Updates
-          
+        
