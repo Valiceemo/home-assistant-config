@@ -18,11 +18,8 @@ http:
   login_attempts_threshold: 5
   
 custom_updater:
-  track:
-    - cards
   card_urls:
     - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
-    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
 
 mqtt:
   broker: !secret mqtt_broker
@@ -58,6 +55,7 @@ lovelace:
 discovery:
   ignore:
     - igd
+    - songpal
 
 logger:
   default: error
@@ -75,7 +73,17 @@ notify:
 panel_iframe:
   plex_server:
     title: 'Plex'
+    icon: mdi:plex
     url: 'http://192.168.0.237:32400/web'
+    
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+    hours: 12
+  monitored_conditions:
+    - ping
+    - download 
+    -  upload
     
     
 ####################################################

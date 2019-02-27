@@ -1,29 +1,27 @@
 resources:
-  - url: /local/mini-media-player-bundle.js?v=1.0.1
+  - url: /customcards/mini-media-player-bundle.js
     type: module
-  - url: /local/custom_ui/weather-card.js
+  - url: /customcards/tracker-card.js
     type: js
-  - url: /local/tracker-card.js?v=0.3.2
+  - url: /customcards/gauge-card.js
     type: js
-  - url: /local/gauge-card.js?v=0.2.0
+  - url: /customcards/slider-entity-row.js
     type: js
-  - url: /local/slider-entity-row.js?v=be80ff
-    type: js
-  - url: /local/button-card.js?v=0.0.5
+  - url: /customcards/button-card.js
     type: module
-  - url: /local/group-card.js
+  - url: /customcards/group-card.js
     type: js
-  - url: /local/bignumber-card.js
+  - url: /customcards/bignumber-card.js
     type: js
-  - url: /local/useful-markdown-card.js
+  - url: /customcards/useful-markdown-card.js
     type: js
-  - url: /local/dark-sky-weather-card.js?v=4
+  - url: /customcards/dark-sky-weather-card.js
     type: js
-  - url: /local/fold-entity-row.js?v=6d11d3
+  - url: /customcards/fold-entity-row.js
     type: js
-  - url: /local/card-tools.js?v=97d985
+  - url: /customcards/card-tools.js
     type: js
-  - url: /local/weather-card.js
+  - url: /customcards/weather-card.js
     type: module
 
 title: Home
@@ -352,17 +350,17 @@ views:
             url: https://www.home-assistant.io
             icon: mdi:home-assistant
 
-      - type: horizontal-stack
-        cards:
-          - type: custom:gauge-card
-            title: CPU Use
-            entity: sensor.processor_use
-            min: 0
-            max: 100
-            severity:
-              red: 50
-              green: 0
-              amber: 40
+#      - type: horizontal-stack
+#        cards:
+#          - type: custom:gauge-card
+#            title: CPU Use
+#            entity: sensor.processor_use
+#            min: 0
+#            max: 100
+#            severity:
+#              red: 50
+#              green: 0
+#              amber: 40
              
       - type: custom:tracker-card
         trackers:

@@ -1,0 +1,21 @@
+- platform: mqtt
+  state_topic: 'media-pi/cpu/temp'
+  name: 'Media-Pi CPU Temp'
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.cputemp | round(1) }}'
+
+- platform: mqtt
+  state_topic: 'media-pi/cpu/temp'
+  name: 'Media-Pi CPU Usage'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.cpuusage }}'
+
+- platform: mqtt
+  state_topic: 'media-pi/cpu/temp'
+  name: 'Media-Pi Disk Usage'
+  value_template: '{{ value_json.disktotal }}'
+
+- platform: mqtt
+  state_topic: 'media-pi/cpu/temp'
+  name: 'Media-Pi Boot time'
+  value_template: '{{ value_json.boottime }}'
