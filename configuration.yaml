@@ -61,6 +61,8 @@ logger:
   default: error
   logs:
     homeassistant.components.mqtt: warn
+    custom_components.custom_updater: debug
+    pyupdate: debug
 
 tts:
   - platform: google
