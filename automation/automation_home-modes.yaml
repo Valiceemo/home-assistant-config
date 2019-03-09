@@ -12,8 +12,7 @@
       for: '00:05:00'
 
   action:
-    - service: script.turn_on
-      entity_id: script.home_mode_away
+    - service: script.home_mode_away
 
 
 #####################################################################
@@ -29,8 +28,7 @@
       to: 'Home'
       
   action:
-    - service: script.turn_on
-      entity_id: script.home_mode_home
+    - service: script.home_mode_home
 
 ######################################################################
 ##  Sleep Mode

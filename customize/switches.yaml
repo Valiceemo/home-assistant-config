@@ -41,3 +41,17 @@ switch.switch_1:
 switch.switch_2:
   icon: mdi:power-socket-uk
   friendly_name: RF Socket 2
+  
+## Harmony switches
+
+switch.xbox_one:
+  friendly_name: Xbox One
+  icon: mdi:xbox
+  
+switch.watch_tv:
+  friendly_name: Watch TV
+  icon: mdi:television
+  
+switch.watch_netflix:
+  friendly_name: Watch Netflix
+  icon: mdi:netflix

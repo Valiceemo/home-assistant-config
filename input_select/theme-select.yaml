@@ -3,8 +3,10 @@ theme_changer:
   options:
    - default
    - midnight
-   - midnight_black
-   - midnight-remake
+   - clear
+   - dark
+   - amoled
+   - color_chart
   initial: default
   icon: mdi:palette
   

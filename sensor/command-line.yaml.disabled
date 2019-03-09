@@ -1,4 +1,0 @@
-- platform: command_line
-  name: External IP
-  command: "curl v4.ifconfig.co"
-  

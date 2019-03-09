@@ -23,6 +23,6 @@
       - sensor.speedtest_upload
       - sensor.speedtest_ping
       - sensor.tv_watched_this_week
-      - sensor.tv_watched_today
+      - sensor.tv_watched_this_daily
       - sensor.lastfm_valiceemo
       - sensor.valiceemo

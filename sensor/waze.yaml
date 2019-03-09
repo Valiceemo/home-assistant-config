@@ -1,4 +1,17 @@
 - platform: waze_travel_time
+  name: Home to Work
   origin: Upperbank End Road, Holmfirth, HD9 1EW
   destination: Waleswood Road, Walesbar, Sheffield, S26 5PN
+  region: 'EU'
+  
+- platform: waze_travel_time
+  name: Work to Home
+  origin: Waleswood Road, Walesbar, Sheffield, S26 5PN
+  destination: Upperbank End Road, Holmfirth, HD9 1EW
+  region: 'EU'
+
+- platform: waze_travel_time
+  name: Home to Mom and Dad
+  origin: Upperbank End Road, Holmfirth, HD9 1EW
+  destination: Sansgate Road, Hall Green, Birmingham, B28 0UJ
   region: 'EU'

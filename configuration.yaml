@@ -44,6 +44,7 @@ weather:
     latitude: !secret latitude
     longitude: !secret longitude
     mode: daily
+    units: uk2
     
 system_health:
 config:
@@ -61,9 +62,7 @@ logger:
   default: error
   logs:
     homeassistant.components.mqtt: warn
-    custom_components.custom_updater: debug
-    pyupdate: debug
-
+ 
 tts:
   - platform: google
 

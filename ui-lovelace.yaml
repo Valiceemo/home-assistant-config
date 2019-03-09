@@ -11,21 +11,20 @@ resources:
     type: module
   - url: /customcards/group-card.js
     type: js
-  - url: /customcards/bignumber-card.js
-    type: js
-  - url: /customcards/useful-markdown-card.js
-    type: js
-  - url: /customcards/dark-sky-weather-card.js
-    type: js
+  - url: /customcards/compact-custom-header.js
+    type: module
   - url: /customcards/fold-entity-row.js
     type: js
   - url: /customcards/card-tools.js
     type: js
   - url: /customcards/weather-card.js
     type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.3.0
+    type: module
 
 title: Home
-background: radial-gradient(white, skyblue)
+#background: fill / cover no-repeat url("/local/lovelace/light-clean-bg.jpg") fixed
+#background: var--(background)
 views:
 
 ## HOME VIEW #######
@@ -33,8 +32,15 @@ views:
   - title: Home
     panel: false
     icon: mdi:home
-    
+    background: var--(background)
     cards:
+      - type: custom:compact-custom-header
+        main_config: true
+        menu: hide
+        options: clock
+        voice: overflow
+        notifications: overflow
+        header: true
       - type: glance
         column_width: calc(100% / 5)
         show_name: false
@@ -46,7 +52,7 @@ views:
             icon: mdi:water-percent
           - entity: binary_sensor.lounge_sonoff_pir
           - entity: sensor.lounge_light_level
-          
+
       - type: horizontal-stack
         cards:
           - type: light
@@ -80,19 +86,14 @@ views:
         entity: light.kitchen_cupboard_lights
         name: Kitchen Unit
         
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - sensor.dark_sky_daily_summary
-          - sensor.waze_travel_time
-
 ## MEDIA VIEW #######
 
   - title: Media
     panel: false
     icon: mdi:television
-    
+    background: var--(background)
     cards:
+      - type: custom:compact-custom-header
       - type: glance
         column_width: calc(100% / 5)
         show_name: false
@@ -104,16 +105,32 @@ views:
             icon: mdi:water-percent
           - entity: sensor.tv_watched_daily
           - entity: sensor.tv_watched_weekly
-      - type: custom:mini-media-player
-        entity: media_player.bravia_tv
-        icon: mdi:television
-        artwork: full-cover
-        volume_stateless: false
-        show_progress: true
-        show_source: true
-        hide_volume: true
-        hide_controls: true
-        
+
+      - type: vertical-stack
+        cards:
+          - type: "custom:mini-media-player"
+            entity: media_player.bravia_tv
+            icon: mdi:television
+            artwork: full-cover
+            volume_stateless: false
+            show_progress: true
+            show_source: true
+            hide_volume: true
+            hide_controls: true
+          - type: picture-glance
+            title: Harmony
+            entities:
+              - switch.watch_tv
+              - switch.watch_netflix
+              - switch.xbox_one
+            state_image:
+              "PowerOff": /local/lovelace/harmony/power_off_red.png
+              "Play Xbox One": /local/lovelace/harmony/xbox_one_logo.png
+              "Watch TV": /local/lovelace/harmony/television_logo.jpg
+              "Watch Netflix": /local/lovelace/harmony/netflix_logo.png
+            entity: sensor.harmony_activity
+
+            
       - type: custom:mini-media-player
         entity: media_player.lounge_google_home
         icon: mdi:google-home
@@ -129,27 +146,50 @@ views:
         volume_stateless: false
         show_progress: true
         show_source: true
-        
-
 
 ## SECURITY VIEW ##
 
   - title: Security
     panel: false
     icon: mdi:cctv
-    
+    background: var--(background)
     cards:
+      - type: custom:compact-custom-header
       - type: picture-entity
         entity: camera.lounge_camera
         
       - type: alarm-panel
         entity: alarm_control_panel.ha_manual_alarm
 
+## WEATHER VIEW ##
+
+  - title: Weather
+    panel: false
+    icon: mdi:weather-cloudy
+    background: var--(background)
+    cards:
+      - type: custom:compact-custom-header
+      
+      - type: entities
+        show_header_toggle: false
+        title: Travel Times
+        entities:
+          - sensor.home_to_work
+          - sensor.work_to_home
+          - sensor.home_to_mom_and_dad
+
+      - type: custom:weather-card
+        entity: weather.dark_sky
+        icons: "/local/icons/weather_icons/animated/"
+      
+
 ## AUTOMATIONS TEST VIEW ##
 
   - title: Automations TEST
     icon: mdi:home-automation
+    background: var--(background)
     cards:
+      - type: custom:compact-custom-header
       - type: entities
         title: Automations
         show_header_toggle: false
@@ -208,13 +248,13 @@ views:
           - type: custom:fold-entity-row
             head: group.all_scripts
 
-
 ## NETWORK
 
   - title: Network
     icon: mdi:router-wireless
+    background: var--(background)
     cards:
-
+      - type: custom:compact-custom-header
       - type: glance
         title: Network Speeds
         column_width: calc(100% / 3)
@@ -231,7 +271,15 @@ views:
             icon: mdi:speedometer
             hold_action: call-service
             service: sensor.update_speedtest
-
+            
+          
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.speedtest_download
+        name: Download
+        hours_to_show: 168
+        points_per_hour: 1
+        
       - type: entities
         entities:
           - entity: sensor.external_ip
@@ -314,14 +362,14 @@ views:
           - entity: binary_sensor.device_tracker_lenovo_tab
             name: Rich Tablet
 
-
-
 ## SYSTEM VIEW ##
 
   - title: System
     panel: false
     icon: mdi:settings
+    background: var--(background)
     cards:
+      - type: custom:compact-custom-header
       - type: entities
         title: System
         show_header_toggle: false
@@ -332,9 +380,6 @@ views:
           - entity: sensor.hassbian_boot_time
             name: Hassbian Last Boot
             icon: mdi:update
-          - entity: sensor.hassbian_cpu_temp
-            name: CPU Temperature
-            icon: mdi:thermometer
           - entity: sensor.home_assistant_v2_db
             name: Database Size
           - entity: sensor.disk_free_home
@@ -350,6 +395,15 @@ views:
             url: https://www.home-assistant.io
             icon: mdi:home-assistant
 
+          
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.hassbian_cpu_temp
+            name: CPU Temp
+          - type: gauge
+            entity: sensor.memory_use_percent
+            name: Memory Use
 #      - type: horizontal-stack
 #        cards:
 #          - type: custom:gauge-card
@@ -363,7 +417,5 @@ views:
 #              amber: 40
              
       - type: custom:tracker-card
-        trackers:
-          - sensor.custom_card_tracker
         title: Card Updates
         
