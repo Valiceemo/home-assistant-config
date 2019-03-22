@@ -31,13 +31,13 @@
 ######################################################################
 
 - alias: Motion Lights Bedroom Full
-  initial_state: 'on'
+  initial_state: 'off'
   hide_entity: False
   trigger:
     - platform: state
       entity_id: binary_sensor.bedroom_sonoff_pir
-      to: 'Detected'
-      from: 'Clear'
+      to: 'on'
+      from: 'off'
   
   condition: 
     - condition: state
@@ -149,8 +149,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.lounge_sonoff_pir
-      to: 'Detected'
-      from: 'Clear'
+      to: 'on'
+      from: 'off'
   
   condition: 
     - condition: state
@@ -159,6 +159,10 @@
     - condition: state
       entity_id: light.lounge_lamp
       state: 'off'
+  condition: 
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 #    - condition: numeric_state
 #      entity_id: sensor.lounge_light_level
 #      above: 907
@@ -208,8 +212,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.bedroom_sonoff_pir
-      from: 'Detected'
-      to: 'Clear'
+      from: 'on'
+      to: 'off'
       for: 
         minutes: 10
         
@@ -234,8 +238,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.lounge_sonoff_pir
-      from: 'Detected'
-      to: 'Clear'
+      to: 'off'
+      from: 'on'
       for: 
         minutes: 10
         

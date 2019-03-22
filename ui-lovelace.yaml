@@ -41,8 +41,10 @@ views:
         voice: overflow
         notifications: overflow
         header: true
+        clock_format: 24
+        clock_am_pm: false
       - type: glance
-        column_width: calc(100% / 5)
+        column_width: calc(100% / 3)
         show_name: false
         title: Lounge
         entities:
@@ -51,7 +53,6 @@ views:
           - entity: sensor.lounge_humidity
             icon: mdi:water-percent
           - entity: binary_sensor.lounge_sonoff_pir
-          - entity: sensor.lounge_light_level
 
       - type: horizontal-stack
         cards:
@@ -62,7 +63,7 @@ views:
             name: Bookshelf
          
       - type: glance
-        column_width: calc(100% / 4)
+        column_width: calc(100% / 3)
         show_name: false
         title: Bedroom
         entities:
@@ -71,7 +72,6 @@ views:
           - entity: sensor.bedroom_humidity
             icon: mdi:water-percent
           - entity: binary_sensor.bedroom_sonoff_pir
-          - entity: sensor.master_bedroom_light_level
             
       - type: horizontal-stack
         cards:
@@ -94,17 +94,23 @@ views:
     background: var--(background)
     cards:
       - type: custom:compact-custom-header
-      - type: glance
-        column_width: calc(100% / 5)
-        show_name: false
-        title: Lounge
-        entities:
-          - entity: sensor.av_temps_temperature
-            icon: mdi:thermometer
-          - entity: sensor.av_temps_humidity
-            icon: mdi:water-percent
-          - entity: sensor.tv_watched_daily
-          - entity: sensor.tv_watched_weekly
+
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            title: Lounge
+            show_name: false
+            entities:
+              - entity: sensor.av_temps_temperature
+              - entity: sensor.av_temps_humidity
+          - type: glance
+            show_name: false
+            title: Play Time
+            entities:
+              - entity: sensor.tv_watched_daily
+                icon: mdi:television
+              - entity: sensor.xbox_played_daily
+                icon: mdi:xbox
 
       - type: vertical-stack
         cards:
@@ -112,11 +118,11 @@ views:
             entity: media_player.bravia_tv
             icon: mdi:television
             artwork: full-cover
-            volume_stateless: false
-            show_progress: true
             show_source: true
-            hide_volume: true
-            hide_controls: true
+            hide:
+              volume: true
+              controls: true
+              power_state: false
           - type: picture-glance
             title: Harmony
             entities:
@@ -129,23 +135,38 @@ views:
               "Watch TV": /local/lovelace/harmony/television_logo.jpg
               "Watch Netflix": /local/lovelace/harmony/netflix_logo.png
             entity: sensor.harmony_activity
+          - type: conditional
+            conditions:
+              - entity: sensor.valiceemo
+                state: "Online"
+            card:
+              type: entities
+              entities:
+                - sensor.valiceemo
+                - sensor.xbox_valiceemo_currently_playing
+                - sensor.xbox_valiceemo_gamerscore
 
-            
+
       - type: custom:mini-media-player
         entity: media_player.lounge_google_home
         icon: mdi:google-home
         artwork: full-cover
         volume_stateless: false
-        show_progress: true
+        show_progress: false
         show_source: true
+      - type: conditional
+        conditions:
+          - entity: media_player.living_room_chromecast
+            state: "playing"
+        card:
+          type: custom:mini-media-player
+          entity: media_player.living_room_chromecast
+          icon: mdi:google-home
+          artwork: full-cover
+          volume_stateless: false
+          show_progress: false
+          show_source: true
         
-      - type: custom:mini-media-player
-        entity: media_player.living_room_chromecast
-        icon: mdi:google-home
-        artwork: full-cover
-        volume_stateless: false
-        show_progress: true
-        show_source: true
 
 ## SECURITY VIEW ##
 
@@ -170,14 +191,6 @@ views:
     cards:
       - type: custom:compact-custom-header
       
-      - type: entities
-        show_header_toggle: false
-        title: Travel Times
-        entities:
-          - sensor.home_to_work
-          - sensor.work_to_home
-          - sensor.home_to_mom_and_dad
-
       - type: custom:weather-card
         entity: weather.dark_sky
         icons: "/local/icons/weather_icons/animated/"
@@ -220,14 +233,13 @@ views:
             head: 
               type: section
               label: System
-            group_config:
-              secondary_info: last-changed
             items:
               - automation.ha_update_available
               - automation.home_assistant_started_notify
               - automation.login_failure
               - automation.set_theme
               - automation.network_device_notifier
+              - automation.clear_tts_cache
 
           - type: custom:fold-entity-row
             head: 
@@ -272,14 +284,6 @@ views:
             hold_action: call-service
             service: sensor.update_speedtest
             
-          
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.speedtest_download
-        name: Download
-        hours_to_show: 168
-        points_per_hour: 1
-        
       - type: entities
         entities:
           - entity: sensor.external_ip
@@ -335,6 +339,8 @@ views:
             name: Lounge Sony TV
           - entity: binary_sensor.device_tracker_skyhd
             name: Sky+
+          - entity: binary_sensor.device_tracker_harmony_hub
+            name: Lounge Harmony Hub
           - entity: binary_sensor.device_tracker_chromecast_lounge
             name: Lounge Chromecast
           - entity: binary_sensor.device_tracker_google_home_lounge
@@ -370,6 +376,17 @@ views:
     background: var--(background)
     cards:
       - type: custom:compact-custom-header
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.hassbian_cpu_temp
+            name: CPU Temp
+          - type: gauge
+            entity: sensor.processor_use
+            name: CPU Use
+          - type: gauge
+            entity: sensor.memory_use_percent
+            name: Memory Use
       - type: entities
         title: System
         show_header_toggle: false
@@ -389,32 +406,14 @@ views:
           - type: divider
           - entity: input_select.theme_changer
             name: Theme select
+          - entity: script.reload_themes
+            name: Reload Themes
+            icon: mdi:reload
           - type: divider
           - type: weblink
             name: Home Assistant
             url: https://www.home-assistant.io
             icon: mdi:home-assistant
-
-          
-      - type: horizontal-stack
-        cards:
-          - type: gauge
-            entity: sensor.hassbian_cpu_temp
-            name: CPU Temp
-          - type: gauge
-            entity: sensor.memory_use_percent
-            name: Memory Use
-#      - type: horizontal-stack
-#        cards:
-#          - type: custom:gauge-card
-#            title: CPU Use
-#            entity: sensor.processor_use
-#            min: 0
-#            max: 100
-#            severity:
-#              red: 50
-#              green: 0
-#              amber: 40
              
       - type: custom:tracker-card
         title: Card Updates

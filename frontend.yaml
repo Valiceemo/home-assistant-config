@@ -67,7 +67,7 @@
       google-red-500: '#E45E65'
       google-green-500: '#39E949'
       
-#############
+################
 
     clear:
       # Background
@@ -76,7 +76,7 @@
       text-color: '#636B75'   # Grey text
       text-medium-color: '#8c96a5' # Medium grey text
       text-light-color: '#BAC0C6' # Light grey text
-      primary-text-color: "#fdee00"
+      #primary-text-color: "#fdee00"
       accent-color: '#00a1ff' # Blue
       background-color: '#F7F8F9' # Light grey background
       background-color-2: '#4285F4' # Google blue
@@ -102,6 +102,7 @@
       disabled-text-color: 'var(--text-light-color)'
       paper-dialog-button-color: 'var(--text-color)'
       secondary-background-color: 'var(--background-color)' # Background more info title
+      ha-card-border-radius: '8px'
       # Icons
       paper-item-icon-color: 'var(--text-light-color)' # Off
       paper-item-icon-active-color: 'var(--accent-color)' # On 
@@ -235,7 +236,7 @@
       paper-slider-disabled-secondary-color: "var(--disabled-text-color)"
       google-red-500: "#E45E65"
       google-green-500: "#39E949" 
-      
+      sidebar-icon-color: 'var(--accent-color)'
 
 #######
 

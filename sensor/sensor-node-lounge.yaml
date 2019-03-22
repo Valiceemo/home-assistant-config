@@ -1,7 +1,7 @@
-- platform: mqtt
-  state_topic: "sensor-node/lounge"
-  name: 'Lounge Sensor Motion'
-  value_template: '{{ value_json.motion }}'
+#- platform: mqtt
+#  state_topic: "sensor-node/lounge"
+#  name: 'Lounge Sensor Motion'
+#  value_template: '{{ value_json.motion }}'
 
 #- platform: mqtt
 #  state_topic: "sensor-node/lounge"
@@ -15,12 +15,12 @@
 #  unit_of_measurement: "°F"
 #  value_template: '{{ value_json.temperature | round(1) }}'
 
-- platform: mqtt
-  state_topic: "sensor-node/lounge"
-  name: "Lounge Light Level"
+#- platform: mqtt
+#  state_topic: "sensor-node/lounge"
+#  name: "Lounge Light Level"
   ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
-  unit_of_measurement: "LUX"
-  value_template: '{{ value_json.ldr }}'
+#  unit_of_measurement: "LUX"
+#  value_template: '{{ value_json.ldr }}'
 
 ##########
 
@@ -37,21 +37,27 @@
   name: "Lounge Humidity"
   unit_of_measurement: "%"
   value_template: '{{ value_json.AM2301.Humidity }}'
-  
-- platform: mqtt
-  state_topic: "tele/sonoff-lounge-sensor/STATE"
-  name: "Lounge Sensor Node RSSI"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json['WiFi'].RSSI }}"
-  availability_topic: "tele/sonoff-lounge-sensor/LWT"
-  payload_available: "online"
-  payload_not_available: "offline"
 
-- platform: mqtt
-  state_topic: "tele/sonoff-lounge-sensor/STATE"
-  name: "Lounge Sensor Node RSSI 2"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.WiFi.RSSI }}"
-  availability_topic: "tele/sonoff-lounge-sensor/LWT"
-  payload_available: "online"
-  payload_not_available: "offline"
+#- platform: mqtt
+#  state_topic: "tele/sonoff-lounge-sensor/STATE"
+#  name: "Lounge Sensor Node RSSI"
+#  unit_of_measurement: "rssi"
+#  value_template: '{{ value_json['WiFi'].RSSI }}'
+#  availability_topic: "tele/sonoff-lounge-sensor/LWT"
+#  payload_available: "online"
+#  payload_not_available: "offline"
+
+#- platform: mqtt
+#  state_topic: "tele/sonoff-lounge-sensor/STATE"
+#  name: "Lounge Sensor Node RSSI 2"
+#  unit_of_measurement: "rssi"
+#  value_template: '{{ value_json.WiFi.RSSI }}'
+#  availability_topic: "tele/sonoff-lounge-sensor/LWT"
+#  payload_available: "online"
+#  payload_not_available: "offline"
+  
+#- platform: mqtt
+#  state_topic: "tele/sonoff-lounge-sensor/STATE"
+#  name: "WiFi signal lounge sensor"
+#  unit_of_measurement: "rssi"
+#  value_template: '{{ value_json.WiFi.RSSI }}'

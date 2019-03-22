@@ -26,3 +26,6 @@
       - sensor.tv_watched_this_daily
       - sensor.lastfm_valiceemo
       - sensor.valiceemo
+      - sensor.lounge_temperature
+      - sensor.lounge_humidity
+      - sensor.bedroom_temperature

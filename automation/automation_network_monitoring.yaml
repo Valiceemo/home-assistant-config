@@ -9,11 +9,15 @@
     - platform: state
       entity_id:
       - binary_sensor.device_tracker_milight_bridge
-      - sensor.connectivity_rpi_pihole
-      - sensor.connectivity_sky_tv
-      - sensor.connectivity_google_home_bedroom
-      - sensor.connectivity_google_home_lounge
-      - sensor.connectivity_chromecast_lounge
+      - binary_sensor.device_tracker_sonoff_nodemcu_sensor_bedroom
+      - binary_sensor.device_tracker_sonoff_nodemcu_sensor_lounge
+      - binary_sensor.device_tracker_sonoff1_bedside_lamp
+      - binary_sensor.device_tracker_rpi_pihole
+      - binary_sensor.device_tracker_skyhd
+      - binary_sensor.device_tracker_google_home_bedroom
+      - binary_sensor.device_tracker_google_home_lounge
+      - binary_sensor.device_tracker_harmony_hub
+
   action:
     - service: notify.pushbullet
       data_template:

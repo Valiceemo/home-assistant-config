@@ -56,4 +56,25 @@
       data:
         title: Home Assistant
         message: Failed login attempt to your Home Assistant
+        
+######################################################################
+##  Home Assistant Clear TTS Cache
+######################################################################
+
+- alias: clear tts cache
+  initial_state: 'on'
+  hide_entity: False
+  trigger:
+    - platform: time
+      at: '02:43:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+  action:
+    - service: tts.clear_cache
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Home Assistant TTS cache has been cleared
 

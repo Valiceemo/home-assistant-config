@@ -1,0 +1,3 @@
+reload_themes:
+  sequence:
+    - service: frontend.reload_themes

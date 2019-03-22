@@ -1,4 +1,4 @@
-##
+####
 - platform: rpi_rf
   gpio: 17
   switches:
@@ -21,7 +21,7 @@
       pulselength: 394
       code_on: 2952705 
       code_off: 2952705 
-      signal_repetitions: 5
+      signal_repetitions: 2
       
     tv_backlight_white:
       protocol: 1

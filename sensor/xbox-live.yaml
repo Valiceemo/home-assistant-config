@@ -1,0 +1,31 @@
+- platform: xbox_live
+  api_key: !secret xbox_api
+  xuid: !secret xbox_valiceemo_uuid
+  scan_interval: 120
+
+- platform: template
+  sensors:
+    xbox_valiceemo_currently_playing:
+      friendly_name: "Xbox Current Activity"
+      value_template: >
+        {% if states.sensor.valiceemo %}
+        {% set xstate = states('sensor.valiceemo') | lower %}
+        {% if xstate in [ 'unknown', 'offline' ] %} {{ xstate | title }}
+        {% else %}
+        {% if states.sensor.valiceemo.attributes['XboxOne Full'] %}
+        {{ states.sensor.valiceemo.attributes['XboxOne Full'] | title }}
+        {% elif states.sensor.valiceemo.attributes['XboxOne Background'] %}
+        {{ states.sensor.valiceemo.attributes['XboxOne Background'] | title }}
+        {% elif states.sensor.valiceemo.attributes['Android Full'] %}
+        {{ states.sensor.valiceemo.attributes['Android Full'] | title }}
+        {% else %}
+        {{ xstate | title }}
+        {% endif %}
+        {% endif %}
+        {% else %}
+        Api Limit
+        {% endif %}
+  
+    xbox_valiceemo_gamerscore:
+      friendly_name: "Xbox Current Activity"
+      value_template: "{{ state_attr('sensor.valiceemo', 'gamerscore') }}" 
