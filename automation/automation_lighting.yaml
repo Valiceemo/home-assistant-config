@@ -151,18 +151,19 @@
       entity_id: binary_sensor.lounge_sonoff_pir
       to: 'on'
       from: 'off'
-  
+
   condition: 
-    - condition: state
-      entity_id: device_tracker.rich_phone_s8
-      state: 'home'
-    - condition: state
-      entity_id: light.lounge_lamp
-      state: 'off'
-  condition: 
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.rich_phone_s8
+        state: 'home'
+      - condition: state
+        entity_id: light.lounge_lamp
+        state: 'off'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
 #    - condition: numeric_state
 #      entity_id: sensor.lounge_light_level
 #      above: 907
@@ -187,13 +188,15 @@
       entity_id: sensor.lounge_light_level
       below: 830
   
-  condition: 
-    - condition: state
-      entity_id: device_tracker.rich_phone_s8
-      state: 'home'
-    - condition: state
-      entity_id: light.lounge_lamp
-      state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.rich_phone_s8
+        state: 'home'
+      - condition: state
+        entity_id: light.lounge_lamp
+        state: 'on'
 #    - condition: state
 #      entity_id: sun.sun
 #      state: 'above_horizon'
@@ -244,12 +247,14 @@
         minutes: 10
         
   condition:
-    - condition: state
-      entity_id: light.lounge_lamp
-      state: 'on'
-    - condition: time
-      after: '00:00:00'
-      before: '06:00:00'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.lounge_lamp
+        state: 'on'
+      - condition: time
+        after: '00:00:00'
+        before: '06:00:00'
   
   action:
     - service: light.turn_off
