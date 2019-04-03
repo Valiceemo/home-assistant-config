@@ -34,6 +34,7 @@ camera:
   - platform: rpi_camera
     name: Lounge Camera
     image_quality: 70
+    file_path: /home/homeassistant/.homeassistant/www/images/camera/rpicamtmp.jpg
     
 
 weather:
