@@ -166,6 +166,23 @@ views:
           volume_stateless: false
           show_progress: false
           show_source: true
+          
+      - type: conditional
+        conditions:
+          - entity: media_player.bedroom_google_home
+            state: "playing"
+        card:
+          type: custom:mini-media-player
+          entity: media_player.bedroom_google_home
+          icon: mdi:google-home
+          artwork: full-cover
+          volume_stateless: false
+          show_source: true
+          hide:
+            volume: false
+            controls: false
+            power_state: false
+            progress: true
         
 
 ## SECURITY VIEW ##
