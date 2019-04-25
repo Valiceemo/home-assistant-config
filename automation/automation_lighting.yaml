@@ -27,7 +27,7 @@
         color_name: blue
 
 ######################################################################
-##  Master Bedroom Lights
+##  Motion Lights Master Bedroom 
 ######################################################################
 
 - alias: Motion Lights Bedroom Full
@@ -40,12 +40,20 @@
       from: 'off'
   
   condition: 
-    - condition: state
-      entity_id: device_tracker.rich_phone_s8
-      state: 'home'
-#    - condition: state
-#      entity_id: sun.sun
-#      state: 'below_horizon'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.rich_phone_s8
+        state: 'home'
+      - condition: state
+        entity_id: light.bedroom_light
+        state: 'off'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+#    - condition: numeric_state
+#      entity_id: sensor.lounge_light_level
+#      above: 907
   
   action:
     - service: light.turn_on
