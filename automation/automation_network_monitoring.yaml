@@ -8,7 +8,7 @@
   trigger:
     - platform: state
       entity_id:
-      - binary_sensor.device_tracker_milight_bridge
+      #- binary_sensor.device_tracker_milight_bridge
       - binary_sensor.device_tracker_sonoff_nodemcu_sensor_bedroom
       - binary_sensor.device_tracker_sonoff_nodemcu_sensor_lounge
       - binary_sensor.device_tracker_sonoff1_bedside_lamp
