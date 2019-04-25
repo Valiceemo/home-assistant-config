@@ -195,9 +195,10 @@ views:
       - type: custom:compact-custom-header
       - type: picture-entity
         entity: camera.lounge_camera
-        
-      - type: alarm-panel
-        entity: alarm_control_panel.ha_manual_alarm
+      - type: entities
+        title: Home Mode
+        entities:
+          - input_select.home_mode
 
 ## WEATHER VIEW ##
 
